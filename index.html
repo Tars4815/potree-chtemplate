@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Nuvola di punti dell'Arsenale di Piacenza">
+    <meta name="author" content="Federica Gaspari">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Arsenale di Piacenza</title>
+
+    <link rel="stylesheet" type="text/css" href="./libs/potree/potree.css">
+    <link rel="stylesheet" type="text/css" href="./libs/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="./libs/openlayers3/ol.css">
+    <link rel="stylesheet" type="text/css" href="./libs/spectrum/spectrum.css">
+    <link rel="stylesheet" type="text/css" href="./libs/jstree/themes/mixed/style.css">
+    <link rel="stylesheet" type="text/css" href="./libs/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./libs/font-awesome/font-awesome.css">
+
+    <!-- Custom styles for this template -->
+    <!--<link rel="stylesheet" type="text/css" href="./assets/css/vizcaya.css">-->
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+
+    <style>
+        /*Scrollbar for hotspot controls*/
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-button {
+            width: 8px;
+            height: 2px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: black;
+            border: thin solid black;
+            box-shadow: 0px 0px 3px black inset;
+            border-radius: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #565656;
+            border: thin solid #565656;
+            border-radius: 12px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7d7d7d;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./libs/jquery/jquery-3.1.1.min.js"></script>
+    <script src="./libs/spectrum/spectrum.js"></script>
+    <script src="./libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <script src="./libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="./libs/three.js/build/three.min.js"></script>
+    <script src="./libs/other/BinaryHeap.js"></script>
+    <script src="./libs/tween/tween.min.js"></script>
+    <script src="./libs/d3/d3.js"></script>
+    <script src="./libs/proj4/proj4.js"></script>
+    <script src="./libs/openlayers3/ol.js"></script>
+    <script src="./libs/i18next/i18next.js"></script>
+    <script src="./libs/jstree/jstree.js"></script>
+    <script src="./libs/potree/potree.js"></script>
+    <script src="./libs/plasio/js/laslaz.js"></script>
+
+    <!-- custom js script-->
+    <script src="./assets/js/main.js"></script>
+    <!-- INCLUDE ADDITIONAL DEPENDENCIES HERE -->
+    <!-- INCLUDE SETTINGS HERE -->
+
+    <div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
+        <div id="potree_render_area"> </div>
+        <div id="potree_sidebar_container"> </div>
+
+        <!--Control Icons-->
+        <img id="camera_icon" onclick="toggleImages()" src="./assets/camera.svg" title="Activate Images" />
+        <img id="refresh_icon" onclick="refreshButton()" src="./assets/refresh.svg" title="Refresh Page" />
+        <img id="question_icon" onclick="" src="./assets/question.svg" title="Tutorial" />
+        <img id="fullscreen_icon" onclick="toggleFullScreen()" src="./assets/fullscreen.svg" title="Fullscreen" />
+
+        <!-- Navigation Instructions -->
+        <div id="nav_panel" class="navPanel w3-center w3-animate-opacity">
+            <div class="navPanel-content">
+                <div class="intrinsic-container intrinsic-container-16x9">
+                    <img class="nav_img" src="./assets/navigation.png" />
+                </div>
+            </div>
+        </div>
+
+        <!--Hotspots Dropup-->
+        <div class="controls">
+            <div class="hotspot-controls">
+                <div id="prev" data-title="Previous Annotation" data-action="prev-annotation">
+                    <div id="prevDiv"><img id="prevIcon" src="libs/potree/resources/icons/arrow_left.svg" /></div>
+                </div>
+                <div id="hotspots" class="hotspot-name" data-action="toggle-annotation-list"><b
+                        id="hotspotName">Explore</b></div>
+                <div id="next" data-title="Next Annotation" data-action="next-annotation">
+                    <div id="nextDiv"><img id="nextIcon" src="libs/potree/resources/icons/arrow_right.svg" /></div>
+                </div>
+                <div id="lists" class="list hotspots-list visible">
+                    <ul class="js-scrollable">
+                        <li id="li1" class="link"><a data-hotspot-target="0" title="Bastione San Giovanni">Bastione San
+                                Giovanni</a></li>
+                        <li id="li2" class="link"><a data-hotspot-target="1" title="Bastione San Benedetto">Bastione San
+                                Benedetto </a></li>
+                        <li id="li3" class="link"><a data-hotspot-target="2" title="Bastione San Giacomo">Bastione San
+                                Giacomo</a></li>
+                        <li id="li4" class="link"><a data-hotspot-target="3"
+                                title="Bastione San Giacomo (Indoor)">Bastione San Giacomo (Indoor)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module">
+
+        window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
+
+        viewer.setEDLEnabled(true);
+        viewer.setFOV(60);
+        viewer.setPointBudget(2_000_000);
+        // INCLUDE SETTINGS HERE
+        viewer.loadSettingsFromURL();
+        viewer.setDescription(`Nuvola di punti dell'Arsenale.`);
+
+        viewer.loadGUI(() => {
+            viewer.setLanguage('en');
+            $("#menu_tools").next().show();
+            let section = $(`<h3 id="menu_meta" class="accordion-header ui-widget"><span>Credits</span></h3><div class="accordion-content ui-widget pv-menu-list"></div>`);
+            let content = section.last();
+            content.html(`
+			<div class="pv-menu-list">
+				Survey and images by Francesco Ioli e Federico Barbieri.<br> 
+				<br>
+			</div>
+			`);
+            content.hide();
+            section.first().click(() => content.slideToggle());
+            section.insertBefore($('#menu_appearance'));
+            $("#menu_filters").hide();
+            $("#menu_appearance").hide();
+        });
+
+        let scenears = new Potree.Scene();
+        let indoor = new Potree.Scene();
+
+        viewer.setScene(scenears);
+
+        //Loading point clouds
+        Potree.loadPointCloud("./pointclouds/arsenale/metadata.json", "Arsenale 2021", e => {
+            let pointcloud = e.pointcloud;
+            scenears.addPointCloud(pointcloud);
+            pointcloud.projection = "+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs +type=crs";
+
+            let material = pointcloud.material;
+            material.size = 1;
+            material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+            material.shape = Potree.PointShape.CIRCLE;
+            material.activeAttributeName = "rgba";
+
+            viewer.setFrontView()
+
+        });
+
+        //-------Definition of Animation 1
+
+        const animation = new Potree.CameraAnimation(viewer);
+
+
+        const positions = [
+            [553471.5649587561, 4988912.824383096, 96.74929992934102],
+            [553468.5406591574, 4988910.128623269, 96.76276144330579],
+            [553464.7474747964, 4988906.992126563, 96.80183731297694],
+            [553461.7708505556, 4988905.213628605, 96.69602529865505],
+            [553456.671652177, 4988904.093441524, 96.67255464872626]
+        ];
+
+        const targets = [
+            [553470.9753199244, 4988912.469004575, 96.60109365898464],
+            [553466.6034696557, 4988908.379363626, 96.63360394671783],
+            [553463.7472720352, 4988906.132089904, 96.53669281648749],
+            [553459.5019240862, 4988904.733406158, 96.54634617187397],
+            [553456.3547397406, 4988904.085110492, 96.5155739498246,]
+        ];
+
+        for (let i = 0; i < positions.length; i++) {
+            const cp = animation.createControlPoint();
+
+            cp.position.set(...positions[i]);
+            cp.target.set(...targets[i]);
+        }
+
+        indoor.addCameraAnimation(animation);
+        animation.visible = false;
+
+        //--------
+        //-------Definition of Animation 2
+
+        const animation2 = new Potree.CameraAnimation(viewer);
+
+        const positions2 = [
+            [553471.5649587561, 4988912.824383096, 96.74929992934102],
+            [553470.8266211117, 4988920.956978676, 96.96684674759675],
+            [553468.970057797, 4988925.671973037, 96.93937869520164],
+            [553466.3895679122, 4988928.694618191, 96.67629091896133],
+            [553464.5111995947, 4988930.979751398, 96.70556033095784]
+        ];
+
+        const targets2 = [
+            [553470.899, 4988918.329, 95.915],
+            [553470.7600219863, 4988921.507467228, 96.832169690892],
+            [553468.7403491414, 4988926.177655794, 96.80849752652905],
+            [553465.620604052, 4988930.300358385, 96.4827080923057],
+            [553464.0111806979, 4988932.023884267, 96.57968306104952]
+        ];
+
+        for (let i = 0; i < positions2.length; i++) {
+            const cp = animation2.createControlPoint();
+
+            cp.position.set(...positions2[i]);
+            cp.target.set(...targets2[i]);
+        }
+
+        indoor.addCameraAnimation(animation2);
+        animation2.visible = false;
+
+        //--------
+
+        Potree.loadPointCloud("./pointclouds/arsenale22/metadata.json", "Arsenale 2022", e => {
+            let scene = viewer.scene;
+            let pointcloud = e.pointcloud;
+            let material = pointcloud.material;
+            pointcloud.projection = "+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs +type=crs";
+            material.size = 1;
+            material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+            material.shape = Potree.PointShape.CIRCLE;
+            material.activeAttributeName = "rgba";
+
+            scenears.addPointCloud(pointcloud);
+            viewer.setFrontView()
+
+        });
+
+        Potree.loadPointCloud("./pointclouds/indoor/metadata.json", "Indoor", e => {
+            let pointcloud = e.pointcloud;
+            let material = pointcloud.material;
+            pointcloud.projection = "+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs +type=crs";
+            material.size = 1;
+            material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+            material.shape = Potree.PointShape.CIRCLE;
+            material.activeAttributeName = "rgba";
+
+            scenears.addPointCloud(pointcloud);
+            scenears.view.position.set(553471.5649587561, 4988912.824383096, 96.74929992934102);
+            scenears.view.lookAt(new THREE.Vector3(553470.9753199244, 4988912.469004575, 96.60109365898464));
+        });
+
+
+        {
+            let Titolo0 = $(`
+						<span>
+                            <img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_name" class="annotation-action-icon" />
+							<!---Bastione San Benedetto--->
+						</span>
+						`);
+            Titolo0.find("img[name=action_set_name]").click((event) => {
+                changeHotspotName("San Benedetto");
+                scenears.annotations.children[3].visible = false;
+                scenears.annotations.children[4].visible = false;
+                scenears.annotations.children[5].visible = false;
+            });
+            let nota = new Potree.Annotation({
+                position: [553516.631, 4988714.121, 104.338],
+                title: Titolo0,
+                cameraPosition: [553451.045, 4988694.422, 140.490],
+                cameraTarget: [553516.631, 4988714.121, 104.338],
+                description: "Prova prova prova"
+            })
+            nota.visible = true;
+            scenears.annotations.add(nota);
+            Titolo0.toString = () => "Bastione San Benedetto";
+
+        }
+        {
+            let Titolo2 = $(`
+						<span>
+                            <img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_name" class="annotation-action-icon" />
+							<!---Bastione San Giovanni--->
+						</span>
+						`);
+            Titolo2.find("img[name=action_set_name]").click((event) => {
+                changeHotspotName("San Giovanni");
+                scenears.annotations.children[3].visible = false;
+                scenears.annotations.children[4].visible = false;
+                scenears.annotations.children[5].visible = false;
+            });
+            let nota2 = new Potree.Annotation({
+                position: [553699.160, 4988620.828, 105.011],
+                title: Titolo2,
+                cameraPosition: [553708.348, 4988541.235, 145],
+                cameraTarget: [553699.160, 4988620.828, 105.011],
+                description: "Prova prova prova"
+            })
+            nota2.visible = true;
+            scenears.annotations.add(nota2);
+            Titolo2.toString = () => "Bastione San Giovanni";
+        }
+        {
+            let Titolo = $(`
+						<span>
+                            <img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_name" class="annotation-action-icon" />
+							<!---Bastione San Giacomo--->
+							<img src="./libs/potree/resources/icons/goto.svg" name="action_set_scene" class="annotation-action-icon" style="filter: invert(1);"/>
+						</span>
+						`);
+
+            Titolo.find("img[name=action_set_name]").click((event) => {
+                changeHotspotName("San Giacomo");
+            });
+            Titolo.find("img[name=action_set_scene]").click((event) => {
+                event.stopPropagation();
+                changeHotspotName("Indoor View")
+                // viewer.setScene(indoor);
+                scenears.annotations.children[3].moveHere(scenears.camera);
+                scenears.annotations.children[3].visible = true;
+                scenears.annotations.children[4].visible = true;
+                scenears.annotations.children[5].visible = true;
+            });
+            Titolo.toString = () => "San Giacomo";
+
+            let nota3 = new Potree.Annotation({
+                position: [553430.471, 4988914.868, 103.226],
+                title: Titolo,
+                cameraPosition: [553333.7713011784, 4988883.975343259, 166.10804103291153,],
+                cameraTarget: [553430.471, 4988914.868, 103.226],
+                description: 'Prova prova prova'
+            });
+
+            nota3.visible = true;
+            scenears.annotations.add(nota3);
+        }
+        {
+            let Titolo4 = $('<span>Start exploring! <input type="button" name="outdoor" value="Go back outdoor!"/></span > ')
+            Titolo4.find("input[name=outdoor]").click((event) => {
+                event.stopPropagation();
+                //viewer.setScene(scenears);
+                changeHotspotName("San Giacomo");
+                scenears.annotations.children[2].moveHere(scenears.camera);
+            });
+            Titolo4.toString = () => "Start exploring!";
+
+            let nota4 = new Potree.Annotation({
+                position: [553471.056, 4988913.293, 95.054],
+                title: Titolo4,
+                cameraPosition: [553474.7425516201, 4988912.090928567, 96],
+                cameraTarget: [553471.056, 4988913.293, 96],
+                description: 'Welcome to the indoor portion of the San Giacomo rampart!<br>This space is the site of a permanent exhibition of historic cartography and documents about the evolution of the city of Piacenza.<br>You can start exploring the two wings of this space by clicking on the "Tour Right" and "Tour Left" annotations.<br>The indoor point cloud has been completely acquired through TLS scans with a CAM2 Focus M70.'
+            })
+
+            nota4.visible = false;
+
+            scenears.annotations.add(nota4);
+        }
+        {
+            let Titolo5 = $(`
+						<span>
+							Tour Left
+							<img src="./libs/potree/resources/icons/goto.svg" name="action_set_animation" class="annotation-action-icon" style="filter: invert(1);"/>
+                            </span>
+						`);
+
+            const elPlay = Titolo5.find("img[name=action_set_animation]");
+            elPlay.click(() => {
+                event.stopPropagation();
+                console.log('Hai cliccato sulla nota');
+                animation.play();
+            });
+            Titolo5.toString = () => "Tour Left";
+
+            let nota5 = new Potree.Annotation({
+                position: [553468.485, 4988909.747, 95.010],
+                title: Titolo5,
+                cameraPosition: [553471.5649587561, 4988912.824383096, 96.74929992934102],
+                cameraTarget: [553470.9753199244, 4988912.469004575, 96.60109365898464],
+                description: 'Prova prova prova'
+            })
+
+            nota5.visible = false;
+            scenears.annotations.add(nota5);
+        }
+        {
+            let Titolo6 = $(`
+						<span>
+							Tour Right
+							<img src="./libs/potree/resources/icons/goto.svg" name="action_set_animation2" class="annotation-action-icon" style="filter: invert(1);"/>
+                            
+                            </span>
+						`);
+            const elPlay2 = Titolo6.find("img[name=action_set_animation2]");
+            elPlay2.click(() => {
+                event.stopPropagation();
+                console.log('Hai cliccato sulla nota');
+                animation2.play();
+            });
+            Titolo6.toString = () => "Tour Right";
+
+            let nota6 = new Potree.Annotation({
+                position: [553470.899, 4988918.329, 94.915],
+                title: Titolo6,
+                cameraPosition: [553471.5649587561, 4988912.824383096, 96.74929992934102],
+                cameraTarget: [553470.899, 4988918.329, 95.915],
+                description: 'Prova prova prova'
+            })
+
+            nota6.visible = false;
+            scenears.annotations.add(nota6);
+        }
+
+        var src = document.referrer;
+        var srcSplit = src.split("?");
+        var hotSpot = parseFloat(srcSplit[1]); //0 for San Giovanni, 1 for San Benedetto, 2 for San Giacomo, 3 for Indoor
+
+        /* Opening Transitions
+        *****************************************************/
+
+        //San Giovanni
+        if (hotSpot == 0) {
+            setTimeout(function () {
+                scenears.annotations.children[1].moveHere(scenears.camera);
+            }, 1500);
+        }
+
+        //San Benedetto
+        else if (hotSpot == 1) {
+            setTimeout(function () {
+                scenears.annotations.children[0].moveHere(scenears.camera);
+            }, 1500);
+        }
+
+        //San Giacomo
+        else if (hotSpot == 2) {
+            setTimeout(function () {
+                scenears.annotations.children[2].moveHere(scenears.camera);
+            }, 2000);
+        }
+
+        //San Giacomo Indoor
+        else if (hotSpot == 3) {
+            setTimeout(function () {
+                event.stopPropagation();
+                viewer.setScene(indoor);
+                scenears.annotations.children[3].moveHere(scenears.camera);
+            }, 2000);
+        }
+
+        /* Hotspots Control Dropup*/
+        $("#hotspots").click(function () {
+            $("#lists").toggle();
+
+        });
+
+        //Functions to show and hide annotations' descriptions
+        function showDescription(annotationNum) {
+            var descriptions = document.getElementsByClassName("annotation-description");
+            var description = descriptions[annotationNum];
+            description.style.display = "block";
+        }
+
+        function hideDescription(annotationNum) {
+            var descriptions = document.getElementsByClassName("annotation-description");
+            var description = descriptions[annotationNum];
+            description.style.display = "none";
+        }
+
+        //Functions for each annotation
+        function item1() {
+            changeHotspotName("San Giovanni");
+            scenears.annotations.children[1].moveHere(scenears.camera);
+            showDescription(1);
+            hideDescription(4);
+            scenears.annotations.children[3].visible = false;
+            scenears.annotations.children[4].visible = false;
+            scenears.annotations.children[5].visible = false;
+        }
+        function item2() {
+            changeHotspotName("San Benedetto");
+            scenears.annotations.children[0].moveHere(scenears.camera);
+            hideDescription(1);
+            hideDescription(4);
+            scenears.annotations.children[3].visible = false;
+            scenears.annotations.children[4].visible = false;
+            scenears.annotations.children[5].visible = false;
+        }
+        function item3() {
+            changeHotspotName("San Giacomo");
+            scenears.annotations.children[2].moveHere(scenears.camera);
+            hideDescription(1);
+            hideDescription(4);
+            scenears.annotations.children[3].visible = false;
+            scenears.annotations.children[4].visible = false;
+            scenears.annotations.children[5].visible = false;
+        }
+        function item4() {
+            changeHotspotName("Indoor");
+            scenears.annotations.children[3].moveHere(scenears.camera);
+            showDescription(4);
+            hideDescription(1);
+            scenears.annotations.children[3].visible = true;
+            scenears.annotations.children[4].visible = true;
+            scenears.annotations.children[5].visible = true;
+        }
+
+        //Hotspot Dropup's Click Selection
+        $("#li1").click(function () {
+            item1();
+        });
+        $("#li2").click(function () {
+            item2();
+        });
+        $("#li3").click(function () {
+            item3();
+        });
+        $("#li4").click(function () {
+            item4();
+        });
+
+        //Hotspot Dropup's Prev/Next Selection
+        const functions = [];
+        functions.push(item1);
+        functions.push(item2);
+        functions.push(item3);
+        functions.push(item4);
+
+        const length = functions.length;
+
+        const getNextIdx = (idx = 0, length, direction) => {
+            switch (direction) {
+                case 'next': return (idx + 1) % length;
+                case 'prev': return (idx == 0) && length - 1 || idx - 1;
+                default: return idx;
+            }
+        }
+
+        let idx; // idx is undefined, so getNewScene will take 0 as default
+        const getNewScene = (direction) => {
+            idx = getNextIdx(idx, length, direction);
+            var sceneFunction = functions[idx];
+            return sceneFunction();
+        }
+
+        $("#prev").click(function () {
+            getNewScene('prev');
+        });
+
+        $("#next").click(function () {
+            getNewScene('next');
+        });
+
+        //Temp solution to hide list when a hotspot is selected
+        function hideList(listItem) {
+            var openLink = document.getElementById(listItem);
+            openLink.addEventListener('click', clickHandler, false);
+            function clickHandler() {
+                var submenu = document.getElementById('lists');
+                submenu.style.display = 'none';
+            }
+        }
+
+        hideList('li1');
+        hideList('li2');
+        hideList('li3');
+        hideList('li4');
+
+        /* Navigation Controls Image
+*****************************************************/
+        $("#question_icon").click(function () {
+            $("#nav_panel").fadeIn();
+            //Applying opacity to parent page
+            parentWin = window.parent;
+            var sidebar = parentWin.document.getElementById('split-container');
+            sidebar.style.opacity = "0.5";
+        });
+
+
+        var navPanel = document.getElementById('nav_panel');
+        navPanel.addEventListener('click', function () {
+            $("#nav_panel").fadeOut();
+            //reset opacity of parent page
+            parentWin = window.parent;
+            var sidebar = parentWin.document.getElementById('split-container');
+            sidebar.style.opacity = "1";
+
+        });
+
+        $("#camera_icon").click(function () {
+            console.log('Hai cliccato sulla camera');
+            viewer.scene.orientedImages[0].visible = !viewer.scene.orientedImages[0].visible;
+            viewer.scene.orientedImages[1].visible = !viewer.scene.orientedImages[1].visible;
+        });
+
+    </script>
+    <script type="module">
+
+        import * as THREE from "./libs/three.js/build/three.module.js";
+
+        const cameraParamsPath = "./img_selected/arsenale/calib_anafi_fullRes.xml";
+        const imageParamsPath = "./img_selected/arsenale/imagesEO.txt";
+
+        Potree.OrientedImageLoader.load(cameraParamsPath, imageParamsPath, viewer).then(images => {
+            images.visible = false;
+            viewer.scene.addOrientedImages(images);
+        });
+
+    </script>
+    <script type="module">
+
+        import * as THREE from "./libs/three.js/build/three.module.js";
+
+        const cameraParamsPath2 = "./img_selected/arsenale22/calib_anafi_fullRes.xml";
+        const imageParamsPath2 = "./img_selected/arsenale22/imagesEO2022.txt";
+
+        Potree.OrientedImageLoader.load(cameraParamsPath2, imageParamsPath2, viewer).then(images2 => {
+            images2.visible = false;
+            viewer.scene.addOrientedImages(images2);
+        });
+
+        viewer.scene.OrientedImages.visible = false;
+
+    </script>
+</body>
+
+</html>

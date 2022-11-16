@@ -1,0 +1,594 @@
+/*
+ * Navbar
+ */
+
+ .navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+
+.navbar-fixed-bottom
+
+.navbar .form-control {
+    padding: .75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
+}
+
+.form-control-dark {
+    color: #fff;
+    background-color: rgba(255, 255, 255, .1);
+    border-color: rgba(255, 255, 255, .1);
+}
+
+    .form-control-dark:focus {
+        border-color: transparent;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+    }
+
+
+/*
+ * Utilities
+ */
+
+ .border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+a {
+    color: #555555;
+    text-decoration: none;
+}
+
+.modal-title {
+    font-size: 25px;
+}
+
+.modal-body {
+    font-size: 20px;
+}
+
+/*
+ * Scrollbar
+ */
+
+ ::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-button {
+    width: 8px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eee;
+    border: thin solid lightgray;
+    box-shadow: 0px 0px 3px #dfdfdf inset;
+    border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #999;
+    border: thin solid gray;
+    border-radius: 12px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #7d7d7d;
+    }
+
+
+/* 
+*POTREE ANNOTATIONS
+*/
+.annotation {
+    opacity: 1 !important;
+}
+
+.annotation-titlebar {
+    background-color: #1b4d6a;
+    border: 2px solid #3D9FD6; /*1px solid rgba(255, 255, 255, 0.7) for border thickness*/
+    padding: 6px 9px; /*5px 8px|1px 8px | 2px 13px for roundness*/
+    opacity: 1; /*1 shows icons | 0 !important could hide annotations*/
+}
+
+    .annotation-titlebar:hover {
+        background-color: #015289 !important;
+    }
+
+.annotation-expand {
+}
+
+.annotation-action-icon {
+}
+
+    .annotation-action-icon:hover {
+        /*filter: unset !important;*/
+    }
+
+.annotation-item {
+    opacity: 0.5; /*0.5*/
+}
+
+    .annotation-item:hover {
+    }
+
+.annotation-main {
+}
+
+.annotation-label {
+}
+
+.annotation-description {
+    border-radius: 10px; /*4px*/
+    max-width: 270px; /*500px*/
+    font-family: 'Open Sans', sans-serif; /*new*/
+}
+
+.annotation-description-close {
+}
+
+.annotation-description-content {
+}
+
+.annotation-icon {
+    width: 20px; /*20px*/
+    height: 20px; /*20px*/
+    opacity: 1; /*0.5*/
+}
+
+/* 
+*POP-UP WINDOWS FOR HERMS AND SCULPTURES
+*/
+
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 4; /* Sit on top */
+    padding-top: 80px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+/* popup Content */
+.popup-content {
+    background-color: #000000; /*#fefefe*/
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    border-radius: 20px;
+}
+
+.popup-header {
+    padding: 5px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: white; /*#000*/
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+.intrinsic-container {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+
+/* 16x9 Aspect Ratio */
+.intrinsic-container-16x9 {
+    padding-bottom: 56.25%;
+}
+
+/*
+* NAVIGATION PANEL
+*/
+.navPanel {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 3; /* Sit on top */
+    padding-top: 5%; /* Location of the box */
+    left: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(255,255,255); /* Fallback color */
+    background-color: rgba(0,0,0,0.25) !important; /* Black w/ opacity */
+    border-radius: 20px;
+}
+
+/* navPanel Content */
+.navPanel-content {
+    /*color: rgba(255,255,255,0.1);
+    background-color: rgba(0,0,0,0.1);*/
+    margin: auto;
+    padding: 20px;
+    /*border: 1px solid black; /*#888*/
+    width: 80%;
+    border-radius: 20px;
+    position: absolute;
+    left: 9%;
+}
+
+.nav_img {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    color: rgba(0,0,0,0.01);
+    background-color: rgba(0,0,0,0.01); /*rgba(255,255,255,0.01)*/
+    border-radius: 22px;
+}
+
+/*Control Panel image after selecting control icon*/
+#control_panel {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    position: fixed;
+    right: 70px;
+    z-index: 0; /* originally 100*/
+    display: none;
+}
+
+/*HOTSPOTS DROPUP
+*/
+
+/*.potree_container:hover .controls {
+    display: flex;
+}*/
+
+.controls {
+    display: flex; /*none to hide*/
+    /*min-width: 0;*/
+    padding: 20px;
+    pointer-events: none;
+    position: absolute;
+    right: 700px;
+    bottom: 10px;
+    z-index: 2;
+    height: 50px;
+    /*width: 40% my change*/
+    /*inherited*/
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    /*temp*/
+    transition-property: opacity;
+    transition-duration: 250ms;
+    transition-timing-function: ease-in-out;
+    transition-delay: initial;
+    width: 300px; /*changed*/
+}
+
+.controls .hotspot-controls {
+    display: flex;
+    min-width: 440px;
+    position: relative;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 0;
+    pointer-events: all;
+    height: 60px;
+    font-size: 30px; /*13px*/
+    color: #ffffff;
+    background: rgba(0,0,0,0.3);
+    border-radius: 25px;
+    border: solid;
+    border-color: #ffffff;
+}
+
+    .controls .hotspot-controls [data-action="prev-annotation"] {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 20px; /*changed*/
+        padding-right: 20px; /*changed*/
+        line-height: 30px;
+        cursor: pointer;
+    }
+
+    .controls .hotspot-controls .hotspot-name {
+        padding: 0 10px;
+        overflow: hidden;
+        line-height: 55px; /*modifies the height of the text*/
+        text-align: center;
+        text-overflow: ellipsis;
+        text-shadow: 0 0 10px #000000;
+        white-space: nowrap;
+        cursor: pointer;
+        -ms-flex: 1;
+        flex: 1;
+    }
+
+    .controls .hotspot-controls [data-action="next-annotation"] {
+        padding-top: 0px;
+        padding-right: 20px; /*changed*/
+        padding-bottom: 0px;
+        padding-left: 20px; /*changed*/
+        line-height: 30px;
+        cursor: pointer;
+    }
+
+    .controls .hotspot-controls .list {
+        position: absolute;
+        right: 7%;
+        bottom: 70px; /*change the proximity of bar and list*/
+        display: none;
+        min-height: 160px;
+        padding: 1px;
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 10px;
+        transition-property: opacity;
+        transition-duration: 250ms;
+        transition-timing-function: ease-in-out;
+        transition-delay: initial;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        min-width: 90%;
+    }
+
+#prevDiv, #nextDiv {
+height: 20px;
+width: 20px;
+position: center;
+position: absolute;
+}
+
+#prevIcon {
+bottom: -25px;
+position: absolute;
+left: -5px;
+}
+
+#nextIcon {
+bottom: -25px;
+position: absolute;
+right: 12px;
+}
+
+.js-scrollable {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.controls .hotspot-controls .list .annotations-visibility,
+.controls .hotspot-controls .list .annotations-autopilot {
+    display: none; /*set to none if hidden on barge*/
+    height: 28px;
+    padding-top: 0px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
+    .controls .hotspot-controls .list .annotations-visibility:hover,
+    .controls .hotspot-controls .list .annotations-autopilot:hover {
+        background-color: #333333;
+    }
+
+.controls .hotspot-controls .list ul {
+    overflow: auto;
+    /*border-top-width: 1px;*/
+    /*border-top-style: solid; to hide line on top */
+    border-top-color: rgb(86, 86, 86);
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    padding: 10px;
+}
+
+.controls .hotspot-controls .list li a {
+    display: flex;
+    width: 100%;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 0 5px;
+    overflow: hidden;
+    color: #ffffff; /*color: #cccccc;*/
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+    .controls .hotspot-controls .list li a:hover {
+        background-color: #333333;
+    }
+
+
+.controls .hotspot-controls .list li .index {
+    margin-right: 8px;
+}
+
+
+/*visibility*/
+.controls .hotspot-controls .list .annotations-visibility.\--hide:before {
+    content: "\F06E";
+}
+
+.controls .hotspot-controls .list .annotations-visibility:before {
+    content: "\F070";
+}
+
+.controls .hotspot-controls .list .annotations-visibility:before,
+.controls .hotspot-controls .list .annotations-autopilot:before {
+    margin-right: 8px;
+    font-family: "FontAwesome";
+}
+
+.controls .hotspot-controls .list .annotations-visibility.\--hide:after {
+    content: "Show annotations";
+}
+
+.controls .hotspot-controls .list .annotations-visibility:after {
+    content: "Hide annotations";
+}
+
+
+/*autopilot*/
+.controls .hotspot-controls .list .annotations-autopilot.\--stopped:before {
+    content: "\F04D";
+}
+
+.controls .hotspot-controls .list .annotations-autopilot:before {
+    content: "\F04B";
+}
+
+.controls .hotspot-controls .list .annotations-visibility:before,
+.controls .hotspot-controls .list .annotations-autopilot:before {
+    margin-right: 8px;
+    font-family: "FontAwesome";
+}
+
+.controls .hotspot-controls .list .annotations-autopilot.\--stopped:after {
+    content: "Stop autopilot";
+}
+
+.controls .hotspot-controls .list .annotations-autopilot:after {
+    content: "Start autopilot";
+}
+
+/*
+* CONTROLS ICONS
+*/
+
+#home_icon {
+    /*display: none;*/
+    width: 110%;
+    height: 110%;
+    position: fixed;
+    bottom: 15px;
+    right: 238px; /*130px*/
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0,0,0,0.3);
+    border-radius: 40px;
+}
+
+#popups_icon {
+    /*display: none;*/
+    width: 110%;
+    height: 110%;
+    position: fixed;
+    bottom: 15px;
+    right: 238px; /*left: 125px;*/
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0,0,0,0.3);
+    border-radius: 35px;
+}
+
+#refresh_icon {
+    /*display: none;*/
+    width: 80%;
+    height: 80%;
+    position: fixed;
+    top: 15px;
+    right: 160px; /*130px*/
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0,0,0,0.3);
+    border-radius: 35px;
+}
+
+
+#question_icon {
+    /*display: none;*/
+    width: 110%;
+    height: 110%;
+    position: fixed;
+    top: 15px;
+    right: 85px; /*70px*/
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0,0,0,0.3);
+    border-radius: 35px;
+}
+
+#fullscreen_icon {
+    /*display: none;*/
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 15px;
+    right: 10px;
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0,0,0,0.3);
+    border-radius: 35px;
+}
+
+#potree_map_toggle {
+    /*display: none;*/
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    bottom: 15px;
+    right: 10px;
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0,0,0,0.3);
+    border-radius: 35px;
+}
+
+#camera_icon {
+    /*display: none;*/
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 15px;
+    right: 235px;
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0,0,0,0.3);
+    border-radius: 35px;
+    filter: invert(1);
+}
