@@ -27,7 +27,7 @@
 
 :root{
 	
-	--color-0: 			rgba( 25, 40, 44, 1);
+	--color-0: 			rgb(0, 0, 0);
 	--color-1: 			rgba(122,129,132, 1);
 	--color-2: 			rgba( 57, 71, 75, 1);
 	--color-3: 			rgba( 45,109,130, 1);

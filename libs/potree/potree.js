@@ -77145,12 +77145,14 @@ ENDSEC
 				let selectionChanged = false;
 
 				if ( intersects.length > 0){
-					//console.log(intersects);
+					// console.log(intersects);
 					const intersection = intersects[0];
+					//console.log(intersection);
 					const orientedImage = intersection.object.orientedImage;
 					orientedImage.line.material.color.setRGB(1, 0, 0);
 					selectionChanged = hoveredElement !== orientedImage;
 					hoveredElement = orientedImage;
+					console.log(hoveredElement);
 				}else {
 					hoveredElement = null;
 				}
@@ -77247,10 +77249,13 @@ ENDSEC
 			const onMouseClick = (evt) => {
 
 				if(orientedImageControls.hasSomethingCaptured()){
+					console.log('hasSomething!');
 					return;
 				}
 
 				if(hoveredElement){
+					console.log('Hovered!');
+					console.log(hoveredElement);
 					moveToImage(hoveredElement);
 				}
 			};
@@ -77260,6 +77265,7 @@ ENDSEC
 			viewer.addEventListener("update", () => {
 
 				for(const image of orientedImages){
+					//console.log('updating image view');
 					const world = image.mesh.matrixWorld;
 					const {width, height} = image;
 					const aspect = width / height;
