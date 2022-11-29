@@ -67,8 +67,6 @@
 
     <!-- custom js script-->
     <script src="./assets/js/main.js"></script>
-    <!-- INCLUDE ADDITIONAL DEPENDENCIES HERE -->
-    <!-- INCLUDE SETTINGS HERE -->
 
     <div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
         <div id="potree_render_area"> </div>
@@ -94,7 +92,7 @@
         <div id="anno1" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="nav_img" src="./assets/anno-img/piacenza-plastico.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/piacenza-plastico.jpg" />
                 </div>
             </div>
         </div>
@@ -103,7 +101,7 @@
         <div id="anno2" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="nav_img" src="./assets/anno-img/piacenza-map.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/piacenza-map.jpg" />
                 </div>
             </div>
         </div>
@@ -112,7 +110,7 @@
         <div id="anno3" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="nav_img" src="./assets/anno-img/armor1.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/armor1.JPG" />
                 </div>
             </div>
         </div>
@@ -121,7 +119,7 @@
         <div id="anno4" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="nav_img" src="./assets/anno-img/armor2.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/armor2.JPG" />
                 </div>
             </div>
         </div>
@@ -130,7 +128,7 @@
         <div id="anno5" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="nav_img" src="./assets/anno-img/armor3.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/armor3.JPG" />
                 </div>
             </div>
         </div>
@@ -166,11 +164,9 @@
     <script src="assets/js/loadpointclouds.js"></script>
     <script src="assets/js/loadanimations.js"></script>
     <script src="assets/js/loadannotations.js"></script>
+    <script src="assets/js/loadphotos.js"></script>
 
     <script type="module">
-
-        const cameraParamsPath = "./img_selected/arsenale/calib_anafi_fullRes.xml";
-        const imageParamsPath = "./img_selected/arsenale/imagesEO.txt";
 
         var src = document.referrer;
         var srcSplit = src.split("?");
@@ -178,7 +174,6 @@
 
         /* Opening Transitions
         *****************************************************/
-
         //San Giovanni
         if (hotSpot == 0) {
             setTimeout(function () {
@@ -237,6 +232,11 @@
             scenears.annotations.children[3].visible = false;
             scenears.annotations.children[4].visible = false;
             scenears.annotations.children[5].visible = false;
+            scenears.annotations.children[6].visible = false;
+            scenears.annotations.children[7].visible = false;
+            scenears.annotations.children[8].visible = false;
+            scenears.annotations.children[9].visible = false;
+            scenears.annotations.children[10].visible = false;
         }
         function item2() {
             changeHotspotName("San Benedetto");
@@ -246,6 +246,11 @@
             scenears.annotations.children[3].visible = false;
             scenears.annotations.children[4].visible = false;
             scenears.annotations.children[5].visible = false;
+            scenears.annotations.children[6].visible = false;
+            scenears.annotations.children[7].visible = false;
+            scenears.annotations.children[8].visible = false;
+            scenears.annotations.children[9].visible = false;
+            scenears.annotations.children[10].visible = false;
         }
         function item3() {
             changeHotspotName("San Giacomo");
@@ -255,6 +260,11 @@
             scenears.annotations.children[3].visible = false;
             scenears.annotations.children[4].visible = false;
             scenears.annotations.children[5].visible = false;
+            scenears.annotations.children[6].visible = false;
+            scenears.annotations.children[7].visible = false;
+            scenears.annotations.children[8].visible = false;
+            scenears.annotations.children[9].visible = false;
+            scenears.annotations.children[10].visible = false;
         }
         function item4() {
             changeHotspotName("Indoor");
@@ -264,6 +274,11 @@
             scenears.annotations.children[3].visible = true;
             scenears.annotations.children[4].visible = true;
             scenears.annotations.children[5].visible = true;
+            scenears.annotations.children[6].visible = true;
+            scenears.annotations.children[7].visible = true;
+            scenears.annotations.children[8].visible = true;
+            scenears.annotations.children[9].visible = true;
+            scenears.annotations.children[10].visible = true;
         }
 
         //Hotspot Dropup's Click Selection
@@ -353,45 +368,6 @@
             viewer.scene.orientedImages[0].visible = !viewer.scene.orientedImages[0].visible;
             viewer.scene.orientedImages[1].visible = !viewer.scene.orientedImages[1].visible;
             viewer.scene.orientedImages[2].visible = !viewer.scene.orientedImages[2].visible;
-        });
-
-    </script>
-    <script type="module">
-
-        import * as THREE from "./libs/three.js/build/three.module.js";
-
-        const cameraParamsPath = "./img_selected/arsenale/calib_anafi_fullRes.xml";
-        const imageParamsPath = "./img_selected/arsenale/imagesEO.txt";
-
-        Potree.OrientedImageLoader.load(cameraParamsPath, imageParamsPath, viewer).then(images => {
-            images.visible = true;
-            viewer.scene.addOrientedImages(images);
-        });
-
-    </script>
-    <script type="module">
-
-        import * as THREE from "./libs/three.js/build/three.module.js";
-
-        const cameraParamsPath2 = "./img_selected/arsenale22/calib_anafi_fullRes.xml";
-        const imageParamsPath2 = "./img_selected/arsenale22/imagesEO2022.txt";
-
-        Potree.OrientedImageLoader.load(cameraParamsPath2, imageParamsPath2, viewer).then(images2 => {
-            images2.visible = false;
-            viewer.scene.addOrientedImages(images2);
-        });
-
-    </script>
-    <script type="module">
-
-        import * as THREE from "./libs/three.js/build/three.module.js";
-
-        const cameraParamsPath3 = "./img_selected/arsenale21/calib_anafi_fullRes.xml";
-        const imageParamsPath3 = "./img_selected/arsenale21/imagesEO.txt";
-
-        Potree.OrientedImageLoader.load(cameraParamsPath3, imageParamsPath3, viewer).then(images3 => {
-            images3.visible = false;
-            viewer.scene.addOrientedImages(images3);
         });
 
     </script>

@@ -2,7 +2,7 @@
  * Navbar
  */
 
- .navbar-brand {
+.navbar-brand {
     padding-top: .75rem;
     padding-bottom: .75rem;
     font-size: 1rem;
@@ -11,9 +11,7 @@
 }
 
 
-.navbar-fixed-bottom
-
-.navbar .form-control {
+.navbar-fixed-bottom .navbar .form-control {
     padding: .75rem 1rem;
     border-width: 0;
     border-radius: 0;
@@ -25,17 +23,17 @@
     border-color: rgba(255, 255, 255, .1);
 }
 
-    .form-control-dark:focus {
-        border-color: transparent;
-        box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-    }
+.form-control-dark:focus {
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
 
 
 /*
  * Utilities
  */
 
- .border-top {
+.border-top {
     border-top: 1px solid #e5e5e5;
 }
 
@@ -60,7 +58,7 @@ a {
  * Scrollbar
  */
 
- ::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 9px;
 }
 
@@ -82,9 +80,9 @@ a {
     border-radius: 12px;
 }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background: #7d7d7d;
-    }
+::-webkit-scrollbar-thumb:hover {
+    background: #7d7d7d;
+}
 
 
 /* 
@@ -96,54 +94,57 @@ a {
 
 .annotation-titlebar {
     background-color: #1b4d6a;
-    border: 2px solid #3D9FD6; /*1px solid rgba(255, 255, 255, 0.7) for border thickness*/
-    padding: 6px 9px; /*5px 8px|1px 8px | 2px 13px for roundness*/
-    opacity: 1; /*1 shows icons | 0 !important could hide annotations*/
+    border: 2px solid #3D9FD6;
+    /*1px solid rgba(255, 255, 255, 0.7) for border thickness*/
+    padding: 6px 9px;
+    /*5px 8px|1px 8px | 2px 13px for roundness*/
+    opacity: 1;
+    /*1 shows icons | 0 !important could hide annotations*/
 }
 
-    .annotation-titlebar:hover {
-        background-color: #015289 !important;
-    }
-
-.annotation-expand {
+.annotation-titlebar:hover {
+    background-color: #015289 !important;
 }
 
-.annotation-action-icon {
-}
+.annotation-expand {}
 
-    .annotation-action-icon:hover {
-        /*filter: unset !important;*/
-    }
+.annotation-action-icon {}
+
+.annotation-action-icon:hover {
+    /*filter: unset !important;*/
+}
 
 .annotation-item {
-    opacity: 0.5; /*0.5*/
+    opacity: 0.5;
+    /*0.5*/
 }
 
-    .annotation-item:hover {
-    }
+.annotation-item:hover {}
 
-.annotation-main {
-}
+.annotation-main {}
 
-.annotation-label {
-}
+.annotation-label {}
 
 .annotation-description {
-    border-radius: 10px; /*4px*/
-    max-width: 270px; /*500px*/
-    font-family: 'Open Sans', sans-serif; /*new*/
+    border-radius: 10px;
+    /*4px*/
+    max-width: 270px;
+    /*500px*/
+    font-family: 'Open Sans', sans-serif;
+    /*new*/
 }
 
-.annotation-description-close {
-}
+.annotation-description-close {}
 
-.annotation-description-content {
-}
+.annotation-description-content {}
 
 .annotation-icon {
-    width: 20px; /*20px*/
-    height: 20px; /*20px*/
-    opacity: 1; /*0.5*/
+    width: 20px;
+    /*20px*/
+    height: 20px;
+    /*20px*/
+    opacity: 1;
+    /*0.5*/
 }
 
 /* 
@@ -151,21 +152,30 @@ a {
 */
 
 .popup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 4; /* Sit on top */
-    padding-top: 80px; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 4;
+    /* Sit on top */
+    padding-top: 80px;
+    /* Location of the box */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black w/ opacity */
 }
 
 /* popup Content */
 .popup-content {
-    background-color: #000000; /*#fefefe*/
+    background-color: #000000;
+    /*#fefefe*/
     margin: auto;
     padding: 20px;
     width: 80%;
@@ -184,12 +194,13 @@ a {
     font-weight: bold;
 }
 
-    .close:hover,
-    .close:focus {
-        color: white; /*#000*/
-        text-decoration: none;
-        cursor: pointer;
-    }
+.close:hover,
+.close:focus {
+    color: white;
+    /*#000*/
+    text-decoration: none;
+    cursor: pointer;
+}
 
 .intrinsic-container {
     position: relative;
@@ -206,16 +217,25 @@ a {
 * NAVIGATION PANEL
 */
 .navPanel {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 3; /* Sit on top */
-    padding-top: 5%; /* Location of the box */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 3;
+    /* Sit on top */
+    padding-top: 5%;
+    /* Location of the box */
     left: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(255,255,255); /* Fallback color */
-    background-color: rgba(0,0,0,0.25) !important; /* Black w/ opacity */
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(255, 255, 255);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.25) !important;
+    /* Black w/ opacity */
     border-radius: 20px;
 }
 
@@ -225,20 +245,38 @@ a {
     background-color: rgba(0,0,0,0.1);*/
     margin: auto;
     padding: 20px;
-    /*border: 1px solid black; /*#888*/
+    /*border: 1px solid rgb(255, 255, 255);*/
+    /*#888*/
     width: 80%;
     border-radius: 20px;
     position: absolute;
     left: 9%;
+    text-align: center;
 }
 
 .nav_img {
     position: absolute;
     width: 80%;
-    height: 80%;
-    color: rgba(0,0,0,0.01);
-    background-color: rgba(0,0,0,0.01); /*rgba(255,255,255,0.01)*/
-    border-radius: 22px;
+    /* height: 80%; */
+    color: rgba(0, 0, 0, 0.01);
+    background-color: rgba(0, 0, 0, 0.01);
+    /*rgba(255,255,255,0.01)*/
+    border-radius: 15px;
+    left: 9%;
+    margin: auto;
+    display: block;
+}
+
+.anno_img {
+    position: absolute;
+    height: 70%;
+    color: rgba(0, 0, 0, 0.01);
+    background-color: rgba(0, 0, 0, 0.01);
+    /*rgba(255,255,255,0.01)*/
+    border-radius: 15px;
+    left: 25%;
+    margin: auto;
+    display: block;
 }
 
 /*Control Panel image after selecting control icon*/
@@ -249,7 +287,8 @@ a {
     height: auto;
     position: fixed;
     right: 70px;
-    z-index: 0; /* originally 100*/
+    z-index: 0;
+    /* originally 100*/
     display: none;
 }
 
@@ -261,7 +300,8 @@ a {
 }*/
 
 .controls {
-    display: flex; /*none to hide*/
+    display: flex;
+    /*none to hide*/
     /*min-width: 0;*/
     padding: 20px;
     pointer-events: none;
@@ -280,7 +320,8 @@ a {
     transition-duration: 250ms;
     transition-timing-function: ease-in-out;
     transition-delay: initial;
-    width: 300px; /*changed*/
+    width: 300px;
+    /*changed*/
 }
 
 .controls .hotspot-controls {
@@ -292,81 +333,89 @@ a {
     flex-basis: 0;
     pointer-events: all;
     height: 60px;
-    font-size: 30px; /*13px*/
+    font-size: 30px;
+    /*13px*/
     color: #ffffff;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 25px;
     border: solid;
     border-color: #ffffff;
 }
 
-    .controls .hotspot-controls [data-action="prev-annotation"] {
-        padding-top: 0px;
-        padding-bottom: 0px;
-        padding-left: 20px; /*changed*/
-        padding-right: 20px; /*changed*/
-        line-height: 30px;
-        cursor: pointer;
-    }
+.controls .hotspot-controls [data-action="prev-annotation"] {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    /*changed*/
+    padding-right: 20px;
+    /*changed*/
+    line-height: 30px;
+    cursor: pointer;
+}
 
-    .controls .hotspot-controls .hotspot-name {
-        padding: 0 10px;
-        overflow: hidden;
-        line-height: 55px; /*modifies the height of the text*/
-        text-align: center;
-        text-overflow: ellipsis;
-        text-shadow: 0 0 10px #000000;
-        white-space: nowrap;
-        cursor: pointer;
-        -ms-flex: 1;
-        flex: 1;
-    }
+.controls .hotspot-controls .hotspot-name {
+    padding: 0 10px;
+    overflow: hidden;
+    line-height: 55px;
+    /*modifies the height of the text*/
+    text-align: center;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 10px #000000;
+    white-space: nowrap;
+    cursor: pointer;
+    -ms-flex: 1;
+    flex: 1;
+}
 
-    .controls .hotspot-controls [data-action="next-annotation"] {
-        padding-top: 0px;
-        padding-right: 20px; /*changed*/
-        padding-bottom: 0px;
-        padding-left: 20px; /*changed*/
-        line-height: 30px;
-        cursor: pointer;
-    }
+.controls .hotspot-controls [data-action="next-annotation"] {
+    padding-top: 0px;
+    padding-right: 20px;
+    /*changed*/
+    padding-bottom: 0px;
+    padding-left: 20px;
+    /*changed*/
+    line-height: 30px;
+    cursor: pointer;
+}
 
-    .controls .hotspot-controls .list {
-        position: absolute;
-        right: 7%;
-        bottom: 70px; /*change the proximity of bar and list*/
-        display: none;
-        min-height: 160px;
-        padding: 1px;
-        color: #ffffff;
-        background: rgba(0, 0, 0, 0.75);
-        border-radius: 10px;
-        transition-property: opacity;
-        transition-duration: 250ms;
-        transition-timing-function: ease-in-out;
-        transition-delay: initial;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        min-width: 90%;
-    }
+.controls .hotspot-controls .list {
+    position: absolute;
+    right: 7%;
+    bottom: 70px;
+    /*change the proximity of bar and list*/
+    display: none;
+    min-height: 160px;
+    padding: 1px;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    transition-property: opacity;
+    transition-duration: 250ms;
+    transition-timing-function: ease-in-out;
+    transition-delay: initial;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    min-width: 90%;
+}
 
-#prevDiv, #nextDiv {
-height: 20px;
-width: 20px;
-position: center;
-position: absolute;
+#prevDiv,
+#nextDiv {
+    height: 20px;
+    width: 20px;
+    position: center;
+    position: absolute;
 }
 
 #prevIcon {
-bottom: -25px;
-position: absolute;
-left: -5px;
+    bottom: -25px;
+    position: absolute;
+    left: -5px;
 }
 
 #nextIcon {
-bottom: -25px;
-position: absolute;
-right: 12px;
+    bottom: -25px;
+    position: absolute;
+    right: 12px;
 }
 
 .js-scrollable {
@@ -376,7 +425,8 @@ right: 12px;
 
 .controls .hotspot-controls .list .annotations-visibility,
 .controls .hotspot-controls .list .annotations-autopilot {
-    display: none; /*set to none if hidden on barge*/
+    display: none;
+    /*set to none if hidden on barge*/
     height: 28px;
     padding-top: 0px;
     padding-right: 5px;
@@ -393,10 +443,10 @@ right: 12px;
     flex-basis: auto;
 }
 
-    .controls .hotspot-controls .list .annotations-visibility:hover,
-    .controls .hotspot-controls .list .annotations-autopilot:hover {
-        background-color: #333333;
-    }
+.controls .hotspot-controls .list .annotations-visibility:hover,
+.controls .hotspot-controls .list .annotations-autopilot:hover {
+    background-color: #333333;
+}
 
 .controls .hotspot-controls .list ul {
     overflow: auto;
@@ -416,7 +466,8 @@ right: 12px;
     box-sizing: border-box;
     padding: 0 5px;
     overflow: hidden;
-    color: #ffffff; /*color: #cccccc;*/
+    color: #ffffff;
+    /*color: #cccccc;*/
     text-overflow: ellipsis;
     white-space: nowrap;
     border-radius: 2px;
@@ -425,9 +476,9 @@ right: 12px;
     cursor: pointer;
 }
 
-    .controls .hotspot-controls .list li a:hover {
-        background-color: #333333;
-    }
+.controls .hotspot-controls .list li a:hover {
+    background-color: #333333;
+}
 
 
 .controls .hotspot-controls .list li .index {
@@ -492,12 +543,13 @@ right: 12px;
     height: 110%;
     position: fixed;
     bottom: 15px;
-    right: 238px; /*130px*/
+    right: 238px;
+    /*130px*/
     cursor: pointer;
     max-height: 70px !important;
     max-width: 70px !important;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 40px;
 }
 
@@ -507,12 +559,13 @@ right: 12px;
     height: 110%;
     position: fixed;
     bottom: 15px;
-    right: 238px; /*left: 125px;*/
+    right: 238px;
+    /*left: 125px;*/
     cursor: pointer;
     max-height: 70px !important;
     max-width: 70px !important;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 35px;
 }
 
@@ -522,12 +575,13 @@ right: 12px;
     height: 80%;
     position: fixed;
     top: 15px;
-    right: 160px; /*130px*/
+    right: 160px;
+    /*130px*/
     cursor: pointer;
     max-height: 70px !important;
     max-width: 70px !important;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 35px;
 }
 
@@ -538,12 +592,13 @@ right: 12px;
     height: 110%;
     position: fixed;
     top: 15px;
-    right: 85px; /*70px*/
+    right: 85px;
+    /*70px*/
     cursor: pointer;
     max-height: 70px !important;
     max-width: 70px !important;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 35px;
 }
 
@@ -558,7 +613,7 @@ right: 12px;
     max-height: 70px !important;
     max-width: 70px !important;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 35px;
 }
 
@@ -573,7 +628,7 @@ right: 12px;
     max-height: 70px !important;
     max-width: 70px !important;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 35px;
 }
 
@@ -588,7 +643,7 @@ right: 12px;
     max-height: 70px !important;
     max-width: 70px !important;
     z-index: 2;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 35px;
     filter: invert(1);
 }
