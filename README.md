@@ -1,6 +1,8 @@
 # potree-template
 An updated template for Potree pages based on [Vizcaya Museum](https://github.com/VizcayaMuseum/Kiosk) project and inspired by [potree-sfm](https://github.com/hokiespurs/potree-sfm) project features.
 
+A working example can be found on the [LabMGF DICA PoliMi website](https://labmgf.dica.polimi.it/pujob/potree-template/).
+
 ## **Features**
 - Fullscreen HTML5 API
 - Bootstrap integration
