@@ -18,6 +18,8 @@
         scenears.annotations.children[8].visible = false;
         scenears.annotations.children[9].visible = false;
         scenears.annotations.children[10].visible = false;
+        scenears.annotations.children[11].visible = false;
+        scenears.annotations.children[12].visible = false;
     });
     /* MODIFICA TEST */
     Titolo0.find("img[name=action_set_camera]").click(() => {
@@ -40,7 +42,7 @@
         title: Titolo0,
         cameraPosition: [553451.045, 4988694.422, 140.490],
         cameraTarget: [553516.631, 4988714.121, 104.338],
-        description: "Prova prova prova"
+        description: "The bastion of St. Benedict is the only one with an eaves and the only survivor of the city's 16th-century rampart wall. Of the two original auricles, the one facing the Porta Sant'Antonio gate was demolished between the end of the last century and the beginning of the current one for the construction of the railway line connecting with the state railroad yard (involving the Porta del Soccorso). The surviving auricle, on the other hand, has remained almost intact, on which it is possible to note the presence of a burrow at the base, made in years yet to be determined, but thanks to which it was possible to observe its internal structure and note its height of about 12 meters."
     })
     nota.visible = true;
     scenears.annotations.add(nota);
@@ -65,6 +67,8 @@
         scenears.annotations.children[8].visible = false;
         scenears.annotations.children[9].visible = false;
         scenears.annotations.children[10].visible = false;
+        scenears.annotations.children[11].visible = false;
+        scenears.annotations.children[12].visible = false;
     });
     let nota2 = new Potree.Annotation({
         position: [553699.160, 4988620.828, 105.011],
@@ -92,7 +96,6 @@
     Titolo.find("img[name=action_set_scene]").click((event) => {
         event.stopPropagation();
         changeHotspotName("Indoor View")
-        // viewer.setScene(indoor);
         scenears.annotations.children[3].moveHere(scenears.camera);
         scenears.annotations.children[3].visible = true;
         scenears.annotations.children[4].visible = true;
@@ -102,6 +105,8 @@
         scenears.annotations.children[8].visible = true;
         scenears.annotations.children[9].visible = true;
         scenears.annotations.children[10].visible = true;
+        scenears.annotations.children[11].visible = true;
+        scenears.annotations.children[12].visible = true;
     });
     Titolo.toString = () => "San Giacomo";
 
@@ -131,6 +136,8 @@
         scenears.annotations.children[8].visible = false;
         scenears.annotations.children[9].visible = false;
         scenears.annotations.children[10].visible = false;
+        scenears.annotations.children[11].visible = false;
+        scenears.annotations.children[12].visible = false;
     });
     Titolo4.toString = () => "Start exploring!";
     let nota4 = new Potree.Annotation({
@@ -241,6 +248,7 @@
     elAnno2.click(() => {
         event.stopPropagation();
         console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[7].moveHere(scenears.camera);
         $("#anno2").fadeIn();
         parentWin = window.parent;
         var sidebar = parentWin.document.getElementById('split-container');
@@ -277,6 +285,7 @@
     elAnno3.click(() => {
         event.stopPropagation();
         console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[8].moveHere(scenears.camera);
         $("#anno3").fadeIn();
         parentWin = window.parent;
         var sidebar = parentWin.document.getElementById('split-container');
@@ -313,10 +322,11 @@
     elAnno4.click(() => {
         event.stopPropagation();
         console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[9].moveHere(scenears.camera);
         $("#anno4").fadeIn();
         parentWin = window.parent;
         var sidebar = parentWin.document.getElementById('split-container');
-        sidebar.style.opacity = "0.5";
+        sidebar.style.opacity = "0.2";
     });
     var annoPanel4 = document.getElementById('anno4');
     annoPanel4.addEventListener('click', function () {
@@ -349,10 +359,11 @@
     elAnno5.click(() => {
         event.stopPropagation();
         console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[10].moveHere(scenears.camera);
         $("#anno5").fadeIn();
         parentWin = window.parent;
         var sidebar = parentWin.document.getElementById('split-container');
-        sidebar.style.opacity = "0.5";
+        sidebar.style.opacity = "0.2";
     });
     var annoPanel5 = document.getElementById('anno5');
     annoPanel5.addEventListener('click', function () {
@@ -368,11 +379,89 @@
     let nota11 = new Potree.Annotation({
         position: [553462.022, 4988903.801, 96.413],
         title: Titolo11,
-        cameraPosition: [553463.4076802338, 4988907.264894535, 96.3396021385902],
-        cameraTarget: [553463.9388958209, 4988906.130368572, 96.05896626293325],
+        cameraPosition: [553461.0117883002, 4988905.83894213, 96.30264985111171],
+        cameraTarget: [553461.660989483, 4988904.760987417, 96.04839188043876],
         description: '<img src="assets/anno-img/armor3.jpg" alt="Medieval armor" title="Medieval Armor" width="270px">'
     })
 
     nota11.visible = false;
     scenears.annotations.add(nota11);
+}
+{
+    // Cittadella plastico
+    let Titolo12 = $(`
+                <span>
+                    <img src="./libs/potree/resources/icons/orbit_controls.svg" name="anno_panel6" class="annotation-action-icon" "/>
+                </span>
+                `);
+    const elAnno6 = Titolo12.find("img[name=anno_panel6]");
+    elAnno6.click(() => {
+        event.stopPropagation();
+        console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[11].moveHere(scenears.camera);
+        $("#anno6").fadeIn();
+        parentWin = window.parent;
+        var sidebar = parentWin.document.getElementById('split-container');
+        sidebar.style.opacity = "0.2";
+    });
+    var annoPanel6 = document.getElementById('anno6');
+    annoPanel6.addEventListener('click', function () {
+        $("#anno6").fadeOut();
+        //reset opacity of parent page
+        parentWin = window.parent;
+        var sidebar = parentWin.document.getElementById('split-container');
+        sidebar.style.opacity = "1";
+
+    });
+    Titolo12.toString = () => "Plastico Castello";
+
+    let nota12 = new Potree.Annotation({
+        position: [553452.063, 4988908.686, 95.781],
+        title: Titolo12,
+        cameraPosition: [553452.8222248793, 4988906.980127202, 97.1850908613455],
+        cameraTarget: [553452.2814114128, 4988908.670055407, 95.68378200038859],
+        description: '<img src="assets/anno-img/castello-plastico.jpg" alt="Plastico castello" title="Plastico castello" width="270px">'
+    })
+
+    nota12.visible = false;
+    scenears.annotations.add(nota12);
+}
+{
+    // Sotterranei bastione
+    let Titolo13 = $(`
+                <span>
+                    <img src="./libs/potree/resources/icons/orbit_controls.svg" name="anno_panel7" class="annotation-action-icon" "/>
+                </span>
+                `);
+    const elAnno7 = Titolo13.find("img[name=anno_panel7]");
+    elAnno7.click(() => {
+        event.stopPropagation();
+        console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[12].moveHere(scenears.camera);
+        $("#anno7").fadeIn();
+        parentWin = window.parent;
+        var sidebar = parentWin.document.getElementById('split-container');
+        sidebar.style.opacity = "0.2";
+    });
+    var annoPanel7 = document.getElementById('anno7');
+    annoPanel7.addEventListener('click', function () {
+        $("#anno7").fadeOut();
+        //reset opacity of parent page
+        parentWin = window.parent;
+        var sidebar = parentWin.document.getElementById('split-container');
+        sidebar.style.opacity = "1";
+
+    });
+    Titolo13.toString = () => "Sotterranei";
+
+    let nota13 = new Potree.Annotation({
+        position: [553470.263, 4988927.862, 94.700],
+        title: Titolo13,
+        cameraPosition: [553467.7806220746, 4988926.3230987545,	95.9174366691439],
+        cameraTarget: [553468.8885795458, 4988926.818049205, 95.80151137015869],
+        description: '<img src="assets/anno-img/sotterranei.jpg" alt="Sotterranei" title="Sotterranei" width="270px">'
+    })
+
+    nota13.visible = false;
+    scenears.annotations.add(nota13);
 }

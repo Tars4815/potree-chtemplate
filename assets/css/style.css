@@ -234,7 +234,7 @@ a {
     /* Enable scroll if needed */
     background-color: rgb(255, 255, 255);
     /* Fallback color */
-    background-color: rgba(0, 0, 0, 0.25) !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
     /* Black w/ opacity */
     border-radius: 20px;
 }
@@ -270,8 +270,8 @@ a {
 .anno_img {
     position: absolute;
     height: 70%;
-    color: rgba(0, 0, 0, 0.01);
-    background-color: rgba(0, 0, 0, 0.01);
+    color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     /*rgba(255,255,255,0.01)*/
     border-radius: 15px;
     left: 25%;
