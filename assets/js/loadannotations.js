@@ -97,16 +97,19 @@
         event.stopPropagation();
         changeHotspotName("Indoor View")
         scenears.annotations.children[3].moveHere(scenears.camera);
+        scenears.annotations.children[0].visible = false;
+        scenears.annotations.children[1].visible = false;
+        scenears.annotations.children[2].visible = false;
         scenears.annotations.children[3].visible = true;
         scenears.annotations.children[4].visible = true;
         scenears.annotations.children[5].visible = true;
         scenears.annotations.children[6].visible = true;
         scenears.annotations.children[7].visible = true;
-        scenears.annotations.children[8].visible = true;
-        scenears.annotations.children[9].visible = true;
-        scenears.annotations.children[10].visible = true;
-        scenears.annotations.children[11].visible = true;
-        scenears.annotations.children[12].visible = true;
+        scenears.annotations.children[8].visible = false;
+        scenears.annotations.children[9].visible = false;
+        scenears.annotations.children[10].visible = false;
+        scenears.annotations.children[11].visible = false;
+        scenears.annotations.children[12].visible = false;
     });
     Titolo.toString = () => "San Giacomo";
 
@@ -128,6 +131,9 @@
         event.stopPropagation();
         changeHotspotName("San Giacomo");
         scenears.annotations.children[2].moveHere(scenears.camera);
+        scenears.annotations.children[0].visible = true;
+        scenears.annotations.children[1].visible = true;
+        scenears.annotations.children[2].visible = true;
         scenears.annotations.children[3].visible = false;
         scenears.annotations.children[4].visible = false;
         scenears.annotations.children[5].visible = false;
@@ -138,6 +144,8 @@
         scenears.annotations.children[10].visible = false;
         scenears.annotations.children[11].visible = false;
         scenears.annotations.children[12].visible = false;
+        scenears.annotations.children[13].visible = false;
+        scenears.annotations.children[14].visible = false;
     });
     Titolo4.toString = () => "Start exploring!";
     let nota4 = new Potree.Annotation({
@@ -163,6 +171,10 @@
         event.stopPropagation();
         console.log('Hai cliccato sulla nota');
         animation.play();
+        scenears.annotations.children[8].visible = true;
+        scenears.annotations.children[9].visible = true;
+        scenears.annotations.children[10].visible = true;
+        scenears.annotations.children[13].visible = true;
     });
     Titolo5.toString = () => "Tour Left";
     let nota5 = new Potree.Annotation({
@@ -170,7 +182,7 @@
         title: Titolo5,
         cameraPosition: [553471.5649587561, 4988912.824383096, 96.74929992934102],
         cameraTarget: [553470.9753199244, 4988912.469004575, 96.60109365898464],
-        description: 'Prova prova prova'
+        description: 'Click on the icon and walk through the indoor left wing of the bastion...<br>You could also learn more about some <b>hidden treasures</b>!'
     })
     nota5.visible = false;
     scenears.annotations.add(nota5);
@@ -189,6 +201,8 @@
         event.stopPropagation();
         console.log('Hai cliccato sulla nota');
         animation2.play();
+        scenears.annotations.children[12].visible = true;
+        scenears.annotations.children[14].visible = true;
     });
     Titolo6.toString = () => "Tour Right";
     let nota6 = new Potree.Annotation({
@@ -196,7 +210,7 @@
         title: Titolo6,
         cameraPosition: [553471.5649587561, 4988912.824383096, 96.74929992934102],
         cameraTarget: [553470.899, 4988918.329, 95.915],
-        description: 'Prova prova prova'
+        description: 'Click on the icon and walk through the indoor left wing of the bastion...<br>You may discover a <b>secret passage</b>!'
     })
     nota6.visible = false;
     scenears.annotations.add(nota6);
@@ -306,7 +320,7 @@
         title: Titolo9,
         cameraPosition: [553465.5320448811, 4988908.552441066, 97.55644288528843],
         cameraTarget: [553467.3375243957, 4988906.725013733, 96.24520099166907],
-        description: '<img src="assets/anno-img/armor1.jpg" alt="Medieval armor" title="Medieval Armor" width="270px">'
+        description: '<b>Armor</b><br><img src="assets/anno-img/armor1.jpg" alt="Medieval armor" title="Medieval Armor" width="270px">'
     })
     nota9.visible = false;
     scenears.annotations.add(nota9);
@@ -343,7 +357,7 @@
         title: Titolo10,
         cameraPosition: [553463.4076802338, 4988907.264894535, 96.3396021385902],
         cameraTarget: [553463.9388958209, 4988906.130368572, 96.05896626293325],
-        description: '<img src="assets/anno-img/armor2.jpg" alt="Medieval armor" title="Medieval Armor" width="270px">'
+        description: '<b>Armor</b><img src="assets/anno-img/armor2.jpg" alt="Medieval armor" title="Medieval Armor" width="270px">'
     })
     nota10.visible = false;
     scenears.annotations.add(nota10);
@@ -381,7 +395,7 @@
         title: Titolo11,
         cameraPosition: [553461.0117883002, 4988905.83894213, 96.30264985111171],
         cameraTarget: [553461.660989483, 4988904.760987417, 96.04839188043876],
-        description: '<img src="assets/anno-img/armor3.jpg" alt="Medieval armor" title="Medieval Armor" width="270px">'
+        description: '<b>Armor</b><br>Testo con commento ad armatura<br><img src="assets/anno-img/armor3.jpg" alt="Medieval armor" title="Medieval Armor" width="270px">'
     })
 
     nota11.visible = false;
@@ -457,11 +471,71 @@
     let nota13 = new Potree.Annotation({
         position: [553470.263, 4988927.862, 94.700],
         title: Titolo13,
-        cameraPosition: [553467.7806220746, 4988926.3230987545,	95.9174366691439],
+        cameraPosition: [553467.7806220746, 4988926.3230987545, 95.9174366691439],
         cameraTarget: [553468.8885795458, 4988926.818049205, 95.80151137015869],
         description: '<img src="assets/anno-img/sotterranei.jpg" alt="Sotterranei" title="Sotterranei" width="270px">'
     })
 
     nota13.visible = false;
     scenears.annotations.add(nota13);
+}
+{
+    // Go back left
+    let Titolo14 = $(`
+                <span>
+                    Go back to entrance
+                    <img src="./libs/potree/resources/icons/goto.svg" name="go-back-left" class="annotation-action-icon" style="filter: invert(1);"/>
+                </span>
+                `);
+    const elAnno8 = Titolo14.find("img[name=go-back-left]");
+    elAnno8.click(() => {
+        event.stopPropagation();
+        console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[3].moveHere(scenears.camera);
+        scenears.annotations.children[8].visible = false;
+        scenears.annotations.children[9].visible = false;
+        scenears.annotations.children[10].visible = false;
+        scenears.annotations.children[13].visible = false;
+    });
+    Titolo14.toString = () => "Go back to entrance";
+
+    let nota14 = new Potree.Annotation({
+        position: [553451.946, 4988904.035, 94.906],
+        title: Titolo14,
+        cameraPosition: [553455.5741941927, 4988905.668038199, 96.31654328895252],
+        cameraTarget: [553451.946, 4988904.035, 94.906],
+        description: ''
+    })
+
+    nota14.visible = false;
+    scenears.annotations.add(nota14);
+}
+{
+    // Go back right
+    let Titolo15 = $(`
+                  <span>
+                      Go back to entrance
+                      <img src="./libs/potree/resources/icons/goto.svg" name="go-back-right" class="annotation-action-icon" style="filter: invert(1);"/>
+                  </span>
+                  `);
+    const elAnno9 = Titolo15.find("img[name=go-back-right]");
+    elAnno9.click(() => {
+        event.stopPropagation();
+        console.log('Hai cliccato sulla nota');
+        scenears.annotations.children[3].moveHere(scenears.camera);
+        scenears.annotations.children[12].visible = false;
+        scenears.annotations.children[14].visible = false;
+    });
+    Titolo15.toString = () => "Go back to entrance";
+
+    let nota15 = new Potree.Annotation({
+        position: [553461.037, 4988936.183, 94.739],
+        title: Titolo15,
+        cameraPosition: [553463.0115106291, 4988933.638064064, 95.78213209344673],
+        cameraTarget: [553461.037, 4988936.183, 94.739],
+        description: ''
+    })
+
+    nota15.visible = false;
+    scenears.annotations.add(nota15);
 }

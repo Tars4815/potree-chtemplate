@@ -110,7 +110,8 @@
         <div id="anno3" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="anno_img" src="./assets/anno-img/armor1.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/armor1.jpg" /><br>
+                    <p>Armatura da campo fine sec. XV</p>
                 </div>
             </div>
         </div>
@@ -119,7 +120,7 @@
         <div id="anno4" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="anno_img" src="./assets/anno-img/armor2.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/armor2.jpg" />
                 </div>
             </div>
         </div>
@@ -128,7 +129,25 @@
         <div id="anno5" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="anno_img" src="./assets/anno-img/armor3.JPG" />
+                    <img class="anno_img" src="./assets/anno-img/armor3.jpg" />
+                </div>
+            </div>
+        </div>
+
+        <!--Plastico castello-->
+        <div id="anno6" class="navPanel w3-center w3-animate-opacity">
+            <div class="navPanel-content">
+                <div class="intrinsic-container intrinsic-container-16x9">
+                    <img class="anno_img" src="./assets/anno-img/castello-plastico.jpg" />
+                </div>
+            </div>
+        </div>
+
+        <!--Plastico castello-->
+        <div id="anno7" class="navPanel w3-center w3-animate-opacity">
+            <div class="navPanel-content">
+                <div class="intrinsic-container intrinsic-container-16x9">
+                    <img class="anno_img" src="./assets/anno-img/sotterranei.jpg" />
                 </div>
             </div>
         </div>
@@ -229,6 +248,9 @@
             scenears.annotations.children[1].moveHere(scenears.camera);
             showDescription(1);
             hideDescription(4);
+            scenears.annotations.children[0].visible = true;
+            scenears.annotations.children[1].visible = true;
+            scenears.annotations.children[2].visible = true;
             scenears.annotations.children[3].visible = false;
             scenears.annotations.children[4].visible = false;
             scenears.annotations.children[5].visible = false;
@@ -237,12 +259,19 @@
             scenears.annotations.children[8].visible = false;
             scenears.annotations.children[9].visible = false;
             scenears.annotations.children[10].visible = false;
+            scenears.annotations.children[11].visible = false;
+            scenears.annotations.children[12].visible = false;
+            scenears.annotations.children[13].visible = false;
+            scenears.annotations.children[14].visible = false;
         }
         function item2() {
             changeHotspotName("San Benedetto");
             scenears.annotations.children[0].moveHere(scenears.camera);
             hideDescription(1);
             hideDescription(4);
+            scenears.annotations.children[0].visible = true;
+            scenears.annotations.children[1].visible = true;
+            scenears.annotations.children[2].visible = true;
             scenears.annotations.children[3].visible = false;
             scenears.annotations.children[4].visible = false;
             scenears.annotations.children[5].visible = false;
@@ -251,12 +280,19 @@
             scenears.annotations.children[8].visible = false;
             scenears.annotations.children[9].visible = false;
             scenears.annotations.children[10].visible = false;
+            scenears.annotations.children[11].visible = false;
+            scenears.annotations.children[12].visible = false;
+            scenears.annotations.children[13].visible = false;
+            scenears.annotations.children[14].visible = false;
         }
         function item3() {
             changeHotspotName("San Giacomo");
             scenears.annotations.children[2].moveHere(scenears.camera);
             hideDescription(1);
             hideDescription(4);
+            scenears.annotations.children[0].visible = true;
+            scenears.annotations.children[1].visible = true;
+            scenears.annotations.children[2].visible = true;
             scenears.annotations.children[3].visible = false;
             scenears.annotations.children[4].visible = false;
             scenears.annotations.children[5].visible = false;
@@ -265,20 +301,31 @@
             scenears.annotations.children[8].visible = false;
             scenears.annotations.children[9].visible = false;
             scenears.annotations.children[10].visible = false;
+            scenears.annotations.children[11].visible = false;
+            scenears.annotations.children[12].visible = false;
+            scenears.annotations.children[13].visible = false;
+            scenears.annotations.children[14].visible = false;
         }
         function item4() {
             changeHotspotName("Indoor");
             scenears.annotations.children[3].moveHere(scenears.camera);
             showDescription(4);
             hideDescription(1);
+            scenears.annotations.children[0].visible = false;
+            scenears.annotations.children[1].visible = false;
+            scenears.annotations.children[2].visible = false;
             scenears.annotations.children[3].visible = true;
             scenears.annotations.children[4].visible = true;
             scenears.annotations.children[5].visible = true;
             scenears.annotations.children[6].visible = true;
             scenears.annotations.children[7].visible = true;
-            scenears.annotations.children[8].visible = true;
-            scenears.annotations.children[9].visible = true;
-            scenears.annotations.children[10].visible = true;
+            scenears.annotations.children[8].visible = false;
+            scenears.annotations.children[9].visible = false;
+            scenears.annotations.children[10].visible = false;
+            scenears.annotations.children[11].visible = false;
+            scenears.annotations.children[12].visible = false;
+            scenears.annotations.children[13].visible = false;
+            scenears.annotations.children[14].visible = false;
         }
 
         //Hotspot Dropup's Click Selection

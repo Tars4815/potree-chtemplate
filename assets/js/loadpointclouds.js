@@ -30,6 +30,7 @@ let indoor = new Potree.Scene();
 
 viewer.setScene(scenears);
 
+
 Potree.loadPointCloud("./pointclouds/arsenale/metadata.json", "Arsenale 2021", e => {
     let pointcloud = e.pointcloud;
     scenears.addPointCloud(pointcloud);
