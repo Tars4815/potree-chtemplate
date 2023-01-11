@@ -5,7 +5,6 @@
                 <span>
                     <img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_name" class="annotation-action-icon" />
                     <!---Bastione San Benedetto--->
-                    <img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_camera" class="annotation-action-icon" />
                 </span>
                 `);
     Titolo0.find("img[name=action_set_name]").click((event) => {
@@ -21,22 +20,6 @@
         scenears.annotations.children[11].visible = false;
         scenears.annotations.children[12].visible = false;
     });
-    /* MODIFICA TEST */
-    Titolo0.find("img[name=action_set_camera]").click(() => {
-        console.log('Hai cliccato!');
-        let element = viewer.scene.orientedImages[0].images[0];
-        console.log(element);
-        // const orientedImageControls = new Potree.OrientedImageControls(viewer);
-        viewer.scene.view.setView(viewer.scene.orientedImages[0].images[0].position.clone(), viewer.scene.orientedImages[0].images[0].mesh.position.clone(), 500, () => {
-            Potree.OrientedImageControls.capture(element);
-        });
-        //viewer.scene.view.setView(viewer.scene.orientedImages[0].images[0].position.clone(), viewer.scene.orientedImages[0].images[0].mesh.position.clone(), 500, //() => {
-        //viewer.scene.orientedImageControls.capture(viewer.scene.orientedImages[0].images[0]);
-        //}
-        console.log(element.id);
-        console.log('Funziona!');
-    });
-    /* Fine modifica Test */
     let nota = new Potree.Annotation({
         position: [553516.631, 4988714.121, 104.338],
         title: Titolo0,
@@ -57,7 +40,8 @@
                     <!---Bastione San Giovanni--->
                 </span>
                 `);
-    Titolo2.find("img[name=action_set_name]").click((event) => {
+    const elGiovanni = Titolo2.find("img[name=action_set_name]");
+    elGiovanni.click(() => {
         changeHotspotName("San Giovanni");
         scenears.annotations.children[3].visible = false;
         scenears.annotations.children[4].visible = false;
@@ -69,7 +53,19 @@
         scenears.annotations.children[10].visible = false;
         scenears.annotations.children[11].visible = false;
         scenears.annotations.children[12].visible = false;
+        $("#anno10").fadeIn();
+        parentWin = window.parent;
+        var sidebar = parentWin.document.getElementById('split-container');
+        sidebar.style.opacity = "0.5";
     });
+    var annoPanel10 = document.getElementById('anno10');
+    /*annoPanel10.addEventListener('click', function () {
+        $("#anno10").fadeOut();
+        //reset opacity of parent page
+        parentWin = window.parent;
+        var sidebar = parentWin.document.getElementById('split-container');
+        sidebar.style.opacity = "1";
+    });*/
     let nota2 = new Potree.Annotation({
         position: [553699.160, 4988620.828, 105.011],
         title: Titolo2,
