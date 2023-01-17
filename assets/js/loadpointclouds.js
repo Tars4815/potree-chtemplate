@@ -5,7 +5,7 @@ viewer.setFOV(60);
 viewer.setPointBudget(2_000_000);
 
 viewer.loadSettingsFromURL();
-viewer.setDescription(`Nuvola di punti dell'Arsenale.`);
+viewer.setDescription(`Explore the old Farnese Castle in Piacenza!`);
 
 viewer.loadGUI(() => {
     viewer.setLanguage('en');
@@ -14,7 +14,7 @@ viewer.loadGUI(() => {
     let content = section.last();
     content.html(`
     <div class="pv-menu-list">
-        Survey and images by Francesco Ioli e Federico Barbieri.<br> 
+        Survey and images by Francesco Ioli e Federico Barbieri.<br> Data integration in the Potree environment by Federica Gaspari.<br> Historical documentation and original thesis project by Michele Dondi and Clara Riveri.
         <br>
     </div>
     `);
@@ -30,23 +30,7 @@ let indoor = new Potree.Scene();
 
 viewer.setScene(scenears);
 
-
-Potree.loadPointCloud("./pointclouds/arsenale/metadata.json", "Arsenale 2021", e => {
-    let pointcloud = e.pointcloud;
-    scenears.addPointCloud(pointcloud);
-    pointcloud.projection = "+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs +type=crs";
-
-    let material = pointcloud.material;
-    material.size = 1;
-    material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-    material.shape = Potree.PointShape.CIRCLE;
-    material.activeAttributeName = "rgba";
-
-    viewer.setFrontView()
-
-});
-
-Potree.loadPointCloud("./pointclouds/arsenale22/metadata.json", "Arsenale 2022", e => {
+Potree.loadPointCloud("./pointclouds/arsenaletot/metadata.json", "Arsenale", e => {
     let scene = viewer.scene;
     let pointcloud = e.pointcloud;
     let material = pointcloud.material;

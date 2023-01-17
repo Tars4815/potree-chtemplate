@@ -4,7 +4,7 @@ const cameraParamsPath = "./img_selected/arsenale/calib_anafi_fullRes.xml";
 const imageParamsPath = "./img_selected/arsenale/imagesEO.txt";
 
 Potree.OrientedImageLoader.load(cameraParamsPath, imageParamsPath, viewer).then(images => {
-    images.visible = true;
+    images.visible = false;
     viewer.scene.addOrientedImages(images);
 });
 

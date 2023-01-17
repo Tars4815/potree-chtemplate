@@ -312,8 +312,9 @@ a {
     height: 50px;
     /*width: 40% my change*/
     /*inherited*/
-    font-family: 'Open Sans', sans-serif;
-    font-size: 30px;
+    font-family: 'Verdana', sans-serif;
+    font-size: 20px;
+    text-align: center;
     font-weight: 900;
     /*temp*/
     transition-property: opacity;
@@ -321,6 +322,7 @@ a {
     transition-timing-function: ease-in-out;
     transition-delay: initial;
     width: 300px;
+    bottom: 50px;
     /*changed*/
 }
 
@@ -333,7 +335,8 @@ a {
     flex-basis: 0;
     pointer-events: all;
     height: 60px;
-    font-size: 30px;
+    text-align: center;
+    font-size: 20px;
     /*13px*/
     color: #ffffff;
     background: rgba(0, 0, 0, 0.3);
@@ -389,6 +392,7 @@ a {
     color: #ffffff;
     background: rgba(0, 0, 0, 0.75);
     border-radius: 10px;
+    text-align: center;
     transition-property: opacity;
     transition-duration: 250ms;
     transition-timing-function: ease-in-out;
@@ -433,6 +437,7 @@ a {
     padding-bottom: 0px;
     padding-left: 5px;
     overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
     border-radius: 2px;
@@ -456,6 +461,7 @@ a {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 0%;
+    text-align: center;
     padding: 10px;
 }
 
@@ -471,6 +477,7 @@ a {
     text-overflow: ellipsis;
     white-space: nowrap;
     border-radius: 2px;
+    text-align: center;
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;

@@ -109,6 +109,7 @@
         scenears.annotations.children[13].visible = false;
         scenears.annotations.children[14].visible = false;
         scenears.annotations.children[15].visible = true;
+        scenears.annotations.children[16].visible = true;
     });
     Titolo.toString = () => "San Giacomo";
 
@@ -117,7 +118,7 @@
         title: Titolo,
         cameraPosition: [553333.7713011784, 4988883.975343259, 166.10804103291153,],
         cameraTarget: [553430.471, 4988914.868, 103.226],
-        description: '<b>San Giacomo Bastion</b><br>----<br>Differently from the twin San Giovanni bastion, it has been affected by additional military intervention. Indeed, on the upper part merlons have been added while an underground shelter, adopted as bomb shelter during World War, is still present and partially accessible through a lateral external access.<br>The indoor space is visitable.<br>----<br>IMMAGINE'
+        description: '<b>San Giacomo Bastion</b><br>----<br>Differently from the twin San Giovanni bastion, it has been affected by additional military intervention. Indeed, on the upper part merlons have been added while an underground shelter, adopted as bomb shelter during World War, is still present and partially accessible through a lateral external access.<br>The indoor space is visitable.'
     });
 
     nota3.visible = true;
@@ -146,6 +147,7 @@
         scenears.annotations.children[13].visible = false;
         scenears.annotations.children[14].visible = false;
         scenears.annotations.children[15].visible = false;
+        scenears.annotations.children[16].visible = false;
     });
     Titolo4.toString = () => "Start exploring!";
     let nota4 = new Potree.Annotation({
