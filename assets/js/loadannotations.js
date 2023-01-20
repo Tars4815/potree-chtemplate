@@ -71,7 +71,7 @@
         title: Titolo2,
         cameraPosition: [553708.348, 4988541.235, 145],
         cameraTarget: [553699.160, 4988620.828, 105.011],
-        description: "<b>San Giovanni Bastion</b><br>----<br>Prova prova prova"
+        description: "<b>San Giovanni Bastion</b><br>----<br>Another item of considerable interest is certainly the finding of spaces interiors and basements in both ramparts, rooms that present both significant damage but also spaces in excellent condition, in which the destinations of the structures of the bastions as warehouses and the constructions of false walls, had resulted in the complete concealment the view of the entrance to the dungeon (up to 10 m below the level of the street)"
     })
     nota2.visible = true;
     scenears.annotations.add(nota2);
