@@ -6,6 +6,8 @@ A working example can be found on the [LabMGF DICA PoliMi website](https://labmg
 
 ![ Home page of the Potree based platform](./screenshots/home.png "Homepage of the Potree based platform of the Farnese Castel in Piacenza (Italy)")
 
+[![Documentation Status](https://readthedocs.org/projects/potree-chtemplate/badge/?version=latest)](https://potree-chtemplate.readthedocs.io/en/latest/?badge=latest)
+
 ## **Features**
 - Fullscreen HTML5 API
 - Bootstrap integration
