@@ -17,7 +17,8 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="References" href="ref.html" />
+    <link rel="next" title="References" href="ref.html" />
+    <link rel="prev" title="Methodology and data" href="data.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -37,6 +38,128 @@
   <section id="platform-implementation">
 <h1>Platform implementation<a class="headerlink" href="#platform-implementation" title="Permalink to this heading">¶</a></h1>
 <p>[testo]</p>
+<section id="indoor-navigation">
+<h2>Indoor navigation<a class="headerlink" href="#indoor-navigation" title="Permalink to this heading">¶</a></h2>
+<p>The exploration of the 3D reconstruction of the indoor portion of Bastione San Giacomo was defined through a series of actions included into annotations.</p>
+<img alt="Entry of the indoor portion of San Giacomo Bastion" class="align-center" src="../_images/indoor-entry.jpg" />
+<p>In particular, the following actions were implemented:</p>
+<ul class="simple">
+<li><p>Changing view and scene;</p></li>
+<li><p>Showing image pop-up;</p></li>
+<li><p>Playing animations.</p></li>
+</ul>
+<section id="changing-view-and-scene">
+<h3>Changing view and scene<a class="headerlink" href="#changing-view-and-scene" title="Permalink to this heading">¶</a></h3>
+<p>This action is implemented in the <em>Start exploring!</em> annotation located in the center of the entrance.
+Its goal is to trigger the movement from the indoor environment to the outdoor scene.</p>
+<p>In order to do so, an input button element is defined in the annotation name.
+Then, the action is defined by defining the series of operations to be executed when the button whose name is “outdoor” is clicked by the user.</p>
+<img alt="Example of button action for changing view and scene" class="align-center" src="../_images/go-back-outdoor.jpg" />
+<p>This event will first call the function <em>changeHotspotName()</em>, changing the hotspot name to the one of the reference point of interest on which the new scene will be focused.
+In this case, it will be the outdoor of the San Giacomo bastion. So, the name to be included within the brackets is “San Giacomo”.</p>
+<p>Hence, the <em>moveHere()</em> method of the Annotation class is applied to the third element ([2]) of the annotation list defined in the <em>loadannotations.js</em> file.
+In this case, it was needed to switch to the camera view defined in the Bastione San Giacomo annotation that was defined as the third in the js file.
+By applying this method, the new view will automatically be set considering the coordinates and orientations included in the referred annotation.</p>
+<p>Eventually, the visibility of annotations is changed according to the new view.
+Consequently, the visible property of all the annotation children defined inside the bastion is set to <em>false</em>, while the one of the new outdoor scene annotations is changed to <em>true</em>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>  ...
+{
+  // Indoor
+  let Titolo4 = $(&#39;<span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>Start exploring! <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;outdoor&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Go back outdoor!&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">span</span> <span class="p">&gt;</span> &#39;)
+  Titolo4.find(&quot;input[name=outdoor]&quot;).click((event) =&gt; {
+      event.stopPropagation();
+      changeHotspotName(&quot;San Giacomo&quot;);
+      scenears.annotations.children[2].moveHere(scenears.camera);
+      scenears.annotations.children[0].visible = true;
+      scenears.annotations.children[1].visible = true;
+      scenears.annotations.children[2].visible = true;
+      scenears.annotations.children[3].visible = false;
+      scenears.annotations.children[4].visible = false;
+      scenears.annotations.children[5].visible = false;
+      scenears.annotations.children[6].visible = false;
+      scenears.annotations.children[7].visible = false;
+      scenears.annotations.children[8].visible = false;
+      scenears.annotations.children[9].visible = false;
+      scenears.annotations.children[10].visible = false;
+      scenears.annotations.children[11].visible = false;
+      scenears.annotations.children[12].visible = false;
+      scenears.annotations.children[13].visible = false;
+      scenears.annotations.children[14].visible = false;
+      scenears.annotations.children[15].visible = false;
+      scenears.annotations.children[16].visible = false;
+  });
+  Titolo4.toString = () =&gt; &quot;Start exploring!&quot;;
+  let nota4 = new Potree.Annotation({
+      position: [553471.056, 4988913.293, 95.054],
+      title: Titolo4,
+      cameraPosition: [553474.7425516201, 4988912.090928567, 96],
+      cameraTarget: [553471.056, 4988913.293, 96],
+      description: &#39;<span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;</span>Welcome to the indoor portion of the San Giacomo rampart!<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>----<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>This space is the site of a permanent exhibition of historic cartography and documents about the evolution of the city of Piacenza.<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>You can start exploring the two wings of this space by clicking on the <span class="p">&lt;</span><span class="nt">i</span><span class="p">&gt;</span>&quot;Tour Right&quot;<span class="p">&lt;/</span><span class="nt">i</span><span class="p">&gt;</span> and <span class="p">&lt;</span><span class="nt">i</span><span class="p">&gt;</span>&quot;Tour Left&quot;<span class="p">&lt;/</span><span class="nt">i</span><span class="p">&gt;</span> annotations.<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>The indoor point cloud has been completely acquired through TLS scans with a CAM2 Focus M70.&#39;
+  })
+  nota4.visible = false;
+  scenears.annotations.add(nota4);
+
+}
+</pre></div>
+</div>
+<p>…</p>
+</section>
+<hr class="docutils" />
+<section id="showing-image-pop-up">
+<h3>Showing image pop-up<a class="headerlink" href="#showing-image-pop-up" title="Permalink to this heading">¶</a></h3>
+<p>The orbit icon included in the indoor annotations is associated to an image detail.
+Indeed, after clicking on it, the platform shows a pop up with the image attached to the annotation of interest.
+To return to the navigation scene, the user could simply click on the faded area outside the shown image.</p>
+<img alt="Example of the image pop-up action on print." class="align-center" src="../_images/indoor-image-pop-up.jpg" />
+<p>[TESTO]</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>...
+  {
+      // Paolo III print
+      let Titolo16 = $(`
+          &lt;span&gt;
+              &lt;img src=&quot;./libs/potree/resources/icons/orbit_controls.svg&quot; name=&quot;anno_panel8&quot; class=&quot;annotation-action-icon&quot; &quot;/&gt;
+          &lt;/span&gt;
+      `);
+      const elAnno10 = Titolo16.find(&quot;img[name=anno_panel8]&quot;);
+      elAnno10.click(() =&gt; {
+          event.stopPropagation();
+          console.log(&#39;Hai cliccato sulla nota&#39;);
+          scenears.annotations.children[15].moveHere(scenears.camera);
+          $(&quot;#anno8&quot;).fadeIn();
+          parentWin = window.parent;
+          var sidebar = parentWin.document.getElementById(&#39;split-container&#39;);
+          sidebar.style.opacity = &quot;0.2&quot;;
+      });
+      var annoPanel8 = document.getElementById(&#39;anno8&#39;);
+      annoPanel8.addEventListener(&#39;click&#39;, function () {
+          $(&quot;#anno8&quot;).fadeOut();
+          //reset opacity of parent page
+          parentWin = window.parent;
+          var sidebar = parentWin.document.getElementById(&#39;split-container&#39;);
+          sidebar.style.opacity = &quot;1&quot;;
+      });
+      Titolo16.toString = () =&gt; &quot;Paolo II print&quot;;
+      let nota16 = new Potree.Annotation({
+          position: [553468.173, 4988913.334, 96.274],
+          title: Titolo16,
+          cameraPosition: [553470.5484979739,4988913.944287285,97.04518532773058],
+          cameraTarget: [553468.173, 4988913.334, 96.274],
+          description: &#39;&lt;b&gt;Paolo II print&lt;/b&gt;&lt;br&gt;----&lt;br&gt;The Pope is shown seated and flanked by Cardinal Alessandro Farnese as he approves the plan of the castle of Piacenza. The plan is presented to him by Pierluigi, who is kneeling, and is dressed in yellow and blue and has a white mantle. Architecture can be glimpsed in the background.&lt;br&gt;Original paint from 1685 - 1687 by Sebastiano Ricci, preserved at the Civic Museum of the Farnese Palace (Piacenza).&lt;br&gt;----&lt;br&gt;&lt;img src=&quot;assets/anno-img/paoloIII.jpg&quot; alt=&quot;Paolo III Print&quot; title=&quot;Paolo III Print&quot; width=&quot;270px&quot;&gt;&#39;
+      })
+      nota16.visible = false;
+      scenears.annotations.add(nota16);
+  }
+
+...
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="playing-animations">
+<h3>Playing animations<a class="headerlink" href="#playing-animations" title="Permalink to this heading">¶</a></h3>
+<p>[Testo]</p>
+</section>
+</section>
 </section>
 
 
@@ -60,15 +183,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Methodology and data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Platform implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#indoor-navigation">Indoor navigation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="ref.html">References</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Platform implementation</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="ref.html" title="previous chapter">References</a></li>
+      <li>Previous: <a href="data.html" title="previous chapter">Methodology and data</a></li>
+      <li>Next: <a href="ref.html" title="next chapter">References</a></li>
   </ul></li>
 </ul>
 </div>
