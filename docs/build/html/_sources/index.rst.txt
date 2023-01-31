@@ -12,6 +12,7 @@ Welcome to documentation for the Potree template of the Farnese Castle!
 
    pages/intro
    pages/data
+   pages/template-implementation
    pages/ref
 
 

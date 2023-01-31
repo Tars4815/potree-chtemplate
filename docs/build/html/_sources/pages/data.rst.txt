@@ -31,4 +31,5 @@ Web Platform implementation
 ---------------------------
 
 After 3D modelling of the construction and deconstruction phases of the castle based on historical documentation, these products, together with 3D model of each historical construction step, were included in web platform for digital twin exploration with storytelling features. For this purpose, two open-source tools with different peculiarities were evaluated: Potree WebGL (Schütz, 2016) for its optimised rendering of large point clouds.
+More details on the process can be found on the :doc:`template-implementation`. page of the documentation.
 

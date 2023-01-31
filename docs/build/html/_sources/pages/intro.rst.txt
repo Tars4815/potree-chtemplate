@@ -8,7 +8,10 @@ A working example of this project can be found on the Politecnico di Milano DICA
 Project Context
 ----------------
 
-[TEXT]
+The project is the result of surveys conducted between 2021 and 2022.
+The context in which it was designed and developed was a series of in situ laboratories for the course **Tecniche di rilievo e modellazione 3D per l'architettura** (EN: *Topographic survey and 3D modeling for architecture*) from the Architectural Design curriculum offered in the Piacenza campus of Politecnico di Milano.
+Additional data collection, processing and historiographic investigation were conducted in the framework of the Bachelor thesis *Riscoprire il gigante sommerso - Rilievo, indagine storica e ricostruzione digitale del Castello di Pierluigi Farnese* by Michele Dondi and Clara Rivieri.
+The implementation of the 3D web interactive platform was carried out by Federica Gaspari, Federico Barbieri and Francesco Ioli from the `Geodetic and Photogrammetric Laboratory <https://labmgf.dica.polimi.it/>`__ of Politecnico di Milano.
 
 Farnese Castle
 --------------
@@ -30,5 +33,9 @@ Also, only two rampart indoor areas are accessible, containing an exhibition wit
   :alt: Rendering of the original structure of Farnese Castle
 
 
+Acknowledgement
+---------------
+
+[TEXT]
 
 
