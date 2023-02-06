@@ -36,6 +36,12 @@ Also, only two rampart indoor areas are accessible, containing an exhibition wit
 Acknowledgement
 ---------------
 
-[TEXT]
+The project authors would like to thank arch. Marcello Spigaroli and the Ente Farnese for the stimulating and exciting research opportunity
+provided by the survey of the Castle. Dutiful thanks go to those people who with courteous patience
+facilitated the research at the archives, libraries and during the operations
+survey. In particular, a special acknowledge goes to Gen. Eugenio Gentile, the Military Arsenal
+of Piacenza and the Historical Archives of Parma for their availability.
+
+
 
 

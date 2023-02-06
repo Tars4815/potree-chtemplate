@@ -1,7 +1,6 @@
 Methodology and data
 ====================
 
-[TEXT]
 
 The process for implementing a 3D interactive interface was defined as follows:
 
@@ -20,11 +19,13 @@ Survey
 
 The in-situ survey consisted in a combination of different techniques:
 
-* a traditional topographic survey (total station + GNSS)
-* UAV photogrammetry
-* TLS for a complete 3D reconstruction
+* a traditional topographic survey (total station + GNSS).
+* UAV photogrammetry.
+* TLS for a complete 3D reconstruction.
  
 The materialization of a topographic network by using a total station defined a local referenced system. Within the local refence system, a series of targets and/or natural features were measured and adopted as Ground Control Points (GCPs) or Check Points (CPs) for the UAV photogrammetric block. This was carried out with off-the-shelves UAVs DJI Mavic 2 Pro and DJI Phantom 4 RTK, carrying compact RGB cameras and allowed to acquire images of the outdoor environment.  The acquired images were processed with a traditional Structure from Motion approach (SfM) (Westoby et al., 2012). Additionally, TLS allowed for a fast acquisition of dense point clouds of both outdoor and indoor spaces. Finally, measuring of 3-5 targets with a topographic-grade GNSS antenna allowed for roto-translating the local reference system to the global system WGS84 – UTM Zone 32 N.  After an appropriate georeferencing, combining different survey techniques together made it possible to achieve a complete reconstruction of site. The point clouds resulting from the photogrammetric and TLS acquisitions were compared, evaluating cloud-to-cloud distances on overlapping regions to assess the quality and the coherence of the products. After that, point clouds were integrated and used for deriving other 3D products, such as triangulated meshes and tiled models (i.e., hierarchical data structure for storing large 3D models though a regular grid structure).
+
+
 
 
 Web Platform implementation

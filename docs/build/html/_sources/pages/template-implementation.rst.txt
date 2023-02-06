@@ -30,7 +30,7 @@ Then, the action is defined by defining the series of operations to be executed 
 .. image:: IMG/go-back-outdoor.jpg
   :align: center
   :alt: Example of button action for changing view and scene
-
+..
 
 This event will first call the function *changeHotspotName()*, changing the hotspot name to the one of the reference point of interest on which the new scene will be focused.
 In this case, it will be the outdoor of the San Giacomo bastion. So, the name to be included within the brackets is "San Giacomo".
@@ -98,12 +98,45 @@ To return to the navigation scene, the user could simply click on the faded area
   :align: center
   :alt: Example of the image pop-up action on print.
 
-
-[TESTO]
+This action is firstly prepared by definind a div element in the *index.html* page: it will be the panel that will appear in the middle of the screen when the annotation is clicked.
+Inside it, an images tag is defined with the link to the source file path of the image that will be included in the panel when visible.
 
 .. code-block:: html
 
-  ...
+  <!--Paolo III print-->
+        <div id="anno8" class="navPanel w3-center w3-animate-opacity">
+            <div class="navPanel-content">
+                <div class="intrinsic-container intrinsic-container-16x9">
+                    <img class="anno_img" src="./assets/anno-img/paoloIII.jpg" />
+                </div>
+            </div>
+        </div>
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+The style for the panel - with rounded corner and position settings - is instead defined in the *assets/css/style.css* file.
+
+.. code-block:: css
+
+  .navPanel-content {
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    border-radius: 20px;
+    position: absolute;
+    left: 9%;
+    text-align: center;
+  }
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+Finally, the annotation is defined with its title and action.
+The latter one is implemente by first includin the orbit control icon in the annotation title: this img tag will be the one looked for by the *find()* method in the next line.
+
+[TESTO]
+
+.. code-block:: js
+
     {
         // Paolo III print
         let Titolo16 = $(`
@@ -113,8 +146,6 @@ To return to the navigation scene, the user could simply click on the faded area
         `);
         const elAnno10 = Titolo16.find("img[name=anno_panel8]");
         elAnno10.click(() => {
-            event.stopPropagation();
-            console.log('Hai cliccato sulla nota');
             scenears.annotations.children[15].moveHere(scenears.camera);
             $("#anno8").fadeIn();
             parentWin = window.parent;
