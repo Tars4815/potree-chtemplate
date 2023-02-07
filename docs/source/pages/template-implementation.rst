@@ -213,7 +213,7 @@ This type of action could be helpful for defining a pre-fixed user exploration p
 
 .. raw:: html
   
-  <video controls src="VIDEO/animation-annotation.mp4"></video>
+  <video controls src="..\_static\animation-annotation.mp4"></video>
 
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -298,11 +298,11 @@ In the same code block, the visibility of the desired annotation is changed acco
   Another useful tip to facilitate user pre-fixed movements and explorations with the model scene is to position an annotation at the end of the animation path that includes an action allowing to return to the initial scene view, as the example view.
 
 
-.. video:: VIDEO/animation-annotation-tip.mp4
-   :width: 500
-   :height: 300
-   :autoplay:
-   :nocontrols:
+.. raw:: html
+  
+  <video controls src="..\_static\animation-annotation-tip.mp4"></video>
+
+
 
 
 
