@@ -38,6 +38,24 @@
   <section id="platform-implementation">
 <h1>Platform implementation<a class="headerlink" href="#platform-implementation" title="Permalink to this heading">¶</a></h1>
 <p>[testo]</p>
+<section id="outdoor-navigation">
+<h2>Outdoor navigation<a class="headerlink" href="#outdoor-navigation" title="Permalink to this heading">¶</a></h2>
+<p>[testo]</p>
+<img alt="Outdoor view of the Arsenale 3D point cloud in the Potree viewer." class="align-center" src="../_images/outdoor-navigation.jpg" />
+<p>[testo]</p>
+<section id="hotspot-views">
+<h3>Hotspot views<a class="headerlink" href="#hotspot-views" title="Permalink to this heading">¶</a></h3>
+<p>[testo]</p>
+</section>
+<section id="moving-to-indoor-scene">
+<h3>Moving to indoor scene<a class="headerlink" href="#moving-to-indoor-scene" title="Permalink to this heading">¶</a></h3>
+<p>[testo]</p>
+</section>
+<section id="showing-image-slide-show">
+<h3>Showing image slide-show<a class="headerlink" href="#showing-image-slide-show" title="Permalink to this heading">¶</a></h3>
+<p>[testo]</p>
+</section>
+</section>
 <section id="indoor-navigation">
 <h2>Indoor navigation<a class="headerlink" href="#indoor-navigation" title="Permalink to this heading">¶</a></h2>
 <p>The exploration of the 3D reconstruction of the indoor portion of Bastione San Giacomo was defined through a series of actions included into annotations.</p>
@@ -188,7 +206,7 @@ Finally, the annotation panel will disappear and the view will return to the pre
 <h3>Playing animations<a class="headerlink" href="#playing-animations" title="Permalink to this heading">¶</a></h3>
 <p>In the indoor exploration, 2 animations are implemented for navigating the right and left wing of the reconstructed model.
 This type of action could be helpful for defining a pre-fixed user exploration path and consequently changing the visibility of some particular annotations depending on exploration positions.</p>
-<video controls src="VIDEO/animation-annotation.mp4"></video><hr class="docutils" />
+<video controls src="..\_static\animation-annotation.mp4" width="400"></video><hr class="docutils" />
 <p>First, the definition of the animation is set in <em>assets/js/loadanimations.js</em>.
 This is done by initially creating the animation object, then defining the camera and targets positions.
 An easy way to achieve so is to navigate the model and, one the desired view for a camera animation node is found, export the Potree scene information by clicking on the sidebar <em>Scene&gt;Export: Potree</em>.
@@ -263,7 +281,7 @@ In the same code block, the visibility of the desired annotation is changed acco
 <p class="admonition-title">Note</p>
 <p>Another useful tip to facilitate user pre-fixed movements and explorations with the model scene is to position an annotation at the end of the animation path that includes an action allowing to return to the initial scene view, as the example view.</p>
 </div>
-<video controls src="VIDEO/animation-annotation-tip.mp4"></video></section>
+<video controls src="..\_static\animation-annotation-tip.mp4" width="400"></video></section>
 </section>
 </section>
 
@@ -289,6 +307,7 @@ In the same code block, the visibility of the desired annotation is changed acco
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Methodology and data</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Platform implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#outdoor-navigation">Outdoor navigation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#indoor-navigation">Indoor navigation</a></li>
 </ul>
 </li>

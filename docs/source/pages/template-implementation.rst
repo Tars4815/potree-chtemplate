@@ -213,7 +213,7 @@ This type of action could be helpful for defining a pre-fixed user exploration p
 
 .. raw:: html
   
-  <video controls src="..\_static\animation-annotation.mp4"></video>
+  <video controls src="..\_static\animation-annotation.mp4" width="400"></video>
 
 """""""""""""""""""""""""""""""""""""""""""""""
 
@@ -300,7 +300,7 @@ In the same code block, the visibility of the desired annotation is changed acco
 
 .. raw:: html
   
-  <video controls src="..\_static\animation-annotation-tip.mp4"></video>
+  <video controls src="..\_static\animation-annotation-tip.mp4" width="400"></video>
 
 
 
