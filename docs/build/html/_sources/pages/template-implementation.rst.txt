@@ -131,9 +131,12 @@ The style for the panel - with rounded corner and position settings - is instead
 """""""""""""""""""""""""""""""""""""""""""""""
 
 Finally, the annotation is defined with its title and action.
-The latter one is implemente by first includin the orbit control icon in the annotation title: this img tag will be the one looked for by the *find()* method in the next line.
-
-[TESTO]
+The latter one is implemented by including the orbit control icon in the annotation title: this img tag will be the one looked for by the *find()* method in the next line.
+In this way, the click event will first set the camera view in correspondence of the annotation clicked.
+Then, the div #anno8 previously defined is retrieved and the *.fadeIn()* method is applied to it.
+In this way, the panel will gradually appear in the middle of the screen and the Potree scene below will appear more opaque.
+Similarly, a new click event on the window will trigger the *.fadeOut()* method applied to the same div element.
+Finally, the annotation panel will disappear and the view will return to the previous Potree scene.
 
 .. code-block:: js
 

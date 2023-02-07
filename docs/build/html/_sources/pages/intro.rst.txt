@@ -13,6 +13,11 @@ The context in which it was designed and developed was a series of in situ labor
 Additional data collection, processing and historiographic investigation were conducted in the framework of the Bachelor thesis *Riscoprire il gigante sommerso - Rilievo, indagine storica e ricostruzione digitale del Castello di Pierluigi Farnese* by Michele Dondi and Clara Rivieri.
 The implementation of the 3D web interactive platform was carried out by Federica Gaspari, Federico Barbieri and Francesco Ioli from the `Geodetic and Photogrammetric Laboratory <https://labmgf.dica.polimi.it/>`__ of Politecnico di Milano.
 
+.. image:: IMG/arsenale-pic.JPG
+  :align: center
+  :alt: Picture of San Benedetto bastion of Farnese Castle
+
+
 Farnese Castle
 --------------
 
