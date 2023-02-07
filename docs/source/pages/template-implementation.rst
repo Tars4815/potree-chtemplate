@@ -182,7 +182,101 @@ Finally, the annotation panel will disappear and the view will return to the pre
 Playing animations
 ++++++++++++++++++
 
-[Testo]
+In the indoor exploration, 2 animations are implemented for navigating the right and left wing of the reconstructed model.
+This type of action could be helpful for defining a pre-fixed user exploration path and consequently changing the visibility of some particular annotations depending on exploration positions.
+
+.. raw:: html
+  
+  <video controls src="VIDEO/animation-annotation.mp4"></video>
+
+"""""""""""""""""""""""""""""""""""""""""""""""
+
+First, the definition of the animation is set in *assets/js/loadanimations.js*.
+This is done by initially creating the animation object, then defining the camera and targets positions.
+An easy way to achieve so is to navigate the model and, one the desired view for a camera animation node is found, export the Potree scene information by clicking on the sidebar *Scene>Export: Potree*.
+In the downloaded *potree.json* file, it will be possible to copy the coordinates of the camera and target position of that specific view.
+Then, those values can be pasted respectively in the position and target lists as shown in the script example below.
+By defining multiple camera and target positions as explained before, it will be possible to create an equal amount of view point that will be interpolated when the animation play action is triggered.
+This type of process is explained in the code through a for loop that creates as many animation nodes (control points) as there are camera and target positions defined.
+
+After that, the animation is added as an object of the scene through the *.addCameraAnimation()* method and its visibility is set to false so that the associated colored trajectory line remains hidden.
+
+.. code-block:: js
+
+  const animation2 = new Potree.CameraAnimation(viewer);
+  const positions2 = [
+    [553471.5649587561, 4988912.824383096, 96.74929992934102],
+    [553470.8266211117, 4988920.956978676, 96.96684674759675],
+    [553468.970057797, 4988925.671973037, 96.93937869520164],
+    [553466.3895679122, 4988928.694618191, 96.67629091896133],
+    [553464.5111995947, 4988930.979751398, 96.70556033095784]
+  ];
+  
+  const targets2 = [
+    [553470.899, 4988918.329, 95.915],
+    [553470.7600219863, 4988921.507467228, 96.832169690892],
+    [553468.7403491414, 4988926.177655794, 96.80849752652905],
+    [553465.620604052, 4988930.300358385, 96.4827080923057],
+    [553464.0111806979, 4988932.023884267, 96.57968306104952]
+  ];
+  
+  for (let i = 0; i < positions2.length; i++) {
+    const cp = animation2.createControlPoint();
+
+    cp.position.set(...positions2[i]);
+    cp.target.set(...targets2[i]);
+  }
+  
+  scenears.addCameraAnimation(animation2);
+  animation2.visible = false;
+
+""""""""""""""""""""""""""""""""""
+
+Once the animation is defined, it's time to set how it should be triggered through a click event on the Potree scene.
+This again results in the use of an icon and of the *find()* method.
+When the icon is clicked, the animation is then activated thorugh the line *animation2.play()*.
+In the same code block, the visibility of the desired annotation is changed according to the developer needs.
+
+.. code-block:: js
+
+  {
+    // Tour Right
+    let Titolo6 = $(`
+                <span>
+                    Tour Right
+                    <img src="./libs/potree/resources/icons/goto.svg" name="action_set_animation2" class="annotation-action-icon" style="filter: invert(1);"/>
+                    
+                    </span>
+                `);
+    const elPlay2 = Titolo6.find("img[name=action_set_animation2]");
+    elPlay2.click(() => {
+        animation2.play();
+        scenears.annotations.children[12].visible = true;
+        scenears.annotations.children[14].visible = true;
+    });
+    Titolo6.toString = () => "Tour Right";
+    let nota6 = new Potree.Annotation({
+        position: [553470.899, 4988918.329, 94.915],
+        title: Titolo6,
+        cameraPosition: [553471.5649587561, 4988912.824383096, 96.74929992934102],
+        cameraTarget: [553470.899, 4988918.329, 95.915],
+        description: 'Click on the icon and walk through the indoor left wing of the bastion...<br>----<br>You may discover a <b>secret passage</b>!'
+    })
+    nota6.visible = false;
+    scenears.annotations.add(nota6);
+  }
+
+""""""""""""""
+
+.. note::
+  Another useful tip to facilitate user pre-fixed movements and explorations with the model scene is to position an annotation at the end of the animation path that includes an action allowing to return to the initial scene view, as the example view.
+
+.. raw:: html
+  
+  <video controls src="VIDEO/animation-annotation-tip.mp4"></video>
+
+
+
 
 
 

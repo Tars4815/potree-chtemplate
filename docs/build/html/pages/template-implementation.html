@@ -186,8 +186,84 @@ Finally, the annotation panel will disappear and the view will return to the pre
 <hr class="docutils" />
 <section id="playing-animations">
 <h3>Playing animations<a class="headerlink" href="#playing-animations" title="Permalink to this heading">¶</a></h3>
-<p>[Testo]</p>
-</section>
+<p>In the indoor exploration, 2 animations are implemented for navigating the right and left wing of the reconstructed model.
+This type of action could be helpful for defining a pre-fixed user exploration path and consequently changing the visibility of some particular annotations depending on exploration positions.</p>
+<video controls src="VIDEO/animation-annotation.mp4"></video><hr class="docutils" />
+<p>First, the definition of the animation is set in <em>assets/js/loadanimations.js</em>.
+This is done by initially creating the animation object, then defining the camera and targets positions.
+An easy way to achieve so is to navigate the model and, one the desired view for a camera animation node is found, export the Potree scene information by clicking on the sidebar <em>Scene&gt;Export: Potree</em>.
+In the downloaded <em>potree.json</em> file, it will be possible to copy the coordinates of the camera and target position of that specific view.
+Then, those values can be pasted respectively in the position and target lists as shown in the script example below.
+By defining multiple camera and target positions as explained before, it will be possible to create an equal amount of view point that will be interpolated when the animation play action is triggered.
+This type of process is explained in the code through a for loop that creates as many animation nodes (control points) as there are camera and target positions defined.</p>
+<p>After that, the animation is added as an object of the scene through the <em>.addCameraAnimation()</em> method and its visibility is set to false so that the associated colored trajectory line remains hidden.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">animation2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Potree</span><span class="p">.</span><span class="nx">CameraAnimation</span><span class="p">(</span><span class="nx">viewer</span><span class="p">);</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">positions2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553471.5649587561</span><span class="p">,</span><span class="w"> </span><span class="mf">4988912.824383096</span><span class="p">,</span><span class="w"> </span><span class="mf">96.74929992934102</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553470.8266211117</span><span class="p">,</span><span class="w"> </span><span class="mf">4988920.956978676</span><span class="p">,</span><span class="w"> </span><span class="mf">96.96684674759675</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553468.970057797</span><span class="p">,</span><span class="w"> </span><span class="mf">4988925.671973037</span><span class="p">,</span><span class="w"> </span><span class="mf">96.93937869520164</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553466.3895679122</span><span class="p">,</span><span class="w"> </span><span class="mf">4988928.694618191</span><span class="p">,</span><span class="w"> </span><span class="mf">96.67629091896133</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553464.5111995947</span><span class="p">,</span><span class="w"> </span><span class="mf">4988930.979751398</span><span class="p">,</span><span class="w"> </span><span class="mf">96.70556033095784</span><span class="p">]</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">targets2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553470.899</span><span class="p">,</span><span class="w"> </span><span class="mf">4988918.329</span><span class="p">,</span><span class="w"> </span><span class="mf">95.915</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553470.7600219863</span><span class="p">,</span><span class="w"> </span><span class="mf">4988921.507467228</span><span class="p">,</span><span class="w"> </span><span class="mf">96.832169690892</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553468.7403491414</span><span class="p">,</span><span class="w"> </span><span class="mf">4988926.177655794</span><span class="p">,</span><span class="w"> </span><span class="mf">96.80849752652905</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553465.620604052</span><span class="p">,</span><span class="w"> </span><span class="mf">4988930.300358385</span><span class="p">,</span><span class="w"> </span><span class="mf">96.4827080923057</span><span class="p">],</span><span class="w"></span>
+<span class="w">  </span><span class="p">[</span><span class="mf">553464.0111806979</span><span class="p">,</span><span class="w"> </span><span class="mf">4988932.023884267</span><span class="p">,</span><span class="w"> </span><span class="mf">96.57968306104952</span><span class="p">]</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">positions2</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">cp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">animation2</span><span class="p">.</span><span class="nx">createControlPoint</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">  </span><span class="nx">cp</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">set</span><span class="p">(...</span><span class="nx">positions2</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="nx">cp</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">set</span><span class="p">(...</span><span class="nx">targets2</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="nx">scenears</span><span class="p">.</span><span class="nx">addCameraAnimation</span><span class="p">(</span><span class="nx">animation2</span><span class="p">);</span><span class="w"></span>
+<span class="nx">animation2</span><span class="p">.</span><span class="nx">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Once the animation is defined, it’s time to set how it should be triggered through a click event on the Potree scene.
+This again results in the use of an icon and of the <em>find()</em> method.
+When the icon is clicked, the animation is then activated thorugh the line <em>animation2.play()</em>.
+In the same code block, the visibility of the desired annotation is changed according to the developer needs.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Tour Right</span><span class="w"></span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">Titolo6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">$</span><span class="p">(</span><span class="sb">`</span>
+<span class="sb">              &lt;span&gt;</span>
+<span class="sb">                  Tour Right</span>
+<span class="sb">                  &lt;img src=&quot;./libs/potree/resources/icons/goto.svg&quot; name=&quot;action_set_animation2&quot; class=&quot;annotation-action-icon&quot; style=&quot;filter: invert(1);&quot;/&gt;</span>
+
+<span class="sb">                  &lt;/span&gt;</span>
+<span class="sb">              `</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">elPlay2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Titolo6</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s2">&quot;img[name=action_set_animation2]&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="nx">elPlay2</span><span class="p">.</span><span class="nx">click</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nx">animation2</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="nx">scenears</span><span class="p">.</span><span class="nx">annotations</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mf">12</span><span class="p">].</span><span class="nx">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="nx">scenears</span><span class="p">.</span><span class="nx">annotations</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mf">14</span><span class="p">].</span><span class="nx">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="nx">Titolo6</span><span class="p">.</span><span class="nx">toString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="s2">&quot;Tour Right&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">let</span><span class="w"> </span><span class="nx">nota6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">Potree</span><span class="p">.</span><span class="nx">Annotation</span><span class="p">({</span><span class="w"></span>
+<span class="w">      </span><span class="nx">position</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">553470.899</span><span class="p">,</span><span class="w"> </span><span class="mf">4988918.329</span><span class="p">,</span><span class="w"> </span><span class="mf">94.915</span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="nx">title</span><span class="o">:</span><span class="w"> </span><span class="nx">Titolo6</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nx">cameraPosition</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">553471.5649587561</span><span class="p">,</span><span class="w"> </span><span class="mf">4988912.824383096</span><span class="p">,</span><span class="w"> </span><span class="mf">96.74929992934102</span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="nx">cameraTarget</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">553470.899</span><span class="p">,</span><span class="w"> </span><span class="mf">4988918.329</span><span class="p">,</span><span class="w"> </span><span class="mf">95.915</span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="nx">description</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Click on the icon and walk through the indoor left wing of the bastion...&lt;br&gt;----&lt;br&gt;You may discover a &lt;b&gt;secret passage&lt;/b&gt;!&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p">})</span><span class="w"></span>
+<span class="w">  </span><span class="nx">nota6</span><span class="p">.</span><span class="nx">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nx">scenears</span><span class="p">.</span><span class="nx">annotations</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">nota6</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another useful tip to facilitate user pre-fixed movements and explorations with the model scene is to position an annotation at the end of the animation path that includes an action allowing to return to the initial scene view, as the example view.</p>
+</div>
+<video controls src="VIDEO/animation-annotation-tip.mp4"></video></section>
 </section>
 </section>
 
