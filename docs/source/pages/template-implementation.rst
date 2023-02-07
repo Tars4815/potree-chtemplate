@@ -3,6 +3,32 @@ Platform implementation
 
 [testo]
 
+Outdoor navigation
+------------------
+
+[testo]
+
+.. image:: IMG/outdoor-navigation.jpg
+  :align: center
+  :alt: Outdoor view of the Arsenale 3D point cloud in the Potree viewer.
+
+[testo]
+
+Hotspot views
++++++++++++++
+
+[testo]
+
+Moving to indoor scene
+++++++++++++++++++++++
+
+[testo]
+
+Showing image slide-show
+++++++++++++++++++++++++
+
+[testo]
+
 Indoor navigation
 -----------------
 
@@ -271,9 +297,13 @@ In the same code block, the visibility of the desired annotation is changed acco
 .. note::
   Another useful tip to facilitate user pre-fixed movements and explorations with the model scene is to position an annotation at the end of the animation path that includes an action allowing to return to the initial scene view, as the example view.
 
-.. raw:: html
-  
-  <video controls src="VIDEO/animation-annotation-tip.mp4"></video>
+
+.. video:: VIDEO/animation-annotation-tip.mp4
+   :width: 500
+   :height: 300
+   :autoplay:
+   :nocontrols:
+
 
 
 
