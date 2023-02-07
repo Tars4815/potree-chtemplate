@@ -19,15 +19,36 @@ Hotspot views
 
 [testo]
 
+.. raw:: html
+  
+  <video controls src="..\_static\outdoor-hotspots-navigation.mp4" width="400"></video>
+
+""""""""""""""""""""""""""""""""""""""
+
 Moving to indoor scene
 ++++++++++++++++++++++
 
 [testo]
 
+.. raw:: html
+  
+  <video controls src="..\_static\outdoor-to-indoor-view.mp4" width="400"></video>
+
+""""""""""""""""""""""""""""""""""""""
+
 Showing image slide-show
 ++++++++++++++++++++++++
 
 [testo]
+
+.. raw:: html
+  
+  <video controls src="..\_static\outdoor-annotation-slideshow.mp4" width="400"></video>
+
+""""""""""""""""""""""""""
+
+[testo]
+
 
 Indoor navigation
 -----------------
