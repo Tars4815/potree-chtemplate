@@ -45,9 +45,43 @@
 <p>[testo]</p>
 <section id="hotspot-views">
 <h3>Hotspot views<a class="headerlink" href="#hotspot-views" title="Permalink to this heading">¶</a></h3>
-<p>[testo]</p>
-<video controls src="..\_static\outdoor-hotspots-navigation.mp4" width="400"></video></section>
-<hr class="docutils" />
+<p>To facilitate the movements between different positions, a control bar is implemented at the bottom of the Potree basic viewer.
+This element will help moving between predefined camera view linked to specific point of interests located around the point cloud.
+This could be particularly helpful when the user is getting lost or confused during the exploration of the 3D product and would like to move to a more guided and familiar point of view using fixed positions associated to specific annotations.</p>
+<video controls src="..\_static\outdoor-hotspots-navigation.mp4" width="400"></video><p>The visible hotspot control bar is made possible by a combination of edits to the <em>index.html</em> and <em>assets/css/style.css</em> files.</p>
+<p>In particular, first in <em>index.html</em> the following code is defined for creating the needed elements and blocks:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>...
+<span class="cm">&lt;!--Hotspots Dropup--&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;controls&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;hotspot-controls&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;prev&quot;</span> <span class="na">data-title</span><span class="o">=</span><span class="s">&quot;Previous Annotation&quot;</span> <span class="na">data-action</span><span class="o">=</span><span class="s">&quot;prev-annotation&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;prevDiv&quot;</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;prevIcon&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;libs/potree/resources/icons/arrow_left.svg&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;hotspots&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;hotspot-name&quot;</span> <span class="na">data-action</span><span class="o">=</span><span class="s">&quot;toggle-annotation-list&quot;</span><span class="p">&gt;&lt;</span><span class="nt">b</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;hotspotName&quot;</span><span class="p">&gt;</span>Explore<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;next&quot;</span> <span class="na">data-title</span><span class="o">=</span><span class="s">&quot;Next Annotation&quot;</span> <span class="na">data-action</span><span class="o">=</span><span class="s">&quot;next-annotation&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;nextDiv&quot;</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;nextIcon&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;libs/potree/resources/icons/arrow_right.svg&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;lists&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;list hotspots-list visible&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;js-scrollable&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;li1&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">data-hotspot-target</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Bastione San Giovanni&quot;</span><span class="p">&gt;</span>Bastione San Giovanni<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;li2&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">data-hotspot-target</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Bastione San Benedetto&quot;</span><span class="p">&gt;</span>Bastione San Benedetto<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;li3&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">data-hotspot-target</span><span class="o">=</span><span class="s">&quot;2&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Bastione San Giacomo&quot;</span><span class="p">&gt;</span>Bastione San Giacomo<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;li4&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;link&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">data-hotspot-target</span><span class="o">=</span><span class="s">&quot;3&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Bastione San Giacomo (Indoor)&quot;</span><span class="p">&gt;</span>Bastione San Giacomo (Indoor)<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+...
+</pre></div>
+</div>
+<p>This code snippet define the hotspot controls container and the 3 controls inside it:</p>
+<ol class="arabic simple">
+<li><p>The Label of the annotation linked to the chosen view. At first page loading, this is set to <em>Explore</em>. Here, clicking on the text, it will be possible to select a specific hotspot view from a list.</p></li>
+<li><p>The button to move to the <em>previous view</em> in the hotspot list. A left arrow icon is associated to it.</p></li>
+<li><p>The button to move to the <em>following view</em> in the hotspot list. A right arrow icon is associated to it.</p></li>
+</ol>
+<p>Then, the complete list of the available hotspots is defined using an unordered list block and associating specific numbers to each hotspot target and name.</p>
+</section>
 <section id="moving-to-indoor-scene">
 <h3>Moving to indoor scene<a class="headerlink" href="#moving-to-indoor-scene" title="Permalink to this heading">¶</a></h3>
 <p>In the outdoor view, annotation actions are implemented on specific locations.

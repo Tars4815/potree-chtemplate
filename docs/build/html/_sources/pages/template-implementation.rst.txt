@@ -17,13 +17,50 @@ Outdoor navigation
 Hotspot views
 +++++++++++++
 
-[testo]
+To facilitate the movements between different positions, a control bar is implemented at the bottom of the Potree basic viewer.
+This element will help moving between predefined camera view linked to specific point of interests located around the point cloud.
+This could be particularly helpful when the user is getting lost or confused during the exploration of the 3D product and would like to move to a more guided and familiar point of view using fixed positions associated to specific annotations.
 
 .. raw:: html
   
   <video controls src="..\_static\outdoor-hotspots-navigation.mp4" width="400"></video>
 
-""""""""""""""""""""""""""""""""""""""
+The visible hotspot control bar is made possible by a combination of edits to the *index.html* and *assets/css/style.css* files.
+
+In particular, first in *index.html* the following code is defined for creating the needed elements and blocks:
+
+.. code-block:: html
+
+  ...
+  <!--Hotspots Dropup-->
+  <div class="controls">
+    <div class="hotspot-controls">
+      <div id="prev" data-title="Previous Annotation" data-action="prev-annotation">
+        <div id="prevDiv"><img id="prevIcon" src="libs/potree/resources/icons/arrow_left.svg" /></div>
+      </div>
+      <div id="hotspots" class="hotspot-name" data-action="toggle-annotation-list"><b id="hotspotName">Explore</b></div>
+      <div id="next" data-title="Next Annotation" data-action="next-annotation">
+        <div id="nextDiv"><img id="nextIcon" src="libs/potree/resources/icons/arrow_right.svg" /></div>
+      </div>
+      <div id="lists" class="list hotspots-list visible">
+        <ul class="js-scrollable">
+          <li id="li1" class="link"><a data-hotspot-target="0" title="Bastione San Giovanni">Bastione San Giovanni</a></li>
+          <li id="li2" class="link"><a data-hotspot-target="1" title="Bastione San Benedetto">Bastione San Benedetto</a></li>
+          <li id="li3" class="link"><a data-hotspot-target="2" title="Bastione San Giacomo">Bastione San Giacomo</a></li>
+          <li id="li4" class="link"><a data-hotspot-target="3" title="Bastione San Giacomo (Indoor)">Bastione San Giacomo (Indoor)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  ...
+
+This code snippet define the hotspot controls container and the 3 controls inside it:
+
+1. The Label of the annotation linked to the chosen view. At first page loading, this is set to *Explore*. Here, clicking on the text, it will be possible to select a specific hotspot view from a list.
+2. The button to move to the *previous view* in the hotspot list. A left arrow icon is associated to it.
+3. The button to move to the *following view* in the hotspot list. A right arrow icon is associated to it.
+
+Then, the complete list of the available hotspots is defined using an unordered list block and associating specific numbers to each hotspot target and name.
 
 Moving to indoor scene
 ++++++++++++++++++++++
