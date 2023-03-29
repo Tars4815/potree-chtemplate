@@ -28,13 +28,66 @@ Hotspot views
 Moving to indoor scene
 ++++++++++++++++++++++
 
-[testo]
+In the outdoor view, annotation actions are implemented on specific locations.
+In particular, an action for moving to the indoor environment of Bastione San Giacomo is implemented on the related annotation on the outside.
 
 .. raw:: html
   
   <video controls src="..\_static\outdoor-to-indoor-view.mp4" width="400"></video>
 
-""""""""""""""""""""""""""""""""""""""
+
+This feature is made possible through simple addition to the `loadannotations.js <https://github.com/Tars4815/potree-chtemplate/blob/main/assets/js/loadannotations.js>`__ code.
+In correspondance of the title (es. Titolo) definition, an arrow icon is inserted and named *action_set_scene*.
+
+Then, through the *.find()* function, it is defined that, when the arrow icon is clicked, a series of operations should be executed:
+
+1. The name in the hotspot bar positioned on the bottom of the viewer is changed to *Indoor View* using the **changeHotspotName** function defined in *index.html*.
+2. The view is changed to the camera settings of the 4th annotation defined in the scene (in this example is the one at the entrance of the bastion) by applying the **.moveHere** function.
+3. The visibility of all the annotations is changed according to the needs of the developer.
+
+.. raw:: js
+
+  {
+    // Bastione San Giacomo
+    let Titolo = $(`<span><img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_name" class="annotation-action-icon" /><!---Bastione San Giacomo---><img src="./libs/potree/resources/icons/goto.svg" name="action_set_scene" class="annotation-action-icon" style="filter: invert(1);"/></span>`);
+    Titolo.find("img[name=action_set_name]").click((event) => {changeHotspotName("San Giacomo");});
+    Titolo.find("img[name=action_set_scene]").click((event) => {event.stopPropagation();
+        changeHotspotName("Indoor View");
+        scenears.annotations.children[3].moveHere(scenears.camera);
+        scenears.annotations.children[0].visible = false;
+        scenears.annotations.children[1].visible = false;
+        scenears.annotations.children[2].visible = false;
+        scenears.annotations.children[3].visible = true;
+        scenears.annotations.children[4].visible = true;
+        scenears.annotations.children[5].visible = true;
+        scenears.annotations.children[6].visible = true;
+        scenears.annotations.children[7].visible = true;
+        scenears.annotations.children[8].visible = false;
+        scenears.annotations.children[9].visible = false;
+        scenears.annotations.children[10].visible = false;
+        scenears.annotations.children[11].visible = false;
+        scenears.annotations.children[12].visible = false;
+        scenears.annotations.children[13].visible = false;
+        scenears.annotations.children[14].visible = false;
+        scenears.annotations.children[15].visible = true;
+        scenears.annotations.children[16].visible = true;
+    });
+
+    Titolo.toString = () => "San Giacomo";
+
+    let nota3 = new Potree.Annotation({
+        position: [553430.471, 4988914.868, 103.226],
+        title: Titolo,
+        cameraPosition: [553333.7713011784, 4988883.975343259, 166.10804103291153,],
+        cameraTarget: [553430.471, 4988914.868, 103.226],
+        description: '<b>San Giacomo Bastion</b><br>----<br>Differently from the twin San Giovanni bastion, it has been affected by additional military intervention. Indeed, on the upper part merlons have been added while an underground shelter, adopted as bomb shelter during World War, is still present and partially accessible through a lateral external access.<br>The indoor space is visitable.'
+    });
+
+    nota3.visible = true;
+    scenears.annotations.add(nota3);
+  }
+
+""""
 
 Showing image slide-show
 ++++++++++++++++++++++++

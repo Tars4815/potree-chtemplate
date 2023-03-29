@@ -50,8 +50,17 @@
 <hr class="docutils" />
 <section id="moving-to-indoor-scene">
 <h3>Moving to indoor scene<a class="headerlink" href="#moving-to-indoor-scene" title="Permalink to this heading">¶</a></h3>
-<p>[testo]</p>
-<video controls src="..\_static\outdoor-to-indoor-view.mp4" width="400"></video></section>
+<p>In the outdoor view, annotation actions are implemented on specific locations.
+In particular, an action for moving to the indoor environment of Bastione San Giacomo is implemented on the related annotation on the outside.</p>
+<video controls src="..\_static\outdoor-to-indoor-view.mp4" width="400"></video><p>This feature is made possible through simple addition to the <a class="reference external" href="https://github.com/Tars4815/potree-chtemplate/blob/main/assets/js/loadannotations.js">loadannotations.js</a> code.
+In correspondance of the title (es. Titolo) definition, an arrow icon is inserted and named <em>action_set_scene</em>.</p>
+<p>Then, through the <em>.find()</em> function, it is defined that, when the arrow icon is clicked, a series of operations should be executed:</p>
+<ol class="arabic simple">
+<li><p>The name in the hotspot bar positioned on the bottom of the viewer is changed to <em>Indoor View</em> using the <strong>changeHotspotName</strong> function defined in <em>index.html</em>.</p></li>
+<li><p>The view is changed to the camera settings of the 4th annotation defined in the scene (in this example is the one at the entrance of the bastion) by applying the <strong>.moveHere</strong> function.</p></li>
+<li><p>The visibility of all the annotations is changed according to the needs of the developer.</p></li>
+</ol>
+</section>
 <hr class="docutils" />
 <section id="showing-image-slide-show">
 <h3>Showing image slide-show<a class="headerlink" href="#showing-image-slide-show" title="Permalink to this heading">¶</a></h3>
