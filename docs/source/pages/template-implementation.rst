@@ -45,11 +45,13 @@ Then, through the *.find()* function, it is defined that, when the arrow icon is
 2. The view is changed to the camera settings of the 4th annotation defined in the scene (in this example is the one at the entrance of the bastion) by applying the **.moveHere** function.
 3. The visibility of all the annotations is changed according to the needs of the developer.
 
-.. raw:: js
+.. code-block:: js
 
   {
     // Bastione San Giacomo
-    let Titolo = $(`<span><img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_name" class="annotation-action-icon" /><!---Bastione San Giacomo---><img src="./libs/potree/resources/icons/goto.svg" name="action_set_scene" class="annotation-action-icon" style="filter: invert(1);"/></span>`);
+    let Titolo = $(`
+    <span>
+    <img src="./libs/potree/resources/icons/orbit_controls.svg" name="action_set_name" class="annotation-action-icon" /><!---Bastione San Giacomo---><img src="./libs/potree/resources/icons/goto.svg" name="action_set_scene" class="annotation-action-icon" style="filter: invert(1);"/></span>`);
     Titolo.find("img[name=action_set_name]").click((event) => {changeHotspotName("San Giacomo");});
     Titolo.find("img[name=action_set_scene]").click((event) => {event.stopPropagation();
         changeHotspotName("Indoor View");
