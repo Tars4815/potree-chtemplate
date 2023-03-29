@@ -60,7 +60,52 @@ This code snippet define the hotspot controls container and the 3 controls insid
 2. The button to move to the *previous view* in the hotspot list. A left arrow icon is associated to it.
 3. The button to move to the *following view* in the hotspot list. A right arrow icon is associated to it.
 
-Then, the complete list of the available hotspots is defined using an unordered list block and associating specific numbers to each hotspot target and name.
+Then, the complete list of the available hotspots is defined using an unordered list block and associating specific target numbers to each hotspot target and name.
+
+The CSS code referring to the appearance of these elements can be found from line 295 to line 541 in *style.css*.
+
+Then the functionalities linked to the hotspot controls are defined in a module block at the bottom of *index.html*
+
+First, variables are defined in order to store in one of it the target number associated to the hotspot selected from the hotspot list.
+
+.. code-block:: js
+
+  var src = document.referrer;
+  var srcSplit = src.split("?");
+  var hotSpot = parseFloat(srcSplit[1]); //0 for San Giovanni, 1 for San Benedetto, 2 for San Giacomo, 3 for Indoor
+
+Then, a series of conditions are checked and, when the corrispondence between the clicked hotspot target number with the compared value is found, the **moveHere** function is applied to the scene, changing the view to the annotation corresponding to the clicked hotspot.
+
+For example, for the case of Bastione San Giovanni hotspot:
+
+.. code-block:: js
+  
+  ...
+  // San Giovanni hotspot has target equal to 0 and it's the second annotation defined.
+  if (hotSpot == 0) {
+            setTimeout(function () {
+                scenears.annotations.children[1].moveHere(scenears.camera);
+            }, 1500);
+        }
+  ...
+
+The changing of visibility of the list, appearing when clicking on *Explore* is insted defined with the following code:
+
+.. code-block:: js
+
+  ...
+  /* Hotspots Control Dropup*/
+        $("#hotspots").click(function () {
+            $("#lists").toggle();
+
+        });
+  ...
+
+.. image:: IMG/hotspot-controls.jpg
+  :align: center
+  :alt: Hotspot controls bar in the Potree viewer.
+
+
 
 Moving to indoor scene
 ++++++++++++++++++++++

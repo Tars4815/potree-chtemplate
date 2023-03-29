@@ -80,7 +80,38 @@ This could be particularly helpful when the user is getting lost or confused dur
 <li><p>The button to move to the <em>previous view</em> in the hotspot list. A left arrow icon is associated to it.</p></li>
 <li><p>The button to move to the <em>following view</em> in the hotspot list. A right arrow icon is associated to it.</p></li>
 </ol>
-<p>Then, the complete list of the available hotspots is defined using an unordered list block and associating specific numbers to each hotspot target and name.</p>
+<p>Then, the complete list of the available hotspots is defined using an unordered list block and associating specific target numbers to each hotspot target and name.</p>
+<p>The CSS code referring to the appearance of these elements can be found from line 295 to line 541 in <em>style.css</em>.</p>
+<p>Then the functionalities linked to the hotspot controls are defined in a module block at the bottom of <em>index.html</em></p>
+<p>First, variables are defined in order to store in one of it the target number associated to the hotspot selected from the hotspot list.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">referrer</span><span class="p">;</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">srcSplit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">src</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">hotSpot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseFloat</span><span class="p">(</span><span class="nx">srcSplit</span><span class="p">[</span><span class="mf">1</span><span class="p">]);</span><span class="w"> </span><span class="c1">//0 for San Giovanni, 1 for San Benedetto, 2 for San Giacomo, 3 for Indoor</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then, a series of conditions are checked and, when the corrispondence between the clicked hotspot target number with the compared value is found, the <strong>moveHere</strong> function is applied to the scene, changing the view to the annotation corresponding to the clicked hotspot.</p>
+<p>For example, for the case of Bastione San Giovanni hotspot:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">...</span><span class="w"></span>
+<span class="c1">// San Giovanni hotspot has target equal to 0 and it&#39;s the second annotation defined.</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">hotSpot</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="nx">scenears</span><span class="p">.</span><span class="nx">annotations</span><span class="p">.</span><span class="nx">children</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">moveHere</span><span class="p">(</span><span class="nx">scenears</span><span class="p">.</span><span class="nx">camera</span><span class="p">);</span><span class="w"></span>
+<span class="w">          </span><span class="p">},</span><span class="w"> </span><span class="mf">1500</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The changing of visibility of the list, appearing when clicking on <em>Explore</em> is insted defined with the following code:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">...</span><span class="w"></span>
+<span class="cm">/* Hotspots Control Dropup*/</span><span class="w"></span>
+<span class="w">      </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#hotspots&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#lists&quot;</span><span class="p">).</span><span class="nx">toggle</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">      </span><span class="p">});</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+</pre></div>
+</div>
+<img alt="Hotspot controls bar in the Potree viewer." class="align-center" src="../_images/hotspot-controls.jpg" />
 </section>
 <section id="moving-to-indoor-scene">
 <h3>Moving to indoor scene<a class="headerlink" href="#moving-to-indoor-scene" title="Permalink to this heading">¶</a></h3>
