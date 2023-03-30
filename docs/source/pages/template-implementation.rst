@@ -60,6 +60,11 @@ This code snippet define the hotspot controls container and the 3 controls insid
 2. The button to move to the *previous view* in the hotspot list. A left arrow icon is associated to it.
 3. The button to move to the *following view* in the hotspot list. A right arrow icon is associated to it.
 
+.. image:: IMG/hotspot-controls.jpg
+  :align: center
+  :alt: Hotspot controls bar in the Potree viewer.
+
+
 Then, the complete list of the available hotspots is defined using an unordered list block and associating specific target numbers to each hotspot target and name.
 
 The CSS code referring to the appearance of these elements can be found from line 295 to line 541 in *style.css*.
@@ -101,9 +106,60 @@ The changing of visibility of the list, appearing when clicking on *Explore* is 
         });
   ...
 
-.. image:: IMG/hotspot-controls.jpg
-  :align: center
-  :alt: Hotspot controls bar in the Potree viewer.
+Then a targeted function called **changeHotspotName()** is defined in the *assets/js/main.js* file.
+Its goal is to change the *Explore* text in the control bar with the name of the clicked hotspot.
+
+.. code-block:: js
+
+  //Function to change Touch to HotspotName
+  function changeHotspotName(newName){
+  document.getElementById('hotspotName').innerHTML = newName;
+  }
+
+This function is then used inside the **item** function series, one for each listed hotspot.
+Indeed, this function will change the visible text along with changing the camera view and the visibility of linked annotations.
+For instance:
+
+.. code-block:: js
+
+  function item1() {
+    changeHotspotName("San Giovanni");
+    scenears.annotations.children[1].moveHere(scenears.camera);
+    scenears.annotations.children[0].visible = true;
+    scenears.annotations.children[1].visible = true;
+    scenears.annotations.children[2].visible = true;
+    scenears.annotations.children[3].visible = false;
+    scenears.annotations.children[4].visible = false;
+    scenears.annotations.children[5].visible = false;
+    scenears.annotations.children[6].visible = false;
+    scenears.annotations.children[7].visible = false;
+    scenears.annotations.children[8].visible = false;
+    scenears.annotations.children[9].visible = false;
+    scenears.annotations.children[10].visible = false;
+    scenears.annotations.children[11].visible = false;
+    scenears.annotations.children[12].visible = false;
+    scenears.annotations.children[13].visible = false;
+    scenears.annotations.children[14].visible = false;
+    scenears.annotations.children[15].visible = false;
+    scenears.annotations.children[16].visible = false;
+    }
+
+Each item function is triggered by the click of the user on the associated element in the hotspot list.
+
+.. code-block:: js
+
+  $("#li1").click(function () {
+    item1();
+  });
+  $("#li2").click(function () {
+    item2();
+  });
+  $("#li3").click(function () {
+    item3();
+  });
+  $("#li4").click(function () {
+    item4();
+  });
 
 
 
