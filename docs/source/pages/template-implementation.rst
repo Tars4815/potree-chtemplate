@@ -161,7 +161,56 @@ Each item function is triggered by the click of the user on the associated eleme
     item4();
   });
 
+---
 
+.. raw:: html
+  
+  <video controls src="..\_static\hotspot-name-function.mp4" width="400"></video>
+
+Then, in order to enable the possibility to move between consecutive scenes it is needed to define a function list to move within using its index.
+Its length (corresponding to the total number of defined hotspots) is then saved in a constant.
+
+.. code-block:: js
+
+  const functions = [];
+  functions.push(item1);
+  functions.push(item2);
+  functions.push(item3);
+  functions.push(item4);
+
+  const length = functions.length;
+
+Hence, the **.getNextIdx()** function is defined and built upon the chosen *condition* defined by the id of the clicked button: *next* for the right arrow, *prev* for the left arrow.
+This function will return the next/previous id of the new scene in the hotspot list, calculating it with respect to the current hotspot view.
+
+.. code-block:: js
+
+  const getNextIdx = (idx = 0, length, direction) => {
+    switch (direction) {
+      case 'next': return (idx + 1) % length;
+      case 'prev': return (idx == 0) && length - 1 || idx - 1;
+      default: return idx;
+    }
+  }
+
+This function is then finally adopted for implenting the **.getNewScene()** function that is the one that is actually trigger when the user clicks on the arrows icons.
+
+.. code-block:: js
+  
+  let idx; // idx is undefined, so getNewScene will take 0 as default
+  const getNewScene = (direction) => {
+    idx = getNextIdx(idx, length, direction);
+    var sceneFunction = functions[idx];
+    return sceneFunction();
+  }
+
+  $("#prev").click(function () {
+    getNewScene('prev');
+  });
+
+  $("#next").click(function () {
+    getNewScene('next');
+  });
 
 Moving to indoor scene
 ++++++++++++++++++++++

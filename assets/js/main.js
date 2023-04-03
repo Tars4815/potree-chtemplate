@@ -15,28 +15,11 @@ function redirectHomeFunc() {
     window.top.location.href = "../index.html";
 }
 
-/*Barge Toggles*/
-function barge1916Button() {
-    window.top.location.assign("../1916barge.html?0");
-}
-function barge2017Button() {
-    window.top.location.assign("../barge.html?0");
-}
-
-/*Sculptures Toggles*/
-function sculptures1916Button() {
-    window.parent.location.assign("../1916Mermaids.html");
-}
-function sculptures2017Button() {
-    window.parent.location.assign("../mermaids.html");
-}
 
 /* Zoom In
 *****************************************************/
 function zoomIn() {
     viewer.controls.scene.cameraP.zoom += 0.1;
-    //let camera = e.viewer.scene.getActiveCamera();
-    //viewer.scene.camera.zoom += 0.1;
 }
 
 /* Zoom Out
@@ -178,84 +161,6 @@ function toggleFullScreen() {
             document.webkitCancelFullScreen();
         }
     }
-}
-
-
-/* Movements for three.js GLTF models ***************************************/
-
-function gltfMoveUp() {
-
-    scene.rotation.x += 0.1;
-}
-
-function gltfMoveDown() {
-
-    scene.rotation.x -= 0.1;
-}
-
-function gltfMoveRight() {
-
-    scene.rotation.y += 0.1;
-}
-
-function gltfMoveLeft() {
-
-    scene.rotation.y -= 0.1;
-}
-
-function gltfZoomIn() {
-
-    camera.scale.z += 0.01;
-
-}
-
-function gltfZoomOut() {
-
-    camera.scale.z -= 0.01;
-}
-
-//Movements for the GLTF mermiad
-function merGltfMoveUp() {
-
-    scene.rotation.x -= 0.1;
-}
-
-function merGltfMoveDown() {
-
-    scene.rotation.x += 0.1;
-}
-
-//Movements for mermaid potree 
-function potreeMerMoveRight() {
-
-    
-    sceneSG.scenePointCloud.rotation.z += 0.1;
-}
-
-function potreeMerMoveLeft() {
-
-    sceneSG.scenePointCloud.rotation.z -= 0.1;
-}
-
-function potreeMerMoveUp() {
-
-    sceneSG.scenePointCloud.rotation.y += 0.1;
-}
-
-function potreeMerMoveDown() {
-
-    sceneSG.scenePointCloud.rotation.y -= 0.1;
-}
-
-//Movements for herm potree
-function potreeHermMoveUp() {
-
-    sceneSG.scenePointCloud.rotation.y -= 0.1;
-}
-
-function potreeHermMoveDown() {
-
-    sceneSG.scenePointCloud.rotation.y += 0.1;
 }
 
 //Function to change Touch to HotspotName
