@@ -169,13 +169,17 @@ It is based on a series of conditions that check if the current view of the plat
 Outdoor navigation
 ------------------
 
-[testo]
+A set of dedicated actions and features has been designed for the outdoor navigation of the model.
 
 .. image:: IMG/outdoor-navigation.jpg
   :align: center
   :alt: Outdoor view of the Arsenale 3D point cloud in the Potree viewer.
 
-[testo]
+In particular, the following features were implemented:
+
+* Hotspot views
+* Moving to indoor scene
+* Showing image slide-show
 
 Hotspot views
 +++++++++++++
@@ -439,21 +443,205 @@ Then, through the *.find()* function, it is defined that, when the arrow icon is
     scenears.annotations.add(nota3);
   }
 
-""""
 
 Showing image slide-show
 ++++++++++++++++++++++++
 
-[testo]
+For the particular case of the San Giovanni bastion, a special action has been linked to its hotspot annotation.
+The reason was that the indoor part of the structure was not accessible for a laser scanning survey, so only few images were taken without georeferencing nor orientation on the 3D model.
+Embedding the possibility to swipe between selected picture using basic slideshow controls.
 
 .. raw:: html
   
   <video controls src="..\_static\outdoor-annotation-slideshow.mp4" width="400"></video>
 
-""""""""""""""""""""""""""
 
-[testo]
+The main idea behind this features is strictly connected to the panel appearance used for both the navigation tutorial and the image pop-up.
+Indeed, in order to make the slide-show appearing, a similar element (*navPanel* class used also for simple image annotations) is defined in the *index.html* file.
+However, this time it contains a *slideshow-container* which in turn incorporates as many *myslides fade* as there are images you want to include with position text, relative file and caption.
+Then, at the end of the definition of the set of slides to be shown in sequence the controls (*next image*, *previous image* and *close slideshow*) are defined using hyperlink tags and custom functions to be defined in the code.
+Finally, the position indicators for the slideshow are located below the slideshow container and associated to the currentSlide function. 
 
+.. code-block:: html
+
+  <!--Slideshow bastione San Giovanni-->
+  <div id="anno10" class="navPanel w3-center w3-animate-opacity">
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <!--Defining the number of the image-->
+        <div class="numbertext">1 / 3</div>
+        <div class="photo-slide">
+          <img src="./assets/anno-img/sangiovanni01.jpg" style="display: inline-block; width:70%; border-radius: 15px; margin: auto;">
+        </div>
+        <div class="text">Indoor entrance</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <div class="photo-slide">
+          <img src="./assets/anno-img/sangiovanni02.jpg" style="width:70%; border-radius: 15px; margin: auto;">
+        </div>
+        <div class="text">Indoor right wing</div>
+      </div>
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <div class="photo-slide">
+          <img src="./assets/anno-img/sangiovanni03.jpg" style="width:70%; border-radius: 15px; margin: auto;">
+        </div>
+        <div class="text">Indoor casamatta</div>
+      </div>
+      <!--Slideshow controls-->
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+      <a class="closing" onclick="closeSlides()"><b>X</b></a>
+    </div>
+    <br>
+    <!--Indication of current image-->
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  </div>
+
+The defined structure of elements is then styled according to the developer needs.
+In the case of the Farnese Castle, the appeareance has been defined in the *assets/css/style.css* file:
+
+.. code-block:: css
+
+  /* Slideshow container */
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+  /* Next & previous buttons */
+  .prev, .next, .closing {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  /* Position the "next button" to the right */
+  .closing {
+    top: 0;
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  /* Caption text */
+  .photo-slide {
+    text-align: center;
+  }
+  /* Caption text */
+  .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  /* Number text (1/3 etc) */
+  .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  /* Fading animation */
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+  }
+  #split-container {
+    height: 100%;
+    float: left;
+  }
+
+Later in the *index.html* code the **.closeSlides()** is defined as follow:
+
+.. code-block:: js
+
+  function closeSlides() {
+    $("#anno10").fadeOut();
+    //reset opacity of parent page
+    parentWin = window.parent;
+    var sidebar = parentWin.document.getElementById('split-container');
+    sidebar.style.opacity = "1";
+  }
+
+The **.showSlides()** function is instead defined by first associating each *div* element of interest to dedicated variable.
+Then, through the slide index is used to call the desired image panel within a list of specific class element.
+
+.. code-block:: js
+
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+  }
+
+Then, **.plusSlides()** and **.currentSlide()** are defined as needed according to their linked button:
+
+.. code-block:: js
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
 
 Indoor navigation
 -----------------
