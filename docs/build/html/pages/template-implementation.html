@@ -37,7 +37,151 @@
             
   <section id="platform-implementation">
 <h1>Platform implementation<a class="headerlink" href="#platform-implementation" title="Permalink to this heading">¶</a></h1>
-<p>[testo]</p>
+<p>The platform, based on Potree native functions and proposed modifications of the Vizcaya museum project, aims to simplify the exploration of a 3D digital model of a cultural heritage site.
+With this goal, the implementation focused on the definition of simple and easy-to-reproduce functionalities that could guide even non-experienced users through the inspected and reconstructed structure.
+This has been achieved using a combination of:</p>
+<ul class="simple">
+<li><p><strong>Annotation actions</strong> triggered by the user click on a given hotspot inside the 3D scene;</p></li>
+<li><p><strong>Camera animations</strong> that allow to explore a given scene using a pre-defined navigation path;</p></li>
+<li><p><strong>Pop-up windows</strong> that make possible to see in more detailes images or to include text contents;</p></li>
+<li><p><strong>Shortcut buttons</strong> used to simplify into a single command more operations.</p></li>
+</ul>
+<p>The work has been articulated on 2 different perspectives, dividing the entire model into 2 scenes:</p>
+<ol class="arabic simple">
+<li><p><strong>Outdoor scene</strong> referring to the outside of the 3 surveyed bastions of the castle, for which drones were adopted in addition to total station and GNSS antennas;</p></li>
+<li><p><strong>Indoor scene</strong> of the only bastion (San Giacomo one) which was accessible at the moment of the survey and that was subject to a laser scanner survey.</p></li>
+</ol>
+<section id="control-icons">
+<h2>Control icons<a class="headerlink" href="#control-icons" title="Permalink to this heading">¶</a></h2>
+<p>Due to their peculiarities inherited by survey methods and instrumentation too, the 2 scenes require the implementation of 2 distinct groups of navigation solutions to better fit their needs.
+However, some useful common functionalities have been mantained for both scenes.
+In particular, the main structure of the viewer has been designed to always mantain visible 4 commands:</p>
+<ul class="simple">
+<li><p><strong>Oriented images</strong> (<em>camera_icon</em>) visibility control;</p></li>
+<li><p><strong>Refresh page</strong> (<em>refresh_icon</em>) option;</p></li>
+<li><p><strong>Navigation instructions</strong> (<em>question_icon</em>) command;</p></li>
+<li><p><strong>Full screen view</strong> (<em>fullscreen_icon</em>) button.</p></li>
+</ul>
+<img alt="Overview of the navigation buttons." class="align-center" src="../_images/custom-buttons.jpg" />
+<p>All these buttons, positioned on the upper right position of the screen and thought as shortcuts for common operations.</p>
+<p>Their style and appearances have been defined as the following example in the <em>assets/css/style.css</em> file:</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">#</span><span class="nn">refresh_icon</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c">/*display: none;*/</span><span class="w"></span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="kt">%</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">fixed</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">right</span><span class="p">:</span><span class="w"> </span><span class="mi">160</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c">/*130px*/</span><span class="w"></span>
+<span class="w">  </span><span class="k">cursor</span><span class="p">:</span><span class="w"> </span><span class="kc">pointer</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">max-height</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="kt">px</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="kt">px</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">z-index</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="kt">px</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then, the control icons (and their image logos) have been included in the body section of the <em>index.html</em> file as follow, linking each button to a specific custom function triggered by the user click:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>...
+<span class="cm">&lt;!--Control Icons--&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;camera_icon&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./assets/camera.svg&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Activate Images&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;refresh_icon&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;refreshButton()&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./assets/refresh.svg&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Refresh Page&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;question_icon&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./assets/question.svg&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Tutorial&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;fullscreen_icon&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;toggleFullScreen()&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./assets/fullscreen.svg&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Fullscreen&quot;</span> <span class="p">/&gt;</span>
+...
+</pre></div>
+</div>
+<p>Then, each function has been defined.</p>
+<section id="oriented-images-visibility">
+<h3>Oriented images visibility<a class="headerlink" href="#oriented-images-visibility" title="Permalink to this heading">¶</a></h3>
+<p>This button is needed to have a easy-to-use shortcut for hiding or making visible all the loaded oriented images on the model.
+By default, as understandable by checking the <em>assets/js/loadphotos.js</em> file, all the images are hidden to have a cleaner view of the model at first loading.
+However, the click on the camera icon make them visible by triggering the following function included at the end of the <em>index.html</em> that switch the visibility conditions of all the loaded images chunks:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#camera_icon&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Hai cliccato sulla camera&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="nx">viewer</span><span class="p">.</span><span class="nx">scene</span><span class="p">.</span><span class="nx">orientedImages</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">scene</span><span class="p">.</span><span class="nx">orientedImages</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">visible</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nx">viewer</span><span class="p">.</span><span class="nx">scene</span><span class="p">.</span><span class="nx">orientedImages</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">scene</span><span class="p">.</span><span class="nx">orientedImages</span><span class="p">[</span><span class="mf">1</span><span class="p">].</span><span class="nx">visible</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="nx">viewer</span><span class="p">.</span><span class="nx">scene</span><span class="p">.</span><span class="nx">orientedImages</span><span class="p">[</span><span class="mf">2</span><span class="p">].</span><span class="nx">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="nx">viewer</span><span class="p">.</span><span class="nx">scene</span><span class="p">.</span><span class="nx">orientedImages</span><span class="p">[</span><span class="mf">2</span><span class="p">].</span><span class="nx">visible</span><span class="p">;</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="refresh-page">
+<h3>Refresh page<a class="headerlink" href="#refresh-page" title="Permalink to this heading">¶</a></h3>
+<p>This icon is simply linked to the <strong>refreshButton()</strong> function included in the <em>assets/js/main.js</em>:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">refreshButton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nb">window</span><span class="p">.</span><span class="nx">top</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">reload</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="navigation-instructions">
+<h3>Navigation instructions<a class="headerlink" href="#navigation-instructions" title="Permalink to this heading">¶</a></h3>
+<p>The <em>question_icon</em> is the first example of pop-up panel implementation in the model, used also for some features of the outdoor and indoor navigation.
+In this case, the click of the user makes visible the panel containing all the instruction for the rotation and translation of the model using both a mouse or touch commands.
+These information are contained in an image embedded in a div element defined at the beggining of the <em>index.html</em>:abbr:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- Navigation Instructions --&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;nav_panel&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navPanel w3-center w3-animate-opacity&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;navPanel-content&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;intrinsic-container intrinsic-container-16x9&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav_img&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./assets/anno-img/navigation3d.png&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Then, at the end of the same file, the function that change the visibility of the instruction panel is defined:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#question_icon&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//The panel is made visible</span><span class="w"></span>
+<span class="w">  </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#nav_panel&quot;</span><span class="p">).</span><span class="nx">fadeIn</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//Applying opacity to parent page</span><span class="w"></span>
+<span class="w">  </span><span class="nx">parentWin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">sidebar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parentWin</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;split-container&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="nx">sidebar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0.5&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+
+<span class="kd">var</span><span class="w"> </span><span class="nx">navPanel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;nav_panel&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Instructions for when the panel is already visible</span><span class="w"></span>
+<span class="nx">navPanel</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//The panel is hidden</span><span class="w"></span>
+<span class="w">  </span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#nav_panel&quot;</span><span class="p">).</span><span class="nx">fadeOut</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="c1">//reset opacity of parent page</span><span class="w"></span>
+<span class="w">  </span><span class="nx">parentWin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="nx">sidebar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">parentWin</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;split-container&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="nx">sidebar</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="fullscreen-mode">
+<h3>Fullscreen mode<a class="headerlink" href="#fullscreen-mode" title="Permalink to this heading">¶</a></h3>
+<p>In this case, the function has been defined in the <em>assets/js/main.js</em> file.
+It is based on a series of conditions that check if the current view of the platform is already fullscreen and, based on that information, define if the click on the button will exit or enter the fullscreen mode for the user.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">toggleFullScreen</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="nb">document</span><span class="p">.</span><span class="nx">fullScreenElement</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">fullScreenElement</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">      </span><span class="p">(</span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">mozFullScreen</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nb">document</span><span class="p">.</span><span class="nx">webkitIsFullScreen</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">requestFullScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">requestFullScreen</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">mozRequestFullScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">mozRequestFullScreen</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">webkitRequestFullScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">webkitRequestFullScreen</span><span class="p">(</span><span class="nx">Element</span><span class="p">.</span><span class="nx">ALLOW_KEYBOARD_INPUT</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">cancelFullScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">cancelFullScreen</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">mozCancelFullScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">mozCancelFullScreen</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">webkitCancelFullScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nb">document</span><span class="p">.</span><span class="nx">webkitCancelFullScreen</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="outdoor-navigation">
 <h2>Outdoor navigation<a class="headerlink" href="#outdoor-navigation" title="Permalink to this heading">¶</a></h2>
 <p>[testo]</p>
@@ -517,6 +661,7 @@ In the same code block, the visibility of the desired annotation is changed acco
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Methodology and data</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Platform implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#control-icons">Control icons</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#outdoor-navigation">Outdoor navigation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#indoor-navigation">Indoor navigation</a></li>
 </ul>

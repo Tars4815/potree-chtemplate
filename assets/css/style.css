@@ -544,38 +544,6 @@ a {
 * CONTROLS ICONS
 */
 
-#home_icon {
-    /*display: none;*/
-    width: 110%;
-    height: 110%;
-    position: fixed;
-    bottom: 15px;
-    right: 238px;
-    /*130px*/
-    cursor: pointer;
-    max-height: 70px !important;
-    max-width: 70px !important;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 40px;
-}
-
-#popups_icon {
-    /*display: none;*/
-    width: 110%;
-    height: 110%;
-    position: fixed;
-    bottom: 15px;
-    right: 238px;
-    /*left: 125px;*/
-    cursor: pointer;
-    max-height: 70px !important;
-    max-width: 70px !important;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 35px;
-}
-
 #refresh_icon {
     /*display: none;*/
     width: 80%;

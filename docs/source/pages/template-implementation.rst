@@ -1,7 +1,170 @@
 Platform implementation
 =======================
 
-[testo]
+The platform, based on Potree native functions and proposed modifications of the Vizcaya museum project, aims to simplify the exploration of a 3D digital model of a cultural heritage site.
+With this goal, the implementation focused on the definition of simple and easy-to-reproduce functionalities that could guide even non-experienced users through the inspected and reconstructed structure.
+This has been achieved using a combination of:
+
+* **Annotation actions** triggered by the user click on a given hotspot inside the 3D scene;
+* **Camera animations** that allow to explore a given scene using a pre-defined navigation path;
+* **Pop-up windows** that make possible to see in more detailes images or to include text contents;
+* **Shortcut buttons** used to simplify into a single command more operations.
+
+The work has been articulated on 2 different perspectives, dividing the entire model into 2 scenes:
+
+1. **Outdoor scene** referring to the outside of the 3 surveyed bastions of the castle, for which drones were adopted in addition to total station and GNSS antennas;
+2. **Indoor scene** of the only bastion (San Giacomo one) which was accessible at the moment of the survey and that was subject to a laser scanner survey.
+
+Control icons
+------------------
+
+Due to their peculiarities inherited by survey methods and instrumentation too, the 2 scenes require the implementation of 2 distinct groups of navigation solutions to better fit their needs.
+However, some useful common functionalities have been mantained for both scenes.
+In particular, the main structure of the viewer has been designed to always mantain visible 4 commands:
+
+* **Oriented images** (*camera_icon*) visibility control;
+* **Refresh page** (*refresh_icon*) option;
+* **Navigation instructions** (*question_icon*) command;
+* **Full screen view** (*fullscreen_icon*) button.
+
+.. image:: IMG/custom-buttons.jpg
+  :align: center
+  :alt: Overview of the navigation buttons.
+
+
+All these buttons, positioned on the upper right position of the screen and thought as shortcuts for common operations.
+
+Their style and appearances have been defined as the following example in the *assets/css/style.css* file:
+
+.. code-block:: css
+
+  #refresh_icon {
+    /*display: none;*/
+    width: 80%;
+    height: 80%;
+    position: fixed;
+    top: 15px;
+    right: 160px;
+    /*130px*/
+    cursor: pointer;
+    max-height: 70px !important;
+    max-width: 70px !important;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 35px;
+  }
+
+Then, the control icons (and their image logos) have been included in the body section of the *index.html* file as follow, linking each button to a specific custom function triggered by the user click:
+
+.. code-block:: html
+
+  ...
+  <!--Control Icons-->
+  <img id="camera_icon" onclick="" src="./assets/camera.svg" title="Activate Images" />
+  <img id="refresh_icon" onclick="refreshButton()" src="./assets/refresh.svg" title="Refresh Page" />
+  <img id="question_icon" onclick="" src="./assets/question.svg" title="Tutorial" />
+  <img id="fullscreen_icon" onclick="toggleFullScreen()" src="./assets/fullscreen.svg" title="Fullscreen" />
+  ...
+
+Then, each function has been defined.
+
+Oriented images visibility
+++++++++++++++++++++++++++
+
+This button is needed to have a easy-to-use shortcut for hiding or making visible all the loaded oriented images on the model.
+By default, as understandable by checking the *assets/js/loadphotos.js* file, all the images are hidden to have a cleaner view of the model at first loading.
+However, the click on the camera icon make them visible by triggering the following function included at the end of the *index.html* that switch the visibility conditions of all the loaded images chunks:
+
+.. code-block:: js
+
+  $("#camera_icon").click(function () {
+    console.log('Hai cliccato sulla camera');
+    viewer.scene.orientedImages[0].visible = !viewer.scene.orientedImages[0].visible;
+    viewer.scene.orientedImages[1].visible = !viewer.scene.orientedImages[1].visible;
+    viewer.scene.orientedImages[2].visible = !viewer.scene.orientedImages[2].visible;
+  });
+
+Refresh page
+++++++++++++
+
+This icon is simply linked to the **refreshButton()** function included in the *assets/js/main.js*:
+
+.. code-block:: js
+
+  function refreshButton() {
+    window.top.location.reload();
+  }
+
+Navigation instructions
++++++++++++++++++++++++
+
+The *question_icon* is the first example of pop-up panel implementation in the model, used also for some features of the outdoor and indoor navigation.
+In this case, the click of the user makes visible the panel containing all the instruction for the rotation and translation of the model using both a mouse or touch commands.
+These information are contained in an image embedded in a div element defined at the beggining of the *index.html*:abbr:
+
+.. code-block:: html
+
+  <!-- Navigation Instructions -->
+  <div id="nav_panel" class="navPanel w3-center w3-animate-opacity">
+    <div class="navPanel-content">
+      <div class="intrinsic-container intrinsic-container-16x9">
+        <img class="nav_img" src="./assets/anno-img/navigation3d.png" />
+      </div>
+    </div>
+  </div>
+
+Then, at the end of the same file, the function that change the visibility of the instruction panel is defined:
+
+.. code-block:: js
+
+  $("#question_icon").click(function () {
+    //The panel is made visible
+    $("#nav_panel").fadeIn();
+    //Applying opacity to parent page
+    parentWin = window.parent;
+    var sidebar = parentWin.document.getElementById('split-container');
+    sidebar.style.opacity = "0.5";
+  });
+
+  var navPanel = document.getElementById('nav_panel');
+  // Instructions for when the panel is already visible
+  navPanel.addEventListener('click', function () {
+    //The panel is hidden
+    $("#nav_panel").fadeOut();
+    //reset opacity of parent page
+    parentWin = window.parent;
+    var sidebar = parentWin.document.getElementById('split-container');
+    sidebar.style.opacity = "1";
+  });
+
+Fullscreen mode
++++++++++++++++++
+
+In this case, the function has been defined in the *assets/js/main.js* file.
+It is based on a series of conditions that check if the current view of the platform is already fullscreen and, based on that information, define if the click on the button will exit or enter the fullscreen mode for the user.
+
+.. code-block:: js
+
+  function toggleFullScreen() {
+    if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+        (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+        if (document.documentElement.requestFullScreen) {
+            document.documentElement.requestFullScreen();
+        } else if (document.documentElement.mozRequestFullScreen) {
+            document.documentElement.mozRequestFullScreen();
+        } else if (document.documentElement.webkitRequestFullScreen) {
+            document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+    } else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        }
+    }
+  }
 
 Outdoor navigation
 ------------------
