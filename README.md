@@ -10,6 +10,8 @@ Information about how the project was developed, including details on the survey
 
 [![Documentation Status](https://readthedocs.org/projects/potree-chtemplate/badge/?version=latest)](https://potree-chtemplate.readthedocs.io/en/latest/?badge=latest)
 
+![3D Reconstruction of the construction phases](./screenshots/arsenalephases.gif "3D Reconstruction of the construction phases")
+
 ## **Table of content** 📋
 
 - [How to install and run](#how-to-install-and-run-⚙)
