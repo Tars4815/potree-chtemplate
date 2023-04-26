@@ -20,6 +20,7 @@ Information about how the project was developed, including details on the survey
 - [Performance](#performance-💻)
 - [Credits](#credits-👥)
 - [How to contribute](#how-to-contribute-❓)
+- [Examples](#examples)
 
 ## **How to install and run** ⚙
 
@@ -62,4 +63,7 @@ The digital twin platform implementation was carried by [Federica Gaspari](https
 
 [⚠ UNDER CONSTRUCTION]
 
+## **Examples**
 
+* [**Castello Farnese**](https://labmgf.dica.polimi.it/pujob/potree-template/) in Piacenza (Italy)
+* [**Belvedere Glacier**](https://labmgf.dica.polimi.it/pujob/belvedere/) in Macugnaga (Italy)
