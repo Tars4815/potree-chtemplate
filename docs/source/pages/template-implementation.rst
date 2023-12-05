@@ -22,6 +22,7 @@ Due to their peculiarities inherited by survey methods and instrumentation too, 
 However, some useful common functionalities have been mantained for both scenes.
 In particular, the main structure of the viewer has been designed to always mantain visible 4 commands:
 
+* **Castle evolution** (*castle_phases*) button associated to the dynamic paragraph (*castle_phase_text*) containg the description of the shown phase;
 * **Oriented images** (*camera_icon*) visibility control;
 * **Refresh page** (*refresh_icon*) option;
 * **Navigation instructions** (*question_icon*) command;
@@ -64,9 +65,17 @@ Then, the control icons (and their image logos) have been included in the body s
   <img id="refresh_icon" onclick="refreshButton()" src="./assets/refresh.svg" title="Refresh Page" />
   <img id="question_icon" onclick="" src="./assets/question.svg" title="Tutorial" />
   <img id="fullscreen_icon" onclick="toggleFullScreen()" src="./assets/fullscreen.svg" title="Fullscreen" />
+  <img id="castle_phases" onclick="" src="./assets/back-to-the-future.svg" title="Castle phases"> </button>
+  <p id="castle_phase_text">Current state</p>
   ...
 
 Then, each function has been defined.
+
+Castle phases evolution
+++++++++++++++++++++++++
+
+[TEXT]
+
 
 Oriented images visibility
 ++++++++++++++++++++++++++
