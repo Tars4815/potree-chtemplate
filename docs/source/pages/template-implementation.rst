@@ -74,7 +74,44 @@ Then, each function has been defined.
 Castle phases evolution
 ++++++++++++++++++++++++
 
-[TEXT]
+This shortcut has been inserted in the main homepage for guiding easily non expert users in switching the 3D outdoor views between consequent historical reconstruction.
+
+.. code-block:: js
+
+  ...
+  let visiblePhase = -1;
+  let phases = ['fase1', 'fase2', 'fase3', 'fase4', 'fase5', 'fase6', 'fase7', 'fase8', 'fase9']
+  let phases_text = ['Before 1547', 'September 1547', 'November 1547', 'Winter 1547-1548', 'January 1550', 'June 1550', 'August 1550', 'October 1551', 'May 1553']
+  function changeVisible(modelNumber) {
+    if (modelNumber==-1) {
+      viewer.scene.pointclouds[0].visible = true;
+      viewer.scene.pointclouds[1].visible = true;
+      document.getElementById("castle_phase_text").textContent= "Current state";
+    } else {
+      viewer.scene.pointclouds[0].visible = false;
+      viewer.scene.pointclouds[1].visible = false;
+      viewer.scene.scene.children.find(element => element.name == phases[modelNumber]).visible = true;
+      document.getElementById("castle_phase_text").textContent= phases_text[modelNumber];
+    }
+    for (let i in phases) {
+      if (i != modelNumber) {
+        //hide specific model i
+        viewer.scene.scene.children.find(element => element.name == phases[i]).visible = false;
+        console.log("Elemento nascosto: " + phases[i])
+      }
+    }
+  }
+        
+  let castlePhasesButton = document.getElementById("castle_phases");
+  castlePhasesButton.onclick = () => {
+    visiblePhase += 1;
+    if (visiblePhase >= phases.length) {
+      visiblePhase = -1;
+    }
+    changeVisible(visiblePhase);
+  };
+
+  ...
 
 
 Oriented images visibility
