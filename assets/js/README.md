@@ -7,3 +7,4 @@ In particular:
 - [loadpointclouds](loadpointclouds.js) defines parameters for importing in sequence the needed pointclouds with the desired visualisation settings.
 - [loadpphotos](loadphotos.js) is the script for loading in different chunks images oriented on the model, captured by different devices/equipments.
 - [loadanimations](loadanimations.js) gives a template for defining a set of predefined camera animation paths in the Potree scene.
+- [loadmeshes](loadmeshes.js) is the script for loading in different chunks images oriented on the model, captured by different devices/equipments.

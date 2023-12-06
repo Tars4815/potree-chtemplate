@@ -25,6 +25,7 @@ Gaspari, F., Ioli, F., Barbieri, F., Rivieri, C., Dondi, M., and Pinto, L.: **RE
 - [Credits](#credits-👥)
 - [How to contribute](#how-to-contribute-❓)
 - [Examples](#examples)
+- [References](#references)
 
 ## **How to install and run** ⚙
 
@@ -63,7 +64,14 @@ The digital twin platform implementation was carried by [Federica Gaspari](https
 
 ## **How to contribute** ❓
 
-[⚠ UNDER CONSTRUCTION]
+if you are willing to contribute or test the template for several applications and report a bug or suggest new features:
+1. Fork this repository
+2. Clone your fork
+3. Create a new branch
+4. Make desired changes to the code and commit them
+5. Push changes to your GitHub repository
+6. Open a pull request
+
 
 ## **Examples**
 
@@ -73,3 +81,13 @@ The digital twin platform implementation was carried by [Federica Gaspari](https
 ## **Acknowledgements** 
 
 The project team thanks **Marcello Spigaroli** and **Ente Farnese** for the stimulating and exciting study opportunity and for the support on the historical investigation on the site. Moreover, we would like to acknowledge the collaboration demonstrated by the **Military Arsenal of Piacenza** and the **Historical Archives of Parma** in facilitating the research in the archives and libraries.
+
+## References
+
+### Publications
+
+* Gaspari, F., Ioli, F., Barbieri, F., Rivieri, C., Dondi, M., and Pinto, L.: Rediscoverinng cultural heritage sites by interactive 3D exploration: a practical review of open-source WebGL tools, *Int. Arch. Photogramm. Remote Sens. Spatial Inf. Sci.*, XLVIII-M-2-2023, 661–668, https://doi.org/10.5194/isprs-archives-XLVIII-M-2-2023-661-2023, 2023
+
+### Presentations
+
+* **CIPA 2023 Firenze** (28.06.2023) - *Rediscoverinng cultural heritage sites by interactive 3D exploration: a practical review of open-source WebGL tools by Federica Gaspari* ([SLIDES](https://app.cipa2023florence.org/wp-content/uploads/2023/06/03_GIS-WEBGIS-SHARING-INFORMATION-AND-3D-DATA-2_Gaspari.pptx.pdf))

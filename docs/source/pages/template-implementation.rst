@@ -15,6 +15,18 @@ The work has been articulated on 2 different perspectives, dividing the entire m
 1. **Outdoor scene** referring to the outside of the 3 surveyed bastions of the castle, for which drones were adopted in addition to total station and GNSS antennas;
 2. **Indoor scene** of the only bastion (San Giacomo one) which was accessible at the moment of the survey and that was subject to a laser scanner survey.
 
+Data preparation and loading
+----------------------------
+
+The platform includes different formats and types of 3D objects and entities:
+* **Point clouds**, discrete sets of data points in space representing the 3D shape of the castle. They are the results of the combined photogrammetric and laser scanning survey of the site. The need to be converted from .las/.lax to a .json format with the `PotreeConverter <https://github.com/potree/PotreeConverter/>`__ in order to be used in the viewer.
+* **Meshes**, the structural build of a 3D model consisting of polygons. The projects include one mesh for each documentes historical construction step.
+* **Annotations**, a set of descriptive labels georeferenced in the 3D space. They have a unique title and different descriptions that includes multimedia or actions for moving within the scene.
+* **Images**, their **orientation parameters** and **camera calibration options**, photos taken during the field survey of the site and used in the photogrammetric reconstruction of the castle, obtaining their coordinated and orientation on the same reference system of the point clouds.
+* **Animations**, ordered sequences of camera viewpoints that when interpolated results in a virtual first-person tour in the viewer.
+
+All the JavaScript scripts for loading the different file formats are included on the GitHub repository on the dedicated `JS folder <https://github.com/Tars4815/potree-chtemplate/tree/main/assets/js/>`__.
+
 Control icons
 ------------------
 
