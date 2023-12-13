@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_6"
+   data-name="Layer 6"
+   version="1.1"
+   viewBox="0 0 404.32 404.32"
+   sodipodi:docname="camera_icon.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.58369607"
+     inkscape:cx="203.01661"
+     inkscape:cy="202.16"
+     inkscape:window-width="2100"
+     inkscape:window-height="1224"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_6" />
+  <defs
+     id="defs122">
+    <clipPath
+       id="a">
+      <path
+         id="path505"
+         d="M13 11a3 3 0 1 0-3 3 3 3 0 0 0 3-3zm-3 5a5 5 0 1 1 5-5 5 5 0 0 1-5 5zM6.42 2.56l-.67.64a2 2 0 0 1-1.38.56H2a1.89 1.89 0 0 0-2 1.75v10.54a1.89 1.89 0 0 0 2 1.76h16a1.89 1.89 0 0 0 2-1.76V5.51a1.89 1.89 0 0 0-2-1.76h-2.37a2 2 0 0 1-1.38-.56l-.67-.64A2 2 0 0 0 12.2 2H7.8a2 2 0 0 0-1.38.56Z"
+         clip-rule="evenodd" />
+    </clipPath>
+    <style
+       id="style120">.cls-2{stroke:#fff;stroke-miterlimit:10;fill:#fff;stroke-width:4px}</style>
+  </defs>
+  <g
+     id="g259"
+     transform="translate(609.906 -29.125)">
+    <circle
+       id="Circle2"
+       cx="-407.746"
+       cy="231.285"
+       r="194.66"
+       style="stroke:#fff;stroke-miterlimit:10;fill:none;stroke-width:15px" />
+    <g
+       id="g516"
+       clip-path="url(#a)"
+       style="fill:#fff"
+       transform="matrix(12.9825 0 0 12.9825 -537.572 102.67)">
+      <path
+         id="path514"
+         d="M0 0h20v20H0Z"
+         style="fill:#fff" />
+    </g>
+  </g>
+</svg>
