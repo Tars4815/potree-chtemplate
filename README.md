@@ -86,6 +86,8 @@ The project team thanks **Marcello Spigaroli** and **Ente Farnese** for the stim
 
 ### Publications
 
+* Gaspari, F., Barbieri, F., Fascia, R., Ioli, F., Pinto, L. (2024) An Open-Source Web Platform for 3D Documentation and Storytelling of Hidden Cultural Heritage. *Heritage*, 7, 517-536. https://doi.org/10.3390/heritage7020025
+
 * Gaspari, F., Ioli, F., Barbieri, F., Rivieri, C., Dondi, M., and Pinto, L.: Rediscoverinng cultural heritage sites by interactive 3D exploration: a practical review of open-source WebGL tools, *Int. Arch. Photogramm. Remote Sens. Spatial Inf. Sci.*, XLVIII-M-2-2023, 661–668, https://doi.org/10.5194/isprs-archives-XLVIII-M-2-2023-661-2023, 2023
 
 ### Presentations
