@@ -12,10 +12,6 @@ Information about how the project was developed, including details on the survey
 
 ![3D Reconstruction of the construction phases](./screenshots/arsenalephases.gif "3D Reconstruction of the construction phases")
 
-More details on this project on the following publication:
-
-Gaspari, F., Ioli, F., Barbieri, F., Rivieri, C., Dondi, M., and Pinto, L.: **REDISCOVERING CULTURAL HERITAGE SITES BY INTERACTIVE 3D EXPLORATION: A PRACTICAL REVIEW OF OPEN-SOURCE WEBGL TOOLS**, *Int. Arch. Photogramm. Remote Sens. Spatial Inf. Sci.*, XLVIII-M-2-2023, 661–668, https://doi.org/10.5194/isprs-archives-XLVIII-M-2-2023-661-2023, 2023
-
 ## **Table of content** 📋
 
 - [How to install and run](#how-to-install-and-run-⚙)
