@@ -9,6 +9,7 @@ A working example can be found on the [LabMGF DICA PoliMi website](https://labmg
 Information about how the project was developed, including details on the survey campaign and on web platform implementation, can be found on the official documentation website.
 
 [![Documentation Status](https://readthedocs.org/projects/potree-chtemplate/badge/?version=latest)](https://potree-chtemplate.readthedocs.io/en/latest/?badge=latest)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Tars4815/potree-chtemplate)
 
 ![3D Reconstruction of the construction phases](./screenshots/arsenalephases.gif "3D Reconstruction of the construction phases")
 
