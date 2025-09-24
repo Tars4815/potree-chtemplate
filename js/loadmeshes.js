@@ -1,4 +1,4 @@
-import { PLYLoader } from "../../libs/three.js/loaders/PLYLoader.js";
+import { PLYLoader } from "../libs/three.js/loaders/PLYLoader.js";
 
 function loadConstructionPhase(file_path, name, label) {
     var loader = new PLYLoader();
