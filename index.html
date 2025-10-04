@@ -7,48 +7,37 @@
     <meta name="author" content="Federica Gaspari">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Arsenale di Piacenza</title>
-    <link rel="stylesheet" type="text/css" href="./libs/potree/potree.css">
-    <link rel="stylesheet" type="text/css" href="./libs/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="./libs/openlayers3/ol.css">
-    <link rel="stylesheet" type="text/css" href="./libs/spectrum/spectrum.css">
-    <link rel="stylesheet" type="text/css" href="./libs/jstree/themes/mixed/style.css">
-    <link rel="stylesheet" type="text/css" href="./libs/font-awesome/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./libs/font-awesome/font-awesome.css">
-
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="./libs/potree/potree.css">
+    <link rel="stylesheet" href="./libs/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="./libs/openlayers3/ol.css">
+    <link rel="stylesheet" href="./libs/spectrum/spectrum.css">
+    <link rel="stylesheet" href="./libs/jstree/themes/mixed/style.css">
+    <link rel="stylesheet" href="./libs/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <style>
-        /*Scrollbar for hotspot controls*/
-        ::-webkit-scrollbar {
-            width: 9px;
-        }
-
-        ::-webkit-scrollbar-button {
-            width: 8px;
-            height: 2px;
-        }
-
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 9px; }
+        ::-webkit-scrollbar-button { width: 8px; height: 2px; }
         ::-webkit-scrollbar-track {
             background: black;
             border: thin solid black;
-            box-shadow: 0px 0px 3px black inset;
+            box-shadow: 0 0 3px black inset;
             border-radius: 12px;
         }
-
         ::-webkit-scrollbar-thumb {
             background: #565656;
             border: thin solid #565656;
             border-radius: 12px;
         }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #7d7d7d;
-        }
+        ::-webkit-scrollbar-thumb:hover { background: #7d7d7d; }
     </style>
 </head>
 
 <body>
+    <!-- External Scripts -->
     <script src="./libs/jquery/jquery-3.1.1.min.js"></script>
     <script src="./libs/spectrum/spectrum.js"></script>
     <script src="./libs/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
@@ -63,19 +52,17 @@
     <script src="./libs/jstree/jstree.js"></script>
     <script src="./libs/potree/potree.js"></script>
     <script src="./libs/plasio/js/laslaz.js"></script>
-
-    <!-- custom js script-->
     <script src="./js/main.js"></script>
 
-    <div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
-        <div id="potree_render_area"> </div>
-        <div id="potree_sidebar_container"> </div>
+    <div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;">
+        <div id="potree_render_area"></div>
+        <div id="potree_sidebar_container"></div>
 
-        <!--Control Icons-->
-        <img id="camera_icon" onclick="" src="./assets/camera.svg" title="Activate Images" />
-        <img id="refresh_icon" onclick="refreshButton()" src="./assets/refresh.svg" title="Refresh Page" />
-        <img id="question_icon" onclick="" src="./assets/question.svg" title="Tutorial" />
-        <img id="fullscreen_icon" onclick="toggleFullScreen()" src="./assets/fullscreen.svg" title="Fullscreen" />
+        <!-- Control Icons -->
+        <img id="camera_icon" src="./assets/icons/camera_icon.svg" title="Activate Images" />
+        <img id="refresh_icon" onclick="refreshButton()" src="./assets/icons/refresh-icon.svg" title="Refresh Page" />
+        <img id="question_icon" src="./assets/icons/question.svg" title="Tutorial" />
+        <img id="fullscreen_icon" onclick="toggleFullScreen()" src="./assets/icons/fullscreen.svg" title="Fullscreen" />
 
         <!-- Navigation Instructions -->
         <div id="nav_panel" class="navPanel w3-center w3-animate-opacity">
@@ -86,8 +73,7 @@
             </div>
         </div>
 
-        <!--Annotations Panels-->
-        <!--Old Piacenza plastico-->
+        <!-- Annotation Panels -->
         <div id="anno1" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -96,7 +82,6 @@
             </div>
         </div>
 
-        <!--Old Piacenza plastico-->
         <div id="anno2" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -105,17 +90,15 @@
             </div>
         </div>
 
-        <!--Armor 1-->
         <div id="anno3" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
-                    <img class="anno_img" src="./assets/anno-img/armor1.jpg" /><br>
+                    <img class="anno_img" src="./assets/anno-img/armor1.jpg" />
                     <p>Armatura da campo fine sec. XV</p>
                 </div>
             </div>
         </div>
 
-        <!--Armor 2-->
         <div id="anno4" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -124,7 +107,6 @@
             </div>
         </div>
 
-        <!--Armor 3-->
         <div id="anno5" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -133,7 +115,6 @@
             </div>
         </div>
 
-        <!--Plastico castello-->
         <div id="anno6" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -142,7 +123,6 @@
             </div>
         </div>
 
-        <!--Plastico castello-->
         <div id="anno7" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -151,7 +131,6 @@
             </div>
         </div>
 
-        <!--Paolo III print-->
         <div id="anno8" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -160,7 +139,6 @@
             </div>
         </div>
 
-        <!--Pier Luigi Farnese print-->
         <div id="anno9" class="navPanel w3-center w3-animate-opacity">
             <div class="navPanel-content">
                 <div class="intrinsic-container intrinsic-container-16x9">
@@ -169,16 +147,13 @@
             </div>
         </div>
 
-        <!--Slideshow bastione San Giovanni-->
+        <!-- Slideshow bastione San Giovanni -->
         <div id="anno10" class="navPanel w3-center w3-animate-opacity">
-            <!--<div class="navPanel-content">-->
-            <!---<div class="intrinsic-container intrinsic-container-16x9">-->
             <div class="slideshow-container">
-
                 <div class="mySlides fade">
                     <div class="numbertext">1 / 3</div>
                     <div class="photo-slide">
-                        <img src="./assets/anno-img/sangiovanni01.jpg" style="display: inline-block; width:70%; border-radius: 15px; margin: auto;">
+                        <img src="./assets/anno-img/sangiovanni01.jpg" style="width:70%; border-radius: 15px; margin: auto;">
                     </div>
                     <div class="text">Indoor entrance</div>
                 </div>
@@ -202,84 +177,37 @@
                 <a class="prev" onclick="plusSlides(-1)">❮</a>
                 <a class="next" onclick="plusSlides(1)">❯</a>
                 <a class="closing" onclick="closeSlides()"><b>X</b></a>
-
             </div>
             <br>
-
             <div style="text-align:center">
                 <span class="dot" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
                 <span class="dot" onclick="currentSlide(3)"></span>
             </div>
-            <!---</div>-->
-            <!--</div>-->
         </div>
 
-        <script>
-
-            function closeSlides() {
-                $("#anno10").fadeOut();
-                //reset opacity of parent page
-                parentWin = window.parent;
-                var sidebar = parentWin.document.getElementById('split-container');
-                sidebar.style.opacity = "1";
-            }
-
-            let slideIndex = 1;
-            showSlides(slideIndex);
-
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
-            }
-
-            function currentSlide(n) {
-                showSlides(slideIndex = n);
-            }
-
-            function showSlides(n) {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                let dots = document.getElementsByClassName("dot");
-                if (n > slides.length) { slideIndex = 1 }
-                if (n < 1) { slideIndex = slides.length }
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
-                }
-                slides[slideIndex - 1].style.display = "block";
-                dots[slideIndex - 1].className += " active";
-            }
-        </script>
-
-
-        <!--Hotspots Dropup-->
+        <!-- Hotspots Dropup -->
         <div class="controls">
             <div class="hotspot-controls">
                 <div id="prev" data-title="Previous Annotation" data-action="prev-annotation">
                     <div id="prevDiv"><img id="prevIcon" src="libs/potree/resources/icons/arrow_left.svg" /></div>
                 </div>
-                <div id="hotspots" class="hotspot-name" data-action="toggle-annotation-list"><b
-                        id="hotspotName">Explore</b></div>
+                <div id="hotspots" class="hotspot-name" data-action="toggle-annotation-list">
+                    <b id="hotspotName">Explore</b>
+                </div>
                 <div id="next" data-title="Next Annotation" data-action="next-annotation">
                     <div id="nextDiv"><img id="nextIcon" src="libs/potree/resources/icons/arrow_right.svg" /></div>
                 </div>
                 <div id="lists" class="list hotspots-list visible">
                     <ul class="js-scrollable">
-                        <li id="li1" class="link"><a data-hotspot-target="0" title="Bastione San Giovanni">Bastione San
-                                Giovanni</a></li>
-                        <li id="li2" class="link"><a data-hotspot-target="1" title="Bastione San Benedetto">Bastione San
-                                Benedetto </a></li>
-                        <li id="li3" class="link"><a data-hotspot-target="2" title="Bastione San Giacomo">Bastione San
-                                Giacomo</a></li>
-                        <li id="li4" class="link"><a data-hotspot-target="3"
-                                title="Bastione San Giacomo (Indoor)">Bastione San Giacomo (Indoor)</a></li>
+                        <li id="li1" class="link"><a data-hotspot-target="0">Bastione San Giovanni</a></li>
+                        <li id="li2" class="link"><a data-hotspot-target="1">Bastione San Benedetto</a></li>
+                        <li id="li3" class="link"><a data-hotspot-target="2">Bastione San Giacomo</a></li>
+                        <li id="li4" class="link"><a data-hotspot-target="3">Bastione San Giacomo (Indoor)</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-
     </div>
 
     <script src="js/loadpointclouds.js"></script>
@@ -288,244 +216,155 @@
     <script src="js/loadphotos.js"></script>
 
     <script type="module">
-
-        var src = document.referrer;
-        var srcSplit = src.split("?");
-        var hotSpot = parseFloat(srcSplit[1]); //0 for San Giovanni, 1 for San Benedetto, 2 for San Giacomo, 3 for Indoor
-
-        /* Opening Transitions
-        *****************************************************/
-        //San Giovanni
-        if (hotSpot == 0) {
-            setTimeout(function () {
-                scenears.annotations.children[1].moveHere(scenears.camera);
-            }, 1500);
+        // Slideshow functions
+        function closeSlides() {
+            $("#anno10").fadeOut();
+            const parentWin = window.parent;
+            const sidebar = parentWin.document.getElementById('split-container');
+            if (sidebar) sidebar.style.opacity = "1";
         }
 
-        //San Benedetto
-        else if (hotSpot == 1) {
-            setTimeout(function () {
-                scenears.annotations.children[0].moveHere(scenears.camera);
-            }, 1500);
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
         }
 
-        //San Giacomo
-        else if (hotSpot == 2) {
-            setTimeout(function () {
-                scenears.annotations.children[2].moveHere(scenears.camera);
-            }, 2000);
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
         }
 
-        //San Giacomo Indoor
-        else if (hotSpot == 3) {
-            setTimeout(function () {
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("mySlides");
+            const dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+
+        // Make functions global for onclick handlers
+        window.closeSlides = closeSlides;
+        window.plusSlides = plusSlides;
+        window.currentSlide = currentSlide;
+
+        // Parse hotspot from referrer
+        const src = document.referrer;
+        const srcSplit = src.split("?");
+        const hotSpot = parseFloat(srcSplit[1]);
+
+        // Opening transitions
+        const transitions = {
+            0: () => scenears.annotations.children[1].moveHere(scenears.camera),
+            1: () => scenears.annotations.children[0].moveHere(scenears.camera),
+            2: () => scenears.annotations.children[2].moveHere(scenears.camera),
+            3: () => {
                 event.stopPropagation();
                 viewer.setScene(indoor);
                 scenears.annotations.children[3].moveHere(scenears.camera);
-            }, 2000);
-        }
-
-        /* Hotspots Control Dropup*/
-        $("#hotspots").click(function () {
-            $("#lists").toggle();
-
-        });
-
-        //Functions to show and hide annotations' descriptions
-        function showDescription(annotationNum) {
-            var descriptions = document.getElementsByClassName("annotation-description");
-            var description = descriptions[annotationNum];
-            description.style.display = "block";
-        }
-
-        function hideDescription(annotationNum) {
-            var descriptions = document.getElementsByClassName("annotation-description");
-            var description = descriptions[annotationNum];
-            description.style.display = "none";
-        }
-
-        //Functions for each annotation
-        function item1() {
-            changeHotspotName("San Giovanni");
-            scenears.annotations.children[1].moveHere(scenears.camera);
-            showDescription(1);
-            hideDescription(4);
-            scenears.annotations.children[0].visible = true;
-            scenears.annotations.children[1].visible = true;
-            scenears.annotations.children[2].visible = true;
-            scenears.annotations.children[3].visible = false;
-            scenears.annotations.children[4].visible = false;
-            scenears.annotations.children[5].visible = false;
-            scenears.annotations.children[6].visible = false;
-            scenears.annotations.children[7].visible = false;
-            scenears.annotations.children[8].visible = false;
-            scenears.annotations.children[9].visible = false;
-            scenears.annotations.children[10].visible = false;
-            scenears.annotations.children[11].visible = false;
-            scenears.annotations.children[12].visible = false;
-            scenears.annotations.children[13].visible = false;
-            scenears.annotations.children[14].visible = false;
-            scenears.annotations.children[15].visible = false;
-            scenears.annotations.children[16].visible = false;
-        }
-        function item2() {
-            changeHotspotName("San Benedetto");
-            scenears.annotations.children[0].moveHere(scenears.camera);
-            hideDescription(1);
-            hideDescription(4);
-            scenears.annotations.children[0].visible = true;
-            scenears.annotations.children[1].visible = true;
-            scenears.annotations.children[2].visible = true;
-            scenears.annotations.children[3].visible = false;
-            scenears.annotations.children[4].visible = false;
-            scenears.annotations.children[5].visible = false;
-            scenears.annotations.children[6].visible = false;
-            scenears.annotations.children[7].visible = false;
-            scenears.annotations.children[8].visible = false;
-            scenears.annotations.children[9].visible = false;
-            scenears.annotations.children[10].visible = false;
-            scenears.annotations.children[11].visible = false;
-            scenears.annotations.children[12].visible = false;
-            scenears.annotations.children[13].visible = false;
-            scenears.annotations.children[14].visible = false;
-            scenears.annotations.children[15].visible = false;
-            scenears.annotations.children[16].visible = false;
-        }
-        function item3() {
-            changeHotspotName("San Giacomo");
-            scenears.annotations.children[2].moveHere(scenears.camera);
-            hideDescription(1);
-            hideDescription(4);
-            scenears.annotations.children[0].visible = true;
-            scenears.annotations.children[1].visible = true;
-            scenears.annotations.children[2].visible = true;
-            scenears.annotations.children[3].visible = false;
-            scenears.annotations.children[4].visible = false;
-            scenears.annotations.children[5].visible = false;
-            scenears.annotations.children[6].visible = false;
-            scenears.annotations.children[7].visible = false;
-            scenears.annotations.children[8].visible = false;
-            scenears.annotations.children[9].visible = false;
-            scenears.annotations.children[10].visible = false;
-            scenears.annotations.children[11].visible = false;
-            scenears.annotations.children[12].visible = false;
-            scenears.annotations.children[13].visible = false;
-            scenears.annotations.children[14].visible = false;
-            scenears.annotations.children[15].visible = false;
-            scenears.annotations.children[16].visible = false;
-        }
-        function item4() {
-            changeHotspotName("Indoor");
-            scenears.annotations.children[3].moveHere(scenears.camera);
-            showDescription(4);
-            hideDescription(1);
-            scenears.annotations.children[0].visible = false;
-            scenears.annotations.children[1].visible = false;
-            scenears.annotations.children[2].visible = false;
-            scenears.annotations.children[3].visible = true;
-            scenears.annotations.children[4].visible = true;
-            scenears.annotations.children[5].visible = true;
-            scenears.annotations.children[6].visible = true;
-            scenears.annotations.children[7].visible = true;
-            scenears.annotations.children[8].visible = false;
-            scenears.annotations.children[9].visible = false;
-            scenears.annotations.children[10].visible = false;
-            scenears.annotations.children[11].visible = false;
-            scenears.annotations.children[12].visible = false;
-            scenears.annotations.children[13].visible = false;
-            scenears.annotations.children[14].visible = false;
-            scenears.annotations.children[15].visible = true;
-            scenears.annotations.children[16].visible = true;
-        }
-
-        //Hotspot Dropup's Click Selection
-        $("#li1").click(function () {
-            item1();
-        });
-        $("#li2").click(function () {
-            item2();
-        });
-        $("#li3").click(function () {
-            item3();
-        });
-        $("#li4").click(function () {
-            item4();
-        });
-
-        //Hotspot Dropup's Prev/Next Selection
-        const functions = [];
-        functions.push(item1);
-        functions.push(item2);
-        functions.push(item3);
-        functions.push(item4);
-
-        const length = functions.length;
-
-        const getNextIdx = (idx = 0, length, direction) => {
-            switch (direction) {
-                case 'next': return (idx + 1) % length;
-                case 'prev': return (idx == 0) && length - 1 || idx - 1;
-                default: return idx;
             }
+        };
+
+        if (transitions[hotSpot]) {
+            setTimeout(transitions[hotSpot], hotSpot === 3 ? 2000 : 1500);
         }
 
-        let idx; // idx is undefined, so getNewScene will take 0 as default
-        const getNewScene = (direction) => {
-            idx = getNextIdx(idx, length, direction);
-            var sceneFunction = functions[idx];
-            return sceneFunction();
-        }
+        // Hotspot dropdown toggle
+        $("#hotspots").click(() => $("#lists").toggle());
 
-        $("#prev").click(function () {
-            getNewScene('prev');
-        });
-
-        $("#next").click(function () {
-            getNewScene('next');
-        });
-
-        //Temp solution to hide list when a hotspot is selected
-        function hideList(listItem) {
-            var openLink = document.getElementById(listItem);
-            openLink.addEventListener('click', clickHandler, false);
-            function clickHandler() {
-                var submenu = document.getElementById('lists');
-                submenu.style.display = 'none';
+        // Annotation description helpers
+        const toggleDescription = (annotationNum, show) => {
+            const descriptions = document.getElementsByClassName("annotation-description");
+            if (descriptions[annotationNum]) {
+                descriptions[annotationNum].style.display = show ? "block" : "none";
             }
-        }
+        };
 
-        hideList('li1');
-        hideList('li2');
-        hideList('li3');
-        hideList('li4');
+        // Set annotation visibility
+        const setAnnotationVisibility = (visibleIndices) => {
+            for (let i = 0; i < scenears.annotations.children.length; i++) {
+                scenears.annotations.children[i].visible = visibleIndices.includes(i);
+            }
+        };
 
-        /* Navigation Controls Image
-*****************************************************/
-        $("#question_icon").click(function () {
+        // Hotspot item functions
+        const hotspotConfigs = [
+            { name: "San Giovanni", camera: 1, showDesc: [1], hideDesc: [4], visible: [0, 1, 2] },
+            { name: "San Benedetto", camera: 0, showDesc: [], hideDesc: [1, 4], visible: [0, 1, 2] },
+            { name: "San Giacomo", camera: 2, showDesc: [], hideDesc: [1, 4], visible: [0, 1, 2] },
+            { name: "Indoor", camera: 3, showDesc: [4], hideDesc: [1], visible: [3, 4, 5, 6, 7, 15, 16] }
+        ];
+
+        const hotspotFunctions = hotspotConfigs.map(config => () => {
+            changeHotspotName(config.name);
+            scenears.annotations.children[config.camera].moveHere(scenears.camera);
+            config.showDesc.forEach(i => toggleDescription(i, true));
+            config.hideDesc.forEach(i => toggleDescription(i, false));
+            setAnnotationVisibility(config.visible);
+        });
+
+        // Bind click handlers
+        hotspotFunctions.forEach((fn, i) => {
+            $(`#li${i + 1}`).click(fn);
+        });
+
+        // Navigation between hotspots
+        let idx;
+        const getNextIdx = (currentIdx = 0, length, direction) => {
+            if (direction === 'next') return (currentIdx + 1) % length;
+            if (direction === 'prev') return (currentIdx === 0) ? length - 1 : currentIdx - 1;
+            return currentIdx;
+        };
+
+        const navigateHotspot = (direction) => {
+            idx = getNextIdx(idx, hotspotFunctions.length, direction);
+            hotspotFunctions[idx]();
+        };
+
+        $("#prev").click(() => navigateHotspot('prev'));
+        $("#next").click(() => navigateHotspot('next'));
+
+        // Hide list when hotspot selected
+        ['li1', 'li2', 'li3', 'li4'].forEach(id => {
+            document.getElementById(id).addEventListener('click', () => {
+                document.getElementById('lists').style.display = 'none';
+            });
+        });
+
+        // Navigation controls
+        const setParentOpacity = (opacity) => {
+            const parentWin = window.parent;
+            const sidebar = parentWin.document.getElementById('split-container');
+            if (sidebar) sidebar.style.opacity = opacity;
+        };
+        // Open nav panel on click
+        $("#question_icon").click(() => {
             $("#nav_panel").fadeIn();
-            //Applying opacity to parent page
-            parentWin = window.parent;
-            var sidebar = parentWin.document.getElementById('split-container');
-            sidebar.style.opacity = "0.5";
+            setParentOpacity("0.5");
         });
-
-
-        var navPanel = document.getElementById('nav_panel');
-        navPanel.addEventListener('click', function () {
+        // Close nav panel on click
+        document.getElementById('nav_panel').addEventListener('click', () => {
             $("#nav_panel").fadeOut();
-            //reset opacity of parent page
-            parentWin = window.parent;
-            var sidebar = parentWin.document.getElementById('split-container');
-            sidebar.style.opacity = "1";
+            setParentOpacity("1");
         });
 
-        $("#camera_icon").click(function () {
+        // Camera icon toggle
+        $("#camera_icon").click(() => {
             console.log('Hai cliccato sulla camera');
-            viewer.scene.orientedImages[0].visible = !viewer.scene.orientedImages[0].visible;
-            viewer.scene.orientedImages[1].visible = !viewer.scene.orientedImages[1].visible;
-            viewer.scene.orientedImages[2].visible = !viewer.scene.orientedImages[2].visible;
+            [0, 1, 2].forEach(i => {
+                viewer.scene.orientedImages[i].visible = !viewer.scene.orientedImages[i].visible;
+            });
         });
-
     </script>
 </body>
 
