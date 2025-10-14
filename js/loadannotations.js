@@ -263,7 +263,7 @@ const annotationConfigs = [
         invert: true,
         handler: (event) => {
           event.stopPropagation();
-          animation.play();
+          animation1.play();
           setAnnotationsVisibility({
             8: true,
             9: true,
