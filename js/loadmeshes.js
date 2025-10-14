@@ -2,7 +2,7 @@ import { PLYLoader } from "../libs/three.js/loaders/PLYLoader.js";
 
 function loadConstructionPhase(file_path, name, label) {
     var loader = new PLYLoader();
-    loader.load(Potree.resourcePath + file_path, (geometry) => {
+    loader.load(file_path, (geometry) => {
         geometry.computeVertexNormals();
 
         let mesh;
@@ -35,63 +35,63 @@ function loadConstructionPhase(file_path, name, label) {
 
 let loadedPhases = [
     {
-        path: "/models/fase_1_utm_simpl.ply",
+        path: "assets/models/fase_1_utm_simpl.ply",
         internal: "fase1",
         label: "FASE 1",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_2_utm_simpl.ply",
+        path: "assets/models/fase_2_utm_simpl.ply",
         internal: "fase2",
         label: "FASE 2",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_3_utm_simpl.ply",
+        path: "assets/models/fase_3_utm_simpl.ply",
         internal: "fase3",
         label: "FASE 3",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_4_utm_simpl.ply",
+        path: "assets/models/fase_4_utm_simpl.ply",
         internal: "fase4",
         label: "FASE 4",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_5_utm_simpl.ply",
+        path: "assets/models/fase_5_utm_simpl.ply",
         internal: "fase5",
         label: "FASE 5",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_6_utm_simpl.ply",
+        path: "assets/models/fase_6_utm_simpl.ply",
         internal: "fase6",
         label: "FASE 6",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_7_utm_simpl.ply",
+        path: "assets/models/fase_7_utm_simpl.ply",
         internal: "fase7",
         label: "FASE 7",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_8_utm_simpl.ply",
+        path: "assets/models/fase_8_utm_simpl.ply",
         internal: "fase8",
         label: "FASE 8",
         loaded: false,
         visibility: false
     },
     {
-        path: "/models/fase_9_utm_simpl.ply",
+        path: "assets/models/fase_9_utm_simpl.ply",
         internal: "fase9",
         label: "FASE 9",
         loaded: false,
