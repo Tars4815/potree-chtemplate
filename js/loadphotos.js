@@ -15,16 +15,16 @@
 // Image set configurations
 const imageSets = [
     {
-        cameraParams: '../assets/img_selected/arsenale/calib_anafi_fullRes.xml',
-        imageParams: '../assets/img_selected/arsenale/imagesEO.txt'
+        cameraParams: 'assets/img_selected/arsenale/calib_anafi_fullRes.xml',
+        imageParams: 'assets/img_selected/arsenale/imagesEO.txt'
     },
     {
-        cameraParams: '../assets/img_selected/arsenale22/calib_anafi_fullRes.xml',
-        imageParams: '../assets/img_selected/arsenale22/imagesEO2022.txt'
+        cameraParams: 'assets/img_selected/arsenale22/calib_anafi_fullRes.xml',
+        imageParams: 'assets/img_selected/arsenale22/imagesEO2022.txt'
     },
     {
-        cameraParams: '../assets/img_selected/arsenale21/calib_anafi_fullRes.xml',
-        imageParams: '../assets/img_selected/arsenale21/imagesEO.txt'
+        cameraParams: 'assets/img_selected/arsenale21/calib_anafi_fullRes.xml',
+        imageParams: 'assets/img_selected/arsenale21/imagesEO.txt'
     }
 ];
 
