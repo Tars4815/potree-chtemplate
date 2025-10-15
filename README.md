@@ -13,6 +13,7 @@ Information about how the project was developed, including details on the survey
 
 ![3D Reconstruction of the construction phases](./screenshots/arsenalephases.gif "3D Reconstruction of the construction phases")
 
+
 ## **Table of content** 📋
 
 - [How to install and run](#how-to-install-and-run-⚙)
@@ -24,23 +25,32 @@ Information about how the project was developed, including details on the survey
 - [Examples](#examples)
 - [References](#references)
 
+## **Overview**
+
+potree-chtemplate extends the Potree WebGL point cloud viewer with specialized features for cultural heritage documentation. The template transforms multi-modal survey data (point clouds, photogrammetric models, oriented images) into an interactive web-accessible digital twin supporting both free exploration and guided narrative experiences.
+
+### **Key features**
+
+* *Dual-scene architecture* - Separate outdoor and indoor environments with seamless transitions
+* *Interactive annotations* - 17 clickable hotspots with contextual multimedia content
+* *Camera animations* - Guided tours through predefined navigation paths
+* *Oriented images* - Photo overlays aligned with 3D geometry 
+* *Historical phases* - Toggle between 9 construction evolution phases template-implementation.rst:23
+* *Responsive design* - Bootstrap integration for mobile and desktop compatibility
+
+
 ## **How to install and run** ⚙
 
 Make sure you have the following installed and working in order to reproduce the project. You can view detailed installation guidelines within the following links:
 * [Xampp / Apache server](https://www.apachefriends.org/index.html)
 * [Github to clone project](https://git-scm.com/downloads)
 
-[⚠ UNDER CONSTRUCTION]
+## **Data preparation**
 
-## **Features** 💡
-- Fullscreen HTML5 API
-- Bootstrap integration
-- Simplified navigation
-- Accessible
-- Informational overlays
-- Slowed annotation camera rotations
-- Animations from annotations
-- Oriented images on the model
+1. Convert point clouds using PotreeConverter from LAS/LAZ to Potree JSON format
+2. Place converted data in ./pointclouds/ directory
+3. Configure loaders in JavaScript modules (loadpointclouds.js, loadannotations.js, etc.)
+
 
 ## **License**
 
@@ -58,6 +68,18 @@ The in situ survey was part of the laboratories for the [**RELIEF TECHNIQUE AND 
 The collected data were first processed within the research thesis project entitled *Riscoprire il gigante sommerso - Rilievo, indagine storica e ricostruzione digitale del Castello di Pierluigi Farnese by Michele Dondi and Clara Rivieri.* by Michele Dondi and Clara Rivieri.
 
 The digital twin platform implementation was carried by [Federica Gaspari](https://www.linkedin.com/in/federicagaspari/).
+
+## **Documentation**
+
+Full documentation available at [potree-chtemplate.readthedocs.io](https://potree-chtemplate.readthedocs.io/en/latest/)
+
+Topics covered:
+
+* Template implementation guide
+* Data acquisition methodology
+* Survey techniques and processing workflow
+* Customization instructions
+
 
 ## **How to contribute** ❓
 
